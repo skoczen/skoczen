@@ -3,7 +3,7 @@
 from os import environ
 
 def set_env_fallback(key):
-    if (not key in globals() and globals()[key]) and key in environ:
+    if (not key in globals() or globals()[key]) and key in environ:
         globals()[key] = environ[key]
 
 AWS_ACCESS_KEY_ID = None
