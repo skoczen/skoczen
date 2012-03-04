@@ -2,8 +2,8 @@ from fabric.api import *
 
 env.PROJECT_NAME = "my-new-project"
 env.GITHUB_USER = "skoczen"
-env.GITHUB_REPO = PROJECT_NAME
-env.VIRTUALENV_NAME = PROJECT_NAME
+env.GITHUB_REPO = env.PROJECT_NAME
+env.VIRTUALENV_NAME = env.PROJECT_NAME
 
 
 def initial_setup(cmd):
