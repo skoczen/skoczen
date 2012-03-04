@@ -1,10 +1,22 @@
 from fabric.api import *
 import os
 
-PROJECT_NAME = "my-new-project"
+env.PROJECT_NAME = "my-new-project"
+env.GITHUB_USER = "skoczen"
+env.GITHUB_REPO = PROJECT_NAME
+env.VIRTUALENV_NAME = PROJECT_NAME
+
+def initial_setup(cmd):
+    local("mkvirtualenv %(VIRTUALENV_NAME)s")
+    local("echo cd `pwd` >> ~/.virtualenvs/%(VIRTUALENV_NAME)s/bin/postactivate" % env)
+    local("git remote rename origin artechetype")
+    local("git remote set-url origin git@github.com:%(GITHUB_USER)s/%(GITHUB_REPO)s.git" % env)
+    local("git push -u origin")
+
 
 def run_ve(cmd):
-    local("source ~/.virtualenvs/%(project_name)s/bin/activate;cd ~/workingCopy/%(project_name)s/project;%(cmd)s" % {"cmd":cmd, "project_name":PROJECT_NAME})
+    env.cmd = cmd
+    local("source ~/.virtualenvs/%(VIRTUALENV_NAME)s/bin/activate;cd ~/workingCopy/%(PROJECT_NAME)s/project;%(cmd)s" % env)
 
 def deploy():
     run_ve("./manage.py collectstatic --noinput --settings=envs.live")

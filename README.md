@@ -2,47 +2,92 @@ Artechetype (terrible pun) is a grab-and-go starter django+js I use when making 
 
 NOTE: I'm still working on it. Don't use it quite yet.
 
-Grab it
-=======
+Grab it and go
+==============
 
 1. Set up your new repo, say `github.com:myusername/mynewproject.git`
-2. Grab artechetype, and point it to your repo (sort of a manual fork.)
+
+2. Clone artechetype into a local directory.
 	
 	```bash
 	git clone git@github.com:skoczen/artechetype.git mynewproject.git
-	git remote rename origin artechetype
-	git remote set-url origin git@github.com:myusername/mynewproject.git
-	git push -u origin
 	```
-3. Now, set up your virtualenv, `pip install` the requirements, and you're running. 
-
-Set up, then go.
-================
-
-1. Replace 'my-new-project' in 
-
-	* fabfile
-
-2. Set your keys
-
-	* If you have a private repo, you can use `keys_and_passwords.py`.
-	* If you have a public repo, you're best off setting them as environment variables in your deployment environment.  AKA:
-	```config:add AWS_ACCESS_KEY_ID=foo-bar-1```
-
-3. `./manage.py runserver`
 
 
+3. Set `PROJECT_NAME`, `GITHUB_REPO` and any other env settings you need in `fabfile.py`
 
-Deploy to Heroku 
-================
+4. Set up the your virtualenv and remotes manually, or by using the fab helper command.
+	
+	```bash
+	fab initial_setup
+	```
 
+5. You're set. 
+	
+	```bash
+	cd project
+	./manage.py runserver
+	```
+
+
+
+Deploying to Heroku, with AWS for static media
+==============================================
+
+I love heroku. It's easy, it scales well, and it takes care of most of the stuff I don't want to think about.  Here's how to get artechetype running on it:
 
 Preparing
 ---------
 
-* Heroku Auth
-* Add addons
-* Set config vars
+
+1. Install the gem, if you don't already have it
+
+	```gem install heroku```
+
+2. Authenticate
+
+	```heroku login```
+
+3. Create the app
+	
+	```bash
+	heroku create --stack cedar mynewproject
+	```
+
+3. I use this set of addons in almost every project
+
+	```bash
+heroku addons:add custom_domains:basic
+heroku addons:add zerigo_dns:basic
+heroku addons:add memcache:5mb
+heroku addons:upgrade logging:expanded
+heroku addons:add redistogo:nano
+	```
+
+4. Set up your domains
+
+	```bash
+	heroku domains:add www.mydomain.com
+	heroku domains:add mydomain.com
+	```
+
+5. Set your keys
+
+	* If you have a private repo, you can use `keys_and_passwords.py`.
+	* If you have a public repo, you're best off setting them as environment variables in your deployment environment.  For example:
+
+	```bash
+	heroku config:add AWS_ACCESS_KEY_ID=foo-bar-1
+	```
+
+	* Keys you're likely want to set:
+		```bash
+		heroku config:add AWS_ACCESS_KEY_ID=foo`
+		heroku config:add AWS_SECRET_ACCESS_KEY=bar
+		heroku config:add AWS_STORAGE_BUCKET_NAME=myproject
+		heroku config:add DB_PASSWORD=pass1234
+		```
+	* You can also set analytics settings.
 
 Deploying
 ---------
