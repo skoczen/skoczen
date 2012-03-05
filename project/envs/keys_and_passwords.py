@@ -16,6 +16,10 @@ from os import environ
 print environ 
 
 def set_env_fallback(key):
+
+    print key
+    print globals()[key]
+    print key in environ
     if (key not in globals() or globals()[key] is None) and key in environ:
         globals()[key] = environ[key]
 
