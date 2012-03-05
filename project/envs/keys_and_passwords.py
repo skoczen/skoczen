@@ -10,7 +10,10 @@ try:
     from keys_and_passwords_private import *
 except:
     pass
+    
 from os import environ
+
+print environ 
 
 def set_env_fallback(key):
     if (not key in globals() or globals()[key]) and key in environ:
