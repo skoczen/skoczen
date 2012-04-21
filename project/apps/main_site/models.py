@@ -52,12 +52,12 @@ add_page(
     middle_link="http://slowartpdx.com",
     year="2011+",
 )
-add_page(
-    top="dear text messages,",
-    bottom="spoken word",
-    middle_link="",
-    year="2012",
-)
+# add_page(
+#     top="dear text messages,",
+#     bottom="spoken word",
+#     middle_link="",
+#     year="2012",
+# )
 add_page(
     top="togetheralone",
     bottom="an experiment in community",
