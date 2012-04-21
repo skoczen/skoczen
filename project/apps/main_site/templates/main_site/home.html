@@ -20,8 +20,9 @@
 	<page class="first">
 		<picture></picture>
 		<intro>
-			Hi, I'm Steven Skoczen
-			And generally, I'm in motion.
+			<div class="hi">Hi,</div>
+			<div class="i_m">I'm Steven Skoczen</div>
+			<div class="generally">And generally, I'm in motion.</div>
 		</intro>
 	</page>
 	{% for p in pages %}
@@ -31,10 +32,12 @@
 		</top>
 		<center_bar>
 			<left></left>
-			{% if p.middle_link %}
-			<a href="{{p.middle_link}}" target="_blank" class="middle_link"><middle><span class="middle_hover">open</span></middle></a>
+			{% if p.middle_links %}
+				{% for l in p.middle_links %}
+					<a href="{{l.url}}" target="_blank" class="middle_link_segment {{l.class}}"><middle><span class="middle_hover">{{l.text}}</span></middle></a>
+				{% endfor %}
 			{% else %}
-			<middle>{{p.middle_html|safe}}</middle>
+				<a href="{{p.middle_link}}" target="_blank" class="middle_link"><middle><span class="middle_hover">open</span></middle></a>
 			{% endif %}
 			<right></right>
 		</center_bar>
