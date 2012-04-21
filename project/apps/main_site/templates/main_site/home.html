@@ -15,5 +15,37 @@
 
 
 {% block content %}
-Artechetype loaded.
+
+<pages>
+	<page class="first">
+		<picture></picture>
+		<intro>
+			Hi, I'm Steven Skoczen
+			And generally, I'm in motion.
+		</intro>
+	</page>
+	{% for p in pages %}
+	<page>
+		<top>
+			{{p.top|safe}}
+		</top>
+		<center_bar>
+			<left></left>
+			{% if p.middle_link %}
+			<a href="{{p.middle_link}}" target="_blank" class="middle_link"><middle><span class="middle_hover">open</span></middle></a>
+			{% else %}
+			<middle>{{p.middle_html|safe}}</middle>
+			{% endif %}
+			<right></right>
+		</center_bar>
+		
+		<bottom>
+			{{p.bottom|safe}}
+		</bottom>
+		<year>{{p.year|safe}}</year>
+	</page>
+	{% endfor %}
+</pages>
+
+
 {% endblock %}
