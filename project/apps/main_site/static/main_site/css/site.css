@@ -83,7 +83,7 @@ page.first right_arrow {
 	height: 100px;
 	background: url("../img/arrow-right.png");
 	background-repeat: no-repeat;
-	background-position: right middle;
+	background-position: right center;
 }
 page center_bar left {
 	display: block;
@@ -93,7 +93,7 @@ page center_bar left {
 	height: 100px;
 	background: url("../img/arrow-filled-right.png");
 	background-repeat: no-repeat;
-	background-position: left middle;
+	background-position: 0px center;
 }	
 page center_bar right {
 	display: block;
@@ -103,7 +103,7 @@ page center_bar right {
 	height: 100px;
 	background: url("../img/arrow-filled-left.png");
 	background-repeat: no-repeat;
-	background-position: right middle;
+	background-position: right center;
 }
 /*page center_bar right.last { 
 
@@ -137,27 +137,31 @@ page .middle_link:hover .middle_hover {
 	display: block;
 }
 
-@media (max-width: 330px) { 
-	page intro { top: 100px; font-size: 64px; margin: 139px 0px 0px 0px; }
-	page intro .hi { font-size: 120px; }
-	page intro .i_m { font-size: 55px; }
-	page intro .generally { font-size: 40px; }
+@media (max-width: 600px) { 
+	page intro { top: 100px; font-size: 64px; margin: 100px 0px 0px 0px; }
+	page picture { background: url("../img/my_face_240.jpg"); width: 176px; height: 240px; margin: 80px 10px 0px 4%; }
+	page intro .hi { font-size: 64px; }
+	page intro .i_m { font-size: 24px; }
+	page intro .generally { font-size: 16px; }
 	page top { font-size: 40px; }
 	page bottom { font-size: 25px; }
-	page center_bar middle, page center_bar left, page center_bar right  { height: 100px; }
+	page center_bar middle, page center_bar left, page center_bar right  { height: 50px; }
 	page .middle_link .middle_hover { margin-top: 10px; font-size: 25px; }
+
 }
 
-@media (min-width: 331px) and (max-width: 600px) { 
+/*@media (min-width: 331px) and (max-width: 600px) { 
 	page intro { top: 100px; font-size: 64px; margin: 139px 0px 0px 0px; }
 	page intro .hi { font-size: 120px; }
 	page intro .i_m { font-size: 55px; }
 	page intro .generally { font-size: 40px; }
 	page top { font-size: 40px; }
 	page bottom { font-size: 25px; }
-	page center_bar middle, page center_bar left, page center_bar right  { height: 100px;  }
+	page center_bar, page center_bar middle, page center_bar left, page center_bar right  { height: 50px; }
+	
 	page .middle_link .middle_hover { margin-top: 10px; font-size: 25px; }
-}
+	year { bottom: 10px; }
+}*/
 @media (min-width: 600px) and (max-width: 1024px) { 
 	
 }

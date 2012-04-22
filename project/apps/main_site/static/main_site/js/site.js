@@ -53,7 +53,6 @@ function touch_ui_init() {
 	$(window).unbind("mousemove");
 	scroll_speed = MIN_SCROLL_SPEED * 4;
 	$("page .middle_link .middle_hover").css({"display": "block"});
-	// CENTER_HEIGHT = 50;
 }
 function touch_started() {
 	$("body").stop();
@@ -71,15 +70,29 @@ function size_pages() {
 	win_width = $(window).width();
 	win_height = $(window).height();
 	$("page").css("width", win_width + "px").css("height", win_height + "px");
-	$("pages").css("width", $("page").length * win_width);
+	
+
+	if (win_width < 600) {
+		CENTER_HEIGHT = 50;
+		$("page.first").css("width", win_width+105 + "px");
+		$("page center_bar left").css({"background-position": "-30px center"});
+		$("page top").css("height", ((win_height - CENTER_HEIGHT) /2) - CENTER_HEIGHT).css("padding-top", CENTER_HEIGHT*1.5);
+		$("page bottom").css("height", ((win_height - CENTER_HEIGHT) /2) - (win_height - CENTER_HEIGHT)/5).css("padding-top", CENTER_HEIGHT/8);
+		$("pages").css("width", ($("page").length * win_width) + 110).css("height", win_height + "px");
+	} else {
+		$("page top, page bottom").css("height", ((win_height - CENTER_HEIGHT) /2) - (win_height - CENTER_HEIGHT)/5).css("padding-top", (win_height - CENTER_HEIGHT)/5);
+		$("page.first").css("width", win_width-55 + "px");
+		$("pages").css("width", $("page").length * win_width).css("height", win_height + "px");
+	}
+	
 	// if (Modernizr.touch) {
 	// 	$("page top, page bottom").css("height", ((win_height - CENTER_HEIGHT) /2) - (win_height - CENTER_HEIGHT)/5).css("padding-top", (win_height - CENTER_HEIGHT)/8);
 	// } else {
-		$("page top, page bottom").css("height", ((win_height - CENTER_HEIGHT) /2) - (win_height - CENTER_HEIGHT)/5).css("padding-top", (win_height - CENTER_HEIGHT)/5);
+		
 	// }
 	
 
-	$("page.first").css("width", win_width-55 + "px");
+	
 	// $("page.first right_arrow").css("top", (win_height - CENTER_HEIGHT) /2);
 	$("page center_bar middle").css("width", win_width - 200 + "px");
 	$("pages").css("margin-top", "0px");
