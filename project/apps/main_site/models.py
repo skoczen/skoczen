@@ -37,7 +37,7 @@ def add_page(*args, **kwargs):
 add_page(
     top="is enough",
     bottom="what does love mean to you?",
-    middle_link="http://www.isenough.com",
+    middle_link="http://isenough.com",
     year="2012",
 )
 add_page(
@@ -140,21 +140,21 @@ add_page(
 
 add_page(
     top="quantum imagery",
-    bottom="ye old sole proprietorship",
+    bottom="ye olde sole proprietorship",
     middle_link="http://www.quantumimagery.com",
     year="1999+",
 )
 
 add_page(
     top="photoblog",
-    bottom="ye old photos",
+    bottom="ye olde photos",
     middle_link="http://www.skoczen.net/photos",
     year="2005",
 )
 
 add_page(
     top="but i'm hungry!",
-    bottom="ye old recipe and restaurant site",
+    bottom="ye olde recipe and restaurant site",
     middle_link="http://skoczen.net/food/",
     year="1999+",
 )
