@@ -18,12 +18,12 @@ $(function(){
 	$(window).bind("touchend", touch_ended);
 	if (Modernizr.touch) {
 		touch_ui_init();
-		$("a").bind("touchstart", open_link);
+		// $("a").bind("touchstart", open_link);
 	}
 	size_pages();
 	update_scroll_ratio();
 	window.addEventListener("orientationchange", size_pages);
-	setTimeout(size_pages, 2000);
+	// setTimeout(size_pages, 2000);
 });
 
 
@@ -70,8 +70,11 @@ function touch_ended() {
 
 function size_pages() {
 	win_width = $(window).width();
+	var is_ios = false;
 	if (iOS_getViewportSize !== undefined) {
 		win_height = iOS_getViewportSize().height;
+		$("html, body").css({"height": win_height});
+		is_ios = true;
 	} else {
 		win_height = $(window).height();	
 	}
@@ -87,8 +90,11 @@ function size_pages() {
 		$("page bottom").css("height", ((win_height - CENTER_HEIGHT) /2) - (win_height - CENTER_HEIGHT)/5).css("padding-top", CENTER_HEIGHT/8);
 		$("pages").css("width", ($("page").length * win_width) + 110).css("height", win_height + "px");
 		$("page.first").css({"margin-top": (win_height - CENTER_HEIGHT*1.5)/10});
-		// $(".iOS page top").css("height", ((win_height - CENTER_HEIGHT) /2) - CENTER_HEIGHT).css("padding-top", (win_height - CENTER_HEIGHT*1.5)/6);
-		// $(".iOS page").css({"height": (win_height + 100) + "px", "background-color": "red"});
+		if (is_ios) {
+			$("page top").css("height", ((win_height - CENTER_HEIGHT) /2) - CENTER_HEIGHT).css("padding-top", (win_height - CENTER_HEIGHT*1.5)/6);
+			// $("page").css({"height": (win_height + 100) + "px", "background-color": "red"});	
+		}
+		
 	} else {
 		$("page top, page bottom").css("height", ((win_height - CENTER_HEIGHT) /2) - (win_height - CENTER_HEIGHT)/5).css("padding-top", (win_height - CENTER_HEIGHT)/5);
 		$("page.first").css("width", win_width-55 + "px");
