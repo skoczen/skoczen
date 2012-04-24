@@ -1,3 +1,8 @@
+html, body {
+    width: 100%;
+    height: 100%;
+}
+
 #main {
 	position: relative;
 }
@@ -147,7 +152,7 @@ page .middle_link:hover .middle_hover {
 	page bottom { font-size: 25px; }
 	page center_bar middle, page center_bar left, page center_bar right  { height: 50px; }
 	page .middle_link .middle_hover { margin-top: 10px; font-size: 25px; }
-
+	body { min-height: 420px;}
 }
 
 /*@media (min-width: 331px) and (max-width: 600px) { 

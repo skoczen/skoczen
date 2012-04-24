@@ -12,7 +12,6 @@ var ignore_mousemove = false;
 var win_width, win_height;
 
 $(function(){
-	size_pages();
 	$(window).resize(size_pages);
 	$(window).bind("mousemove", mouse_moved);
 	$(window).bind("touchstart", touch_started);
@@ -23,8 +22,11 @@ $(function(){
 	}
 	size_pages();
 	update_scroll_ratio();
-	// }
+	window.addEventListener("orientationchange", size_pages);
+	setTimeout(size_pages, 2000);
 });
+
+
 
 function update_scroll_ratio() {
 	if (autoscrolling) {
@@ -68,17 +70,25 @@ function touch_ended() {
 
 function size_pages() {
 	win_width = $(window).width();
-	win_height = $(window).height();
-	$("page").css("width", win_width + "px").css("height", win_height + "px");
+	if (iOS_getViewportSize !== undefined) {
+		win_height = iOS_getViewportSize().height;
+	} else {
+		win_height = $(window).height();	
+	}
 	
+	$("page").css("width", win_width + "px").css("height", win_height + "px");
+	// alert(win_height);
 
 	if (win_width < 600) {
 		CENTER_HEIGHT = 50;
 		$("page.first").css("width", win_width+105 + "px");
 		$("page center_bar left").css({"background-position": "-30px center"});
-		$("page top").css("height", ((win_height - CENTER_HEIGHT) /2) - CENTER_HEIGHT).css("padding-top", CENTER_HEIGHT*1.5);
+		$("page top").css("height", ((win_height - CENTER_HEIGHT) /2) - CENTER_HEIGHT).css("padding-top", (win_height - CENTER_HEIGHT*1.5)/3);
 		$("page bottom").css("height", ((win_height - CENTER_HEIGHT) /2) - (win_height - CENTER_HEIGHT)/5).css("padding-top", CENTER_HEIGHT/8);
 		$("pages").css("width", ($("page").length * win_width) + 110).css("height", win_height + "px");
+		$("page.first").css({"margin-top": (win_height - CENTER_HEIGHT*1.5)/10});
+		// $(".iOS page top").css("height", ((win_height - CENTER_HEIGHT) /2) - CENTER_HEIGHT).css("padding-top", (win_height - CENTER_HEIGHT*1.5)/6);
+		// $(".iOS page").css({"height": (win_height + 100) + "px", "background-color": "red"});
 	} else {
 		$("page top, page bottom").css("height", ((win_height - CENTER_HEIGHT) /2) - (win_height - CENTER_HEIGHT)/5).css("padding-top", (win_height - CENTER_HEIGHT)/5);
 		$("page.first").css("width", win_width-55 + "px");
