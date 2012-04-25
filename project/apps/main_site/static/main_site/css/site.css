@@ -44,7 +44,13 @@ page intro .i_m {
 page intro .generally {
 	font-size: 40px;
 }
-
+page intro .that_means {
+	font-size: 24px;
+	display: none;
+}
+page intro:hover .that_means {
+	display: block;
+}
 
 pages {
 	display: block;
@@ -171,4 +177,5 @@ page .middle_link:hover .middle_hover {
 @media (min-width: 600px) and (max-width: 1024px) { 
 	
 }
+
 
