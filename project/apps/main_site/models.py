@@ -38,13 +38,13 @@ add_page(
     top="is enough",
     bottom="what does love mean to you?",
     middle_link="http://isenough.com",
-    year="2012",
+    year="2012 (in-progress)",
 )
 add_page(
     top="encore",
     bottom="a digital poem",
     middle_link="http://www.encorepoem.com",
-    year="2012",
+    year="2012  (in-progress)",
 )
 add_page(
     top="slow art",
@@ -62,7 +62,7 @@ add_page(
     top="togetheralone",
     bottom="an experiment in community",
     middle_link="http://togetheralone.org",
-    year="2012",
+    year="2012 (in-progress)",
 )
 add_page(
     top="the digital executioner",
