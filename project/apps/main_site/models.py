@@ -34,12 +34,12 @@ def add_page(*args, **kwargs):
     
 
 
-add_page(
-    top="is enough",
-    bottom="what does love mean to you?",
-    middle_link="http://isenough.com",
-    year="2012",
-)
+# add_page(
+#     top="is enough",
+#     bottom="what does love mean to you?",
+#     middle_link="http://isenough.com",
+#     year="2012",
+# )
 add_page(
     top="encore",
     bottom="a digital poem",
@@ -103,7 +103,7 @@ add_page(
 )
 
 add_page(
-    top="social",
+    top="the facebooks",
     bottom="yep, I'm on there",
     middle_link = "https://www.facebook.com/skoczen",
     # middle_links=[

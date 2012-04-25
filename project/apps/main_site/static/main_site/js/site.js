@@ -86,15 +86,19 @@ function size_pages() {
 		CENTER_HEIGHT = 50;
 		$("page.first").css("width", win_width+105 + "px");
 		$("page center_bar left").css({"background-position": "-30px center"});
-		$("page top").css("height", ((win_height - CENTER_HEIGHT) /2) - CENTER_HEIGHT).css("padding-top", (win_height - CENTER_HEIGHT*1.5)/3);
+		$("page top, page.first").css("height", ((win_height - CENTER_HEIGHT) /2) - CENTER_HEIGHT).css("padding-top", (win_height - CENTER_HEIGHT*1.5)/3);
 		$("page bottom").css("height", ((win_height - CENTER_HEIGHT) /2) - (win_height - CENTER_HEIGHT)/5).css("padding-top", CENTER_HEIGHT/8);
 		$("pages").css("width", ($("page").length * win_width) + 110).css("height", win_height + "px");
-		$("page.first").css({"margin-top": (win_height - CENTER_HEIGHT*1.5)/10});
-		if (is_ios) {
-			$("page top").css("height", ((win_height - CENTER_HEIGHT) /2) - CENTER_HEIGHT).css("padding-top", (win_height - CENTER_HEIGHT*1.5)/6);
-			// $("page").css({"height": (win_height + 100) + "px", "background-color": "red"});	
-		}
+		// $("page.first").css({"padding-top": (win_height - CENTER_HEIGHT*4)/20});
 		
+		if (is_ios) {
+			var padding_top = (win_height - CENTER_HEIGHT*1.5)/6;
+			$("page top").css({"height": ((win_height - CENTER_HEIGHT) /2) - CENTER_HEIGHT, "padding-top": padding_top});
+			$("page.first").css({"height": win_height - padding_top, "padding-top": 0});
+			$("page intro").css({"top": padding_top+10});
+		}
+		// var first_padding = (win_height - CENTER_HEIGHT)/3.75
+		// $("page.first").css({"padding-top": first_padding, "height": win_height - first_padding});
 	} else {
 		$("page top, page bottom").css("height", ((win_height - CENTER_HEIGHT) /2) - (win_height - CENTER_HEIGHT)/5).css("padding-top", (win_height - CENTER_HEIGHT)/5);
 		$("page.first").css("width", win_width-55 + "px");
@@ -126,7 +130,6 @@ function start_autoscroll() {
 function autoscroll() {
 	clearTimeout(autoscroll_timeout);
 	if (autoscrolling) {
-		// console.log(scroll_speed)
 		$("body").stop().animate({
 			scrollLeft: $("body").scrollLeft() + scroll_speed,
 		}, AUTOSCROLL_TIME_INCREMENT, "linear");	
