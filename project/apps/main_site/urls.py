@@ -4,4 +4,5 @@ from main_site import views
 
 urlpatterns = patterns('',
     url(r'^$', views.home, name='home'),
+    url(r'^threaded/$', views.threaded, name='threaded'),
 )

@@ -1,0 +1,61 @@
+{% extends "base.html" %}{% load compress humanize %}
+
+
+{% block header %}{% endblock %}
+
+{% block css %}
+{{block.super}}
+<link rel="stylesheet" href="{{STATIC_URL}}hiking/css/hike.css">
+{% endblock %}
+
+{% block content %}
+<div class="hike">
+	<div class="steven_is">Steven is</div>
+	<div class="status {{ hike.status }}">{{ hike.status|upper }}</div>
+	{% if not hike.is_back %}
+		{# Where, expected back #}
+		{% if hike.in_trouble %}
+			<div class="in-trouble">
+				<div><b>Cell phone:</b><br/> +01 (607) 262-0880 <a href="mailto:skoczen@gmail.com">skoczen@gmail.com</a></div>
+				<div><b>Emergency Contact:</b><br/>Bonnie Caton: +01 (971) 344-9306 <a href="bonnie.caton@gmail.com">bonnie.caton@gmail.com</a> </div>
+			</div>
+		{% endif %}
+		<div class="times">He {% if hike.has_left %}left{% else %}leaves{% endif %} <em>{{hike.left_on|naturalday}} at {{hike.left_on|time:"g A"|lower}}</em>, and expect{% if not hike.is_late %}s{% else %}ed{% endif %} to be back <em>by {{ hike.expected_back|naturalday }} at {{hike.expected_back|time:"g A"|lower}}</em>.</div>
+		<div class="where">
+			<div class="header">Where</div>
+			<div class="content">{{hike.where}}
+			{% if hike.notes %}
+				<div class="notes">Notes: {{hike.notes}}</div>
+			{% endif %}
+			</div>
+		</div>
+		
+
+		<div class="equiptment">
+
+			<div class="brought">
+				<div class="header">Brought</div>
+				<ul>
+					{% for thing in hike.things_i_brought %}
+						<li>{{thing}}</li>
+					{% empty %}
+						<li>Nothing?!?!</li>
+					{% endfor %}
+				</ul>
+			</div>
+			<div class="forgot">
+				<div class="header">Forgot</div>
+				<ul>
+					{% for thing in hike.things_i_forgot %}
+						<li>{{thing}}</li>
+					{% empty %}
+						<li>Nothing!</li>
+					{% endfor %}
+				</ul>
+			</div>
+	{% else %}
+		<div class="home_safe">{% if hike.is_back %}from hiking and home safe.{% endif %}</div>
+	{% endif %}
+
+</div>
+{% endblock %}

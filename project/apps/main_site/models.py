@@ -1,4 +1,4 @@
-# from django.db import models
+from django.db import models
 all_pages = []
 
 
@@ -15,6 +15,15 @@ all_pages = []
 
 #     def __unicode__(self, *args, **kwargs):
 #         return self.top
+
+class BaseModel(models.Model):
+    updated_at = models.DateTimeField(auto_now=True)
+
+    class Meta:
+        abstract = True
+
+    def __unicode__(self):
+        return "%s" % self.name
 
 class SimplePage:
 

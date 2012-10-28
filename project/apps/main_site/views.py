@@ -5,3 +5,8 @@ from main_site.models import all_pages
 def home(request):
     pages = all_pages
     return locals()
+
+
+@render_to("main_site/threaded.html")
+def threaded(request):
+    return locals()
