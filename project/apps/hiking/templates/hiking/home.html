@@ -23,9 +23,9 @@
 		<div class="times">He {% if hike.has_left %}left{% else %}leaves{% endif %} <em>{{hike.left_on|naturalday}} at {{hike.left_on|time:"g A"|lower}}</em>, and expect{% if not hike.is_late %}s{% else %}ed{% endif %} to be back <em>by {{ hike.expected_back|naturalday }} at {{hike.expected_back|time:"g A"|lower}}</em>.</div>
 		<div class="where">
 			<div class="header">Where</div>
-			<div class="content">{{hike.where}}
+			<div class="content">{{hike.where|urlize|linebreaksbr}}
 			{% if hike.notes %}
-				<div class="notes">Notes: {{hike.notes}}</div>
+				<div class="notes">Notes: {{hike.notes|urlize|linebreaksbr}}</div>
 			{% endif %}
 			</div>
 		</div>
