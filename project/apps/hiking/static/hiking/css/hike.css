@@ -108,3 +108,9 @@ body {
 .equiptment .brought li {
 	border-width: 0px 3px 0px 0px;
 }
+.send-a-text {
+	display: block;
+	color: #888;
+	font-size: 18px;
+	margin: 15px 0px 0px 0px;
+}

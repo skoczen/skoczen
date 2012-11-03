@@ -355,3 +355,8 @@ header a {
 		font-size: 1.5rem;
 	}
 }
+.steven-manual-title {
+	margin: 20px 30px;
+	font-size: 40px;
+	/*text-align: center;*/
+}

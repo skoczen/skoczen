@@ -9,6 +9,14 @@ import datetime
 BUMPER_STATUS_GOOD = "green"
 BUMPER_STATUS_BORDERLINE = "yellow"
 BUMPER_STATUS_BAD = "red"
+MEALS = [
+    ("breakfast", "Breakfast"),
+    ("brunch", "Brunch"),
+    ("lunch", "Lunch"),
+    ("dinner", "Dinner"),
+    ("dessert", "Dessert"),
+    ("snack","Snack"),
+]
 
 class BaseModel(models.Model):
     updated_at = models.DateTimeField(auto_now=True)
@@ -342,3 +350,11 @@ class MonthlyCheckin(BaseModel):
 
     def __unicode__(self):
         return "%s" % self.month_start_date.strftime('%B %Y')
+
+class Restaurant(BaseModel):
+    name = models.CharField(max_length=200)
+    meal = models.CharField(max_length=30, choices=MEALS, blank=True, null=True)
+    have_gone = models.BooleanField(default=False)
+    date_went = models.DateField(blank=True, null=True)
+    notes = models.TextField(blank=True, null=True)
+    rating = models.IntegerField(blank=True, null=True, verbose_name="Rating (1=bad, 10=best ever)")

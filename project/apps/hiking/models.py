@@ -3,11 +3,11 @@ from django.db import models
 from main_site.models import BaseModel
 import datetime
 
-THINGS_LIST = ["food", "water", "warm_layers",
+THINGS_LIST = ["food", "water", "id", "warm_layers",
     "water_purifier", "shelter", "flashlight", "spare_batteries",
     "rain_shell", "space_blankets", "leatherman", "hat", "gloves",
-    "first_aid_kit", "gps", "phone", "spare_phone_battery", "hike_map",
-    "compass", "paper_topo_map", "matches", "epipen",
+    "first_aid_kit", "gps", "gps_download", "phone", "spare_phone_battery", "hike_map",
+    "compass", "paper_topo_map", "matches", "epipen", "cash"
 ]
 
 class Hike(BaseModel):
@@ -21,6 +21,7 @@ class Hike(BaseModel):
 
     brought_food = models.BooleanField(default=False, verbose_name='Food')
     brought_water = models.BooleanField(default=False, verbose_name='Water')
+    brought_id = models.BooleanField(default=False, verbose_name='ID')
     brought_warm_layers = models.BooleanField(default=False, verbose_name='Warm layers')
     brought_water_purifier = models.BooleanField(default=False, verbose_name='Water purifier')
     brought_shelter = models.BooleanField(default=False, verbose_name='Shelter')
@@ -32,7 +33,8 @@ class Hike(BaseModel):
     brought_hat = models.BooleanField(default=False, verbose_name='Hat')
     brought_gloves = models.BooleanField(default=False, verbose_name='Gloves')
     brought_first_aid_kit = models.BooleanField(default=False, verbose_name='First aid kit')
-    brought_gps = models.BooleanField(default=False, verbose_name='Gps')
+    brought_gps = models.BooleanField(default=False, verbose_name='GPS')
+    brought_gps_download = models.BooleanField(default=False, verbose_name='GPS offline map')
     brought_phone = models.BooleanField(default=False, verbose_name='Phone')
     brought_spare_phone_battery = models.BooleanField(default=False, verbose_name='Spare phone battery')
     brought_hike_map = models.BooleanField(default=False, verbose_name='Hike map')
@@ -40,6 +42,8 @@ class Hike(BaseModel):
     brought_paper_topo_map = models.BooleanField(default=False, verbose_name='Paper topo map')
     brought_matches = models.BooleanField(default=False, verbose_name='Matches')
     brought_epipen = models.BooleanField(default=False, verbose_name='Epipen')
+    brought_cash = models.BooleanField(default=False, verbose_name='cash')
+    
     
 
     @property
