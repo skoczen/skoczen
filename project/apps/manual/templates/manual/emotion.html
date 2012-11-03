@@ -1,0 +1,27 @@
+{% extends "manual/base.html" %}{% load compress %}
+
+
+{% block content %}
+<div class="emotion">
+<h1>{{emotion.name}}</h1>
+
+<div class="details">
+	<div class="one_liner">{{emotion.one_liner}}</div>
+</div>
+
+<div class="cause">
+	<h2>Cause</h2>
+	<div class="details">{{emotion.cause|linebreaksbr|safe}}</div>
+</div>
+
+<div class="symptoms">
+	<h2>Symptoms</h2>
+	<div class="details">{{emotion.symptoms|linebreaksbr|safe}}</div>
+</div>
+
+<div class="helpful">
+	<h2>Helpful</h2>
+	<div class="details">{{emotion.helpful|linebreaksbr|safe}}</div>
+</div>
+</div>
+{% endblock %}

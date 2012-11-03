@@ -16,6 +16,8 @@ ADMINS = (
 )
 
 MANAGERS = ADMINS
+SERVER_EMAIL = 'skoczen@gmail.com'
+DEFAULT_FROM_EMAIL = SERVER_EMAIL
 
 DATABASES = {
     'default': {
@@ -28,7 +30,7 @@ DATABASES = {
     }
 }
 
-TIME_ZONE = 'America/Vancouver'
+TIME_ZONE = 'America/Los_Angeles'
 
 LANGUAGE_CODE = 'en-us'
 
@@ -86,7 +88,7 @@ INSTALLED_APPS = (
     'django.contrib.humanize',
     'django.contrib.sessions',
     'django.contrib.sites',
-    # 'django.contrib.messages',
+    'django.contrib.messages',
     'django.contrib.staticfiles',
     'django.contrib.admin',
     # 'django.contrib.admindocs',
@@ -100,6 +102,7 @@ INSTALLED_APPS = (
     "south",
 
     "main_site",
+    "manual",
     "hiking",
     
 )
@@ -112,8 +115,7 @@ TEMPLATE_CONTEXT_PROCESSORS = (
     "django.core.context_processors.static",
     "django.core.context_processors.request",
 )
-
-
+ADD_TRAILING_SLASH = True
 STATICFILES_EXCLUDED_APPS = []
 COMPRESS_ROOT = STATIC_ROOT
 
@@ -138,3 +140,6 @@ LOGGING = {
         },
     }
 }
+
+FITBIT_CONSUMER_KEY = "58a30b3cf14b46eca03e01ca9ab555a7"
+SINGLY_CLIENT_ID = "9f931b883a886b883d27024f84a1cf4b"

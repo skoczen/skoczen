@@ -1,0 +1,85 @@
+<form class="daily_form form-horizontal" action="{% url manual:update_bumpers form.instance.pk %}" method="POST"  id="gb_{{form.instance.pk}}" update_url="{% url manual:get_sleep_hrs form.instance.pk %}" next_day_url="{% url manual:daily_form next_day.pk %}" prev_day_url="{% url manual:daily_form prev_day.pk %}">
+	{% csrf_token %}
+	<span class="hidden">
+		{{form.id}}
+		{{form.date}}
+	</span>
+	<div class="section date header">{{form.instance.date|date:"l, F j, Y"}}</div>
+	<div class="section hours">
+		<table>
+			<tr>
+				<td class="sleep"><div class="number">{{form.instance.sleep_hrs|default:""}}</div>Sleep</td>
+				<td class="sleep_field woke_up">{{form.woke_up_at}}<br>Woke up</td>
+				<td class="day_hours work">{{form.work_hrs}}<br>Work</td>
+    			<td class="day_hours alone">{{form.alone_hrs}}<br>Alone</td>
+    			<td class="day_hours friend">{{form.friend_hrs}}<br>Friend</td>
+    			<td class="day_hours public">{{form.public_hrs}}<br>Public</td>
+    			<td class="day_hours relationship">{{form.relationship_hrs}}<br>Relationship</td>
+				<td class="sleep_field fell_asleep">{{form.fell_asleep_at}}<br>Fell asleep</td>
+				<td class="total"></td>
+    		</tr>
+    	</table>
+    </div>
+    <div class="section checkboxes">
+    	<table>
+			<tr>
+    			<td class="meditated">
+    				
+    				{{form.meditated}}
+    				<label class="status_label {{form.instance.meditated_status}}">Meditated</label>
+    			</td>
+    			<td class="off">
+    				
+    				{{form.off}}
+    				<label class="status_label {{form.instance.off_status}}">{% if request.user.is_authenticated %}Off{% else %}Smiled{% endif %}</label>
+    			</td>
+    			<td class="worked_out">
+    				
+    				{{form.worked_out}}
+    				<label class="status_label {{form.instance.worked_out_status}}">Worked out</label>
+    			</td>
+    			<td class="left_the_house">
+    				
+    				{{form.left_the_house}}
+    				<label class="status_label {{form.instance.left_the_house_status}}">Left the house</label>
+    			</td>
+    			<td class="nature_time">
+    				
+    				{{form.nature_time}}
+    				<label class="status_label {{form.instance.nature_time_status}}">Nature time</label>
+    			</td>
+    		</tr>
+    	</table>
+    </div>
+    
+    <div class="section notes">
+    	<label>Daily Notes:</label>
+		{{form.notes}}
+	</div>
+    <div class="section num_beers">
+    
+    	<div class="beer_type">
+    		<label for="id_{{form.number_of_fun_beers.html_name}}">Fun beers: {{form.number_of_fun_beers}}</label>
+    	</div>
+    	<div class="beer_type">
+    		<label for="id_{{form.number_of_sleep_beers.html_name}}">Sleep: {{form.number_of_sleep_beers}}</label>
+    	</div>
+    </div>
+    <div class="section subjective">
+    	<label for="id_{{form.presence.html_name}}">{{form.presence.label}}</label><input type="range" value="{{form.instance.presence}}" min="1" max="10" id="id_{{form.presence.html_name}}" name="{{form.presence.html_name}}"/>
+
+    	<label for="id_{{form.happiness.html_name}}">{{form.happiness.label}}</label><input type="range" value="{{form.instance.happiness}}" min="1" max="10" id="id_{{form.happiness.html_name}}" name="{{form.happiness.html_name}}"/>
+
+    	<label for="id_{{form.creativity.html_name}}">{{form.creativity.label}}</label><input type="range" value="{{form.instance.creativity}}" min="1" max="10" id="id_{{form.creativity.html_name}}" name="{{form.creativity.html_name}}"/>
+
+    	<label for="id_{{form.morning_mood.html_name}}">{{form.morning_mood.label}}</label><input type="range" value="{{form.instance.morning_mood}}" min="1" max="10" id="id_{{form.morning_mood.html_name}}" name="{{form.morning_mood.html_name}}"/>
+
+    	<label for="id_traveling_or_out_of_routine">Travelling: {{form.travelling_or_out_of_routine}}</label>
+    		
+    </div>
+    
+	<div class="section emotions">
+		<label>Emotions:</label>
+		{{form.emotions}}
+	</div>
+</form>

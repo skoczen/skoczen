@@ -1,0 +1,9 @@
+{% extends "manual/base.html" %}{% load compress %}
+
+{% block content %}
+<div class="value">
+<h1>{{value.name}}</h1>
+
+<div class="details">{{value.explanation|linebreaksbr|safe}}</div>
+</div>
+{% endblock %}

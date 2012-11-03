@@ -1,3 +1,4 @@
+
 boto
 BeautifulSoup<4.0
 django
@@ -9,10 +10,15 @@ django-selector
 django-staticfiles
 django-storages
 django-ses
+dj_database_url
 fabric
 gunicorn
 lxml
+newrelic
+oauth
+requests
 psycopg2
+simplejson
 salad
 south
 versiontools

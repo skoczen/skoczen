@@ -1,0 +1,272 @@
+{% extends "manual/base.html" %}{% load compress %}
+
+{% block js %}{{block.super}}
+{% compress js %}
+<script src="{{STATIC_URL}}manual/js/site.js"></script>
+{% endcompress %}
+<script type="text/javascript">
+    var chart;
+    var chartData = [
+		{% for g in gutterbumpers %}
+		{
+			date: new Date({{g.date|date:"Y, "}} {{g.date.month|add:-1}}, {{g.date.day}}),
+			sleep: {{g.sleep_hrs|default:0}},
+			work: {{g.work_hrs|default:0}},
+			alone: {{g.alone_hrs|default:0}},
+			friend: {{g.friend_hrs|default:0}},
+			in_public: {{g.public_hrs|default:0}},
+			relationship: {{g.relationship_hrs|default:0}},
+			presence: {{g.presence|default:"false"}},
+			happiness: {{g.happiness|default:"false"}},
+			creativity: {{g.creativity|default:"false"}},
+			morning_mood: {{g.morning_mood|default:"false"}},
+		},
+		{% endfor %}
+    ];
+ </script>
+ 
+ {% compress js %}
+ <script> 
+    var chartCursor;
+ 	AmCharts.ready(function () {
+        // SERIAL CHART
+        chart = new AmCharts.AmSerialChart();
+        chart.pathToImages = "{{STATIC_URL}}base/js/libs/amcharts/images/";
+        chart.zoomOutButton = {
+            backgroundColor: "#000000",
+            backgroundAlpha: 0.15
+        };
+        chart.dataProvider = chartData;
+        chart.categoryField = "date";
+
+        // AXES
+        // Category
+        var categoryAxis = chart.categoryAxis;
+        categoryAxis.gridAlpha = 0.07;
+        categoryAxis.axisColor = "#DADADA";
+        categoryAxis.startOnAxis = true;
+        categoryAxis.parseDates = true; // as our data is date-based, we set parseDates to true
+        categoryAxis.minPeriod = "DD";
+
+        // Value
+        var valueAxis = new AmCharts.ValueAxis();
+        valueAxis.stackType = "regular"; // this line makes the chart "stacked"
+        valueAxis.gridAlpha = 0.07;
+        valueAxis.axisColor = "#DADADA";
+        valueAxis.title = "Hours";
+        // valueAxis.maximum = 30;
+        valueAxis.titleBold = false;
+        chart.addValueAxis(valueAxis);
+
+        // GRAPHS
+        // first graph
+        var graph = new AmCharts.AmGraph();
+        graph.type = "line";
+        graph.title = "sleep";
+        graph.valueField = "sleep";
+        graph.lineAlpha = 1;
+        graph.fillAlphas = 0.6; // setting fillAlphas to > 0 value makes it area graph
+        chart.addGraph(graph);
+
+        // second graph
+        graph = new AmCharts.AmGraph();
+        graph.type = "line";
+        graph.title = "work";
+        graph.valueField = "work";
+        graph.lineAlpha = 1;
+        graph.fillAlphas = 0.6;
+        chart.addGraph(graph);
+
+        // third graph
+        graph = new AmCharts.AmGraph();
+        graph.type = "line";
+        graph.title = "alone";
+        graph.valueField = "alone";
+        graph.lineAlpha = 1;
+        graph.fillAlphas = 0.6;
+        chart.addGraph(graph);
+
+                var graph = new AmCharts.AmGraph();
+        graph.type = "line";
+        graph.title = "relationship";
+        graph.valueField = "relationship";
+        graph.lineAlpha = 1;
+        graph.fillAlphas = 0.6; // setting fillAlphas to > 0 value makes it area graph
+        chart.addGraph(graph);
+
+        // second graph
+        graph = new AmCharts.AmGraph();
+        graph.type = "line";
+        graph.title = "friend";
+        graph.valueField = "friend";
+        graph.lineAlpha = 1;
+        graph.fillAlphas = 0.6;
+        chart.addGraph(graph);
+
+        // third graph
+        graph = new AmCharts.AmGraph();
+        graph.type = "line";
+        graph.title = "public";
+        graph.valueField = "in_public";
+        graph.lineAlpha = 1;
+        graph.fillAlphas = 0.6;
+        chart.addGraph(graph);
+
+        // LEGEND
+        var legend = new AmCharts.AmLegend();
+        legend.position = "top";
+        chart.addLegend(legend);
+
+        // CURSOR
+        var chartCursor = new AmCharts.ChartCursor();
+        chartCursor.zoomable = false; // as the chart displayes not too many values, we disabled zooming
+        chartCursor.cursorAlpha = 0;
+        chart.addChartCursor(chartCursor);
+
+        // WRITE
+        chart.write("hours_chart");
+    });
+</script>
+<script type="text/javascript">
+            var subjChart;
+            var chartCursor;
+
+            AmCharts.ready(function () {
+                // generate some data first
+                
+
+                // SERIAL CHART    
+                subjChart = new AmCharts.AmSerialChart();
+                chart.pathToImages = "{{STATIC_URL}}base/js/libs/amcharts/images/";
+                subjChart.panEventsEnabled = true;
+                subjChart.zoomOutButton = {
+                    backgroundColor: "#000000",
+                    backgroundAlpha: 0.15
+                };
+                subjChart.dataProvider = chartData;
+                subjChart.categoryField = "date";
+                subjChart.balloon.bulletSize = 5;
+
+                // listen for "dataUpdated" event (fired when chart is rendered) and call zoomChart method when it happens
+                // subjChart.addListener("dataUpdated", zoomChart);
+
+                // AXES
+                // category
+                var categoryAxis = subjChart.categoryAxis;
+                categoryAxis.parseDates = true; // as our data is date-based, we set parseDates to true
+                categoryAxis.minPeriod = "DD"; // our data is daily, so we set minPeriod to DD
+                categoryAxis.dashLength = 1;
+                categoryAxis.gridAlpha = 0.15;              
+                categoryAxis.axisColor = "#DADADA";
+
+                // value                
+                var valueAxis = new AmCharts.ValueAxis();
+                valueAxis.stackType = "regular"; // this line makes the chart "stacked"
+                valueAxis.axisAlpha = 0;
+                valueAxis.dashLength = 1;
+                valueAxis.title = "Rating"
+                // valueAxis.maximum = 10;
+                subjChart.addValueAxis(valueAxis);
+
+                // GRAPH
+                var graph = new AmCharts.AmGraph();
+                graph.title = "Presence";
+                graph.valueField = "presence";
+                graph.hideBulletsCount = 50;
+                graph.fillAlphas = 0.6;
+                subjChart.addGraph(graph);
+
+                var graph = new AmCharts.AmGraph();
+                graph.title = "Happiness";
+                graph.valueField = "happiness";
+                graph.hideBulletsCount = 50;
+                graph.fillAlphas = 0.6;
+                subjChart.addGraph(graph);
+
+                var graph = new AmCharts.AmGraph();
+                graph.title = "Creativity";
+                graph.valueField = "creativity";
+                graph.hideBulletsCount = 50;
+                graph.fillAlphas = 0.6;
+                subjChart.addGraph(graph);
+
+                var graph = new AmCharts.AmGraph();
+                graph.title = "Morning mood";
+                graph.valueField = "morning_mood";
+                graph.hideBulletsCount = 50;
+                graph.fillAlphas = 0.6;
+                subjChart.addGraph(graph);
+
+                // CURSOR
+                chartCursor = new AmCharts.ChartCursor();
+                chartCursor.cursorPosition = "mouse";
+                chartCursor.pan = true; // set it to fals if you want the cursor to work in "select" mode
+                subjChart.addChartCursor(chartCursor);
+
+		        // LEGEND
+		        var legend = new AmCharts.AmLegend();
+		        legend.position = "bottom";
+		        subjChart.addLegend(legend);
+
+
+                // // SCROLLBAR
+                // var chartScrollbar = new AmCharts.ChartScrollbar();
+                // chartScrollbar.graph = graph;
+                // chartScrollbar.autoGridCount = true;
+                // chartScrollbar.scrollbarHeight = 25;
+                // subjChart.addChartScrollbar(chartScrollbar);
+
+                // WRITE
+                subjChart.write("subjective_chart");
+            });
+
+            // // this method is called when chart is first inited as we listen for "dataUpdated" event
+            // function zoomChart() {
+            //     // different zoom methods can be used - zoomToIndexes, zoomToDates, zoomToCategoryValues
+            //     subjChart.zoomToIndexes(chartData.length - 40, chartData.length - 1);
+            // }
+            
+            // // changes cursor mode from pan to select
+            // function setPanSelect() {
+            //     if (document.getElementById("rb1").checked) {
+            //         chartCursor.pan = false;
+            //         chartCursor.zoomable = true;
+            //     } else {
+            //         chartCursor.pan = true;
+            //     }
+            //     subjChart.validateNow();
+            // }   
+			            
+        </script>
+
+        <!-- <div id="chartdiv" style="width: 100%; height: 400px;"></div>
+        <div id="chartdiv" style="margin-left:35px; margin-bottom:10px;">
+            <input type="radio" name="group" id="rb1" onclick="setPanSelect()">Select
+            <input type="radio" checked="true" name="group" id="rb2" onclick="setPanSelect()">Pan
+		</div> -->
+{% endcompress %}
+{% endblock %}
+
+
+{% block content %}
+<div class="monthly">
+<div class="averages hours">
+	<div class="average">Sleep: {{avg_sleep|floatformat:1}} hrs/day</div>
+	<div class="average">Work: {{avg_work|floatformat:1}} hrs/day  ({{avg_work_per_workday|floatformat:1}} hrs/workday)</div>
+	<div class="average">Alone: {{avg_alone|floatformat:1}} hrs/day</div>
+	<div class="average">Friend: {{avg_friend|floatformat:1}} hrs/day</div>
+	<div class="average">Public: {{avg_public|floatformat:1}} hrs/day</div>
+	<div class="average">Relationship: {{avg_relationship|floatformat:1}} hrs/day</div>
+</div>
+
+<div id="hours_chart" style="width:80%; height:300px;"></div>
+<div class="averages subjective">
+	<div class="average">Presence: {{avg_presence|floatformat:0}}/10</div>
+	<div class="average">Happiness: {{avg_happiness|floatformat:0}}/10</div>
+	<div class="average">Creativity: {{avg_creativity|floatformat:0}}/10</div>
+	<div class="average">Morning mood: {{avg_morning_mood|floatformat:0}}/10</div>
+</div>
+
+<div id="subjective_chart" style="width:80%; height:300px;"></div>
+</div>
+{% endblock %}

@@ -1,0 +1,133 @@
+{% extends "base.html" %}{% load compress %}
+
+{% block title %}Threaded{% endblock %}
+{% block description %}Counting, counted, counts.{% endblock %}
+
+{% block css %}{{block.super}}
+{% compress css %}
+<link rel="stylesheet" href="{{STATIC_URL}}main_site/css/fonts.css">
+<link rel="stylesheet" href="{{STATIC_URL}}main_site/css/threaded.css">
+{% endcompress %}
+{% endblock %}
+
+{% block js %}{{block.super}}
+{% compress js %}
+<script src="{{STATIC_URL}}main_site/js/threaded.js"></script>
+{% endcompress %}
+{% endblock %}
+
+
+{% block content %}
+<audio controls="controls">
+  <source src="{{STATIC_URL}}/main_site/audio/threaded.ogg" type="audio/ogg" />
+  <source src="{{STATIC_URL}}/main_site/audio/threaded.mp3" type="audio/mpeg" />
+</audio>
+
+See.. 'way <i>I</i> see it
+
+three straight stitches
+pull forward
+three straight stitches
+
+'could be anywere
+
+pull forward
+
+"Mom?"
+
+her concentration broke.
+
+"Umm.."
+
+her hands fumbled for a nearby bottle.
+found it.
+lid untwisting counterclockwise
+
+one
+two
+and a half
+
+"Um, what is it?"
+
+
+"You were sewing the couch again."
+
+clockwise
+one
+two
+a half
+
+"oh.  um, no.  no i wasn't"
+
+counterclockwise
+one
+two
+a half
+
+the son looked on skeptically
+
+"i was, um, thing"
+
+clockwise
+one
+two
+a half
+
+"fixing a little
+patching a little"
+
+counterclockwise
+one
+two
+a half
+
+"a little hole. not patching."
+
+"I should"
+
+clockwise
+one two a half
+
+"i should make dinner."
+
+"but Mom, it's two-thirty."
+
+she had flitted to the table that looked out the front window.
+fingers found four quarters
+
+stack
+one two three four
+
+"Yes. Timothy, I know what time it is."
+
+unstack
+four three two one
+
+"but the chicken"
+
+one two three four
+
+"the chicken has to thaw"
+
+four three two one
+
+"you're too little"
+
+one two three four
+
+"you'll understand later"
+
+her shoulders were counting by this point
+strung tight
+
+3 2 1
+
+he left, feet pressed gingerly onto the linoleum
+
+1 2 3 4
+
+She looked.
+
+
+
+{% endblock %}

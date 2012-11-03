@@ -1,0 +1,35 @@
+{% extends "manual/base.html" %}{% load compress %}
+
+{% block js %}{{block.super}}
+{% compress js %}
+<script src="{{STATIC_URL}}manual/js/ajaxform.js"></script>
+<script src="{{STATIC_URL}}manual/js/daily.js"></script>
+{% endcompress %}
+{% endblock %}
+
+
+{% block content %}
+<div id="status"></div>
+<div class="shift_link shift_left_link">&lsaquo;</div>
+<div class="shift_link shift_right_link">&rsaquo;</div>
+<div id="left_form">
+{% with yesterday_form as form %}
+	{% include "manual/_daily_form.html" %}
+{% endwith %}
+</div>
+<div id="right_form">
+{% with today_form as form %}
+	{% include "manual/_daily_form.html" %}
+{% endwith %}
+</div>
+
+<script id="saving" type="text/html">
+	<div class="alert alert-info">Saving...</div>
+</script>
+<script id="saved" type="text/html">
+	<div class="alert alert-success">Saved.</div>
+</script>
+<script id="errored" type="text/html">
+	<div class="alert alert-error">Error. {{error}}</div>
+</script>
+{% endblock %}

@@ -1,0 +1,357 @@
+a, a:visited, a:hover {
+	color: #046688;
+	text-decoration: none;
+}
+body {
+	background-color: #F2F2F2;
+}
+p {
+	display: inline;
+}
+#status {
+	position: fixed;
+	top: 0px;
+	left: 10%;
+	width: 80%;
+}
+form table {
+	width: 100%;
+}
+form table td, form table  input {
+	width: 50px;
+	text-align: center;
+}
+.emotions li {
+	float: left;
+	list-style: none;
+	text-indent: 0px;
+	margin: 5px;
+}
+.emotions ul {
+	margin: 0px;
+	padding: 0px;
+}
+form .section.num_beers {
+	display: block;
+	overflow: auto;
+	padding: 10px 0px 0px 0px;
+}
+.num_beers input {
+	width: 50px;
+}
+.beer_type, .beer_type_label {
+	float: left;
+	text-align: center;
+	padding: 5px;
+}
+.beer_type input {
+	text-align: center;
+}
+.beer_type_label {
+	text-align: right;
+	padding-top: 10px;
+}
+.date.header {
+	width: 100%;
+	text-align: center;
+	font-size: 30px;
+	padding: 10px 0px 20px 0px;
+	color: #777;
+}
+.status_label {
+	padding: 0px;
+	margin: 0px;
+	border-radius: 4px;
+	
+}
+.section.checkboxes:hover .status_label {
+	opacity: 1;
+}
+.status_label.red {
+	color: #FFF;
+	background-color: #D00;
+
+}
+.status_label.yellow {
+	color: #650;
+	background-color: #FFEE88;
+}
+.status_label.green {
+	color: #009944;
+	background-color: #AAFFAA;
+}
+
+.daily_form {
+	padding: 20px 2%;
+	margin: 0px 0.5%;
+	width: 44%;
+	float: left;
+	border: 1px solid #DDD;
+	background: #FFF;
+}
+.hours .total {
+	padding: 7px 0px 4px 0px;
+	font-size: 12px;
+	color: #EEE;
+}
+.hours .sleep .number {
+	padding: 7px 0px 4px 0px;
+	font-size: 13px;
+	color: #555;
+}
+form .section {
+	padding: 10px 0px;
+}
+.section.notes {
+
+	float: right;
+}
+.timeEntry_control {
+	display: none;
+}
+form .sleep_field input {
+	width: 60px;
+}
+.monthly .averages {
+	float: right;
+	width: 20%;
+	text-align: left;
+	margin-top: 100px;
+}
+
+header {
+	padding: 0px;
+	margin: 0px auto;
+	width: 96%;
+}
+header a, header a:visited, header a:hover {
+	color: #888;
+	text-decoration: none;
+}
+header a {
+	display: inline-block;
+	padding: 10px 5px 5px 5px;
+}
+.emotion, .emotions {
+	width: 94%;
+	margin: 20px auto;
+	color: #444;
+	font-size: 14px;
+}
+.emotion h1, .emotion h2 {
+	font-weight: normal;
+	color: #CCC;
+	margin-top: 1rem;
+}
+.emotion .one_liner {
+	margin: 0.5rem 0px;
+	font-size: 1.2rem;
+	color: #777;
+}
+.emotion .details {
+	padding: 0px 10px;
+}
+.emotion .cause {
+	color: #444;
+}
+.emotion .symptoms {
+	color: #333;
+}
+.emotion .helpful {
+	color: #222;
+}
+.emotions a {
+	font-size: 16px;
+	display: block;
+	padding: 2px;
+}
+.value, .values {
+	width: 94%;
+	margin: 20px auto;
+	color: #444;
+	font-size: 14px;
+}
+.value h1, .value h2 {
+	font-weight: normal;
+	color: #CCC;
+	margin-top: 1rem;
+}
+.value .details {
+	padding: 4px 10px;
+}
+.values a {
+	font-size: 16px;
+	padding: 4px;
+}
+
+.dashboard .measurement {
+	float: left;
+}
+.dashboard .graph_label {
+	text-align: center;
+}
+.dashboard .measurement.status_label {
+	display: block;
+	width: 18%;
+	font-size: 1.6rem;
+	padding-top: 30px;
+	height: 60px;
+	margin: 20px 1%;
+	text-align: center;
+}
+.dashboard .dashboard_row {
+	display: block;
+	clear: both;
+	overflow: auto;
+	margin: 0px auto;
+}
+.dashboard .big_number {
+	font-size: 3rem;
+	/*font-weight: bold;*/
+	color: #AAA;
+}
+.dashboard .gauge .label_text {
+	color: #888;
+	font-size: 1.3rem;
+}
+.dashboard .measurement.health {
+	margin: 20px 1%;	
+	font-size: 0.6em;
+}
+.dashboard .status_label.red {
+	color: #FFF;
+	background-color: #f31400;
+}
+.dashboard .status_label.yellow {
+	color: #9d5e00;
+	background-color: #f3ca00;
+}
+.dashboard .status_label.green {
+	color: #056904;
+	background-color: #0efe0c;
+}
+.dashboard .measurement.status_label {
+	padding-top: 20px;
+}
+/*.dashboard .status_light.red {
+	color: #FFF;
+	background-color: #f31400;
+	background: -moz-linear-gradient(
+		top,
+		#f31400 0%,
+		#f31400);
+	background: -webkit-gradient(
+		linear, 20% top, 70% bottom, 
+		from(#f31400),
+		to(#f31400));
+}
+.dashboard .status_light.yellow {
+	color: #9d5e00;
+	background-color: #f3ca00;
+	background: -moz-linear-gradient(
+		top,
+		#f3ca00 0%,
+		#f3ca00);
+	background: -webkit-gradient(
+		linear, 20% top, 70% bottom, 
+		from(#f3ca00),
+		to(#f3ca00));
+}
+.dashboard .status_light.green {
+	color: #056904;
+	background-color: #0efe0c;
+	background: -moz-linear-gradient(
+		top,
+		#0efe0c 0%,
+		#00ee00);
+	background: -webkit-gradient(
+		linear, 20% top, 70% bottom, 
+		from(#0efe0c),
+		to(#00ee00));
+}
+.dashboard .status_label .status_light {
+	display: block;
+	margin: 0px auto 10px auto;
+	width: 40px;  
+    height: 40px;  
+    box-shadow: inset 0px 1px 0px 0px rgba(250,250,250,0.5),  
+    		            0px 0px 3px 2px rgba(226,0,0,0.5);  
+    border-radius: 20px;  
+}*/
+.shift_link {
+	display: block;
+	color: rgba( 200,200,200,0.1);
+	font-size: 300px;
+	top: 150px;
+	position: absolute;
+	-webkit-transform: scale(0.6,1);
+	padding: 0px;
+	margin: 0px -40px;
+	cursor: pointer;
+}
+.shift_link:hover {
+	color: rgba( 200,200,200,0.8);	
+}
+.shift_right_link {
+	right: 0px;
+	margin-right: -20px;
+	text-align: right;
+}
+@media (max-width: 800px) { 
+	#left_form {
+		display: none;
+	}
+	.daily_form {
+		width: 99.6%;
+		margin: 0px auto;
+		padding: 10px 0.2%;
+	}
+	form table {
+		font-size: 10px;
+	}
+	form table input {
+		width: 20px;
+	}
+	.status_label {
+		font-size: 10px;
+	}
+	.date.header {
+		font-size: 20px;
+		padding: 5px 0px 10px 0px;
+	}
+	header {
+		font-size: 11px;
+	}
+	header a {
+		padding: 6px 4px 4px 4px;
+	}
+	.section.notes{
+		float: none;
+		width: 100%;
+	}
+	.section.notes textarea {
+		width: 100%;
+	}
+	.beer_type {
+		/*clear: left;*/
+	}
+	.section.subjective input[type=range] {
+		width: 100%;
+	}
+	#main form {
+		padding: 5px;
+	}
+	.dashboard .label_text {
+		font-size: 0.7rem;
+	}
+	.dashboard .measurement.status_label {
+		padding-top: 11px;
+		height: 26px;
+	}
+	.dashboard .gauge .label_text {
+		font-size: 0.8rem;
+	}
+	.dashboard .big_number {
+		font-size: 1.5rem;
+	}
+}

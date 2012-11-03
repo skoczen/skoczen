@@ -1,0 +1,9 @@
+{% extends "manual/base.html" %}{% load compress %}
+
+{% block content %}
+<div class="emotions">
+{% for e in emotions %}
+	<a href="{% url manual:emotion e.slug %}">{{e.name}}</a><br/>
+{% endfor %}
+</div>
+{% endblock %}

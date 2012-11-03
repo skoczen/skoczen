@@ -10,15 +10,19 @@
   <title>{% block title %}{% endblock %}</title>
   <meta name="description" content="{% block description %}{% endblock %}">
   <meta name="author" content="{% block author %}Steven Skoczen{% endblock %}">
-
+  <meta property="og:type" content="{% block og_type %}website{% endblock %}" />
+  <meta property="og:title" content="{% block og_title %}{% endblock %}" />
+  <meta property="og:description" content="{% block og_description %}{% endblock %}" />
+  <meta property="og:image" content="{% block og_image %}{% endblock %}" />
   <meta name="viewport" content="width=device-width,initial-scale=1">
   {% analytical_head_top %}
 
   {% block css %}
-  <link rel="stylesheet" href="http://twitter.github.com/bootstrap/1.4.0/bootstrap.min.css">
   {% compress css %}
+  <link rel="stylesheet" href="{{STATIC_URL}}base/css/bootstrap.css">
   <link rel="stylesheet" href="{{STATIC_URL}}base/css/animate.css">
   <link rel="stylesheet" href="{{STATIC_URL}}base/css/style.css">
+  <link rel="stylesheet" href="{{STATIC_URL}}base/js/libs/jquery.timeentry/jquery.timeentry.css">
   {% endcompress %}
   {% endblock %}
 
@@ -30,6 +34,7 @@
 
 <body>
   {% analytical_body_top %}
+  <header>{% block header %}{% endblock %}</header>
   <div id="container">
     <div id="main" role="main">
     	{% block content %}
@@ -39,13 +44,17 @@
   </div> 
 
   {% compress js %}
-	<script type="text/javascript" src="{{STATIC_URL}}base/js/libs/jquery-1.6.2.min.js"></script>
-	<script type="text/javascript" src="{{STATIC_URL}}base/js/libs/jquery-ui-1.8.19.custom.min.js"></script>
+	<script type="text/javascript" src="{{STATIC_URL}}base/js/libs/jquery-1.8.2.min.js"></script>
+	<script type="text/javascript" src="{{STATIC_URL}}base/js/libs/jquery-ui-1.9.1.custom.min.js"></script>
 	<script type="text/javascript" src="{{STATIC_URL}}base/js/libs/underscore-min.js"></script>
 	<script type="text/javascript" src="{{STATIC_URL}}base/js/libs/backbone-min.js"></script>
 	<script type="text/javascript" src="{{STATIC_URL}}base/js/libs/ICanHaz.min.js"></script>
 	<script type="text/javascript" src="{{STATIC_URL}}base/js/libs/Three.js"></script>
 	<script type="text/javascript" src="{{STATIC_URL}}base/js/libs/easel.js"></script>
+	<script type="text/javascript" src="{{STATIC_URL}}base/js/libs/gauge.js"></script>
+	<script type="text/javascript" src="{{STATIC_URL}}base/js/libs/amcharts/amcharts.js"></script>
+	<script type="text/javascript" src="{{STATIC_URL}}base/js/libs/bootstrap.js"></script>
+	<script type="text/javascript" src="{{STATIC_URL}}base/js/libs/jquery.timeentry/jquery.timeentry.js"></script>
   {% endcompress %}
   {% block js %}
 
