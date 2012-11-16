@@ -22,6 +22,7 @@ $(function(){
 	});
 	$(".shift_left_link").live("click", shiftLeft);
 	$(".shift_right_link").live("click", shiftRight);
+	$("input[type=range]").live("change", sliderChanged);
 });
 
 function shiftLeft() {
@@ -48,6 +49,11 @@ function setDailyForm(url, target) {
 			});
 		}
 	});
+}
+
+function sliderChanged(e) {
+	$ele = $(e.target);
+	$("input[name=" + $ele.attr("name") + "_set]").attr("checked", "checked");
 }
 
 function queueFormSave(e) {
@@ -89,11 +95,16 @@ function updateSleepHours() {
 function updateSectionWithResponse(json, section) {
 	$form = $("#gb_" + json.id);
 	$(".sleep .number", $form).html(json.sleep_hrs);
-	$(".meditated label", $form).removeClass().addClass("status_label " + json.meditated_status)
-	$(".off label", $form).removeClass().addClass("status_label " + json.off_status)
-	$(".worked_out label", $form).removeClass().addClass("status_label " + json.worked_out_status)
-	$(".left_the_house label", $form).removeClass().addClass("status_label " + json.left_the_house_status)
-	$(".nature_time label", $form).removeClass().addClass("status_label " + json.nature_time_status)
+	$(".meditated label", $form).removeClass().addClass("status_label " + json.meditated_status);
+	$(".off label", $form).removeClass().addClass("status_label " + json.off_status);
+	$(".worked_out label", $form).removeClass().addClass("status_label " + json.worked_out_status);
+	$(".left_the_house label", $form).removeClass().addClass("status_label " + json.left_the_house_status);
+	$(".nature_time label", $form).removeClass().addClass("status_label " + json.nature_time_status);
+	$(".checkmark.presence", $form).toggleClass("checked", json.has_reported_presence_today);
+	$(".checkmark.creativity", $form).toggleClass("checked", json.has_reported_creativity_today);
+	$(".checkmark.happiness", $form).toggleClass("checked", json.has_reported_happiness_today);
+	$(".checkmark.morning_mood", $form).toggleClass("checked", json.has_reported_morning_mood_today);
+	$form.toggleClass("all_green", json.all_green);
 }
 
 function hoursChanged(e) {
@@ -113,7 +124,7 @@ function roundPretty(num) {
 	if (rem == 0) {
 		roundLen = 0;
 	}
-	return roundNumberWithDec(num,roundLen)
+	return roundNumberWithDec(num,roundLen);
 }
 function calculateHours(hoursBlock) {
 	var hours = 0;

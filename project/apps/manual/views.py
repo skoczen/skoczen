@@ -38,6 +38,11 @@ def success_and_statii_for_bumper(success, bumper_pk):
         "worked_out_status": bumper.worked_out_status,
         "left_the_house_status": bumper.left_the_house_status,
         "nature_time_status": bumper.nature_time_status,
+        "has_reported_presence_today": bumper.has_reported_presence_today,
+        "has_reported_creativity_today": bumper.has_reported_creativity_today,
+        "has_reported_happiness_today": bumper.has_reported_happiness_today,
+        "has_reported_morning_mood_today": bumper.has_reported_morning_mood_today,
+        "all_green": bumper.all_green,
     }
 
 @login_required

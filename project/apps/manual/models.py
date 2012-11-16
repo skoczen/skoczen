@@ -81,6 +81,10 @@ class GutterBumper(BaseModel):
     happiness = models.IntegerField(blank=True, null=True, help_text="1-10")
     creativity = models.IntegerField(blank=True, null=True, help_text="1-10")
     morning_mood = models.IntegerField(blank=True, null=True, help_text="1-10")
+    presence_set = models.BooleanField(default=False)
+    happiness_set = models.BooleanField(default=False)
+    creativity_set = models.BooleanField(default=False)
+    morning_mood_set = models.BooleanField(default=False)
     notes = models.TextField(blank=True, null=True)
     weight = models.FloatField(blank=True, null=True)
     body_fat_percent = models.FloatField(blank=True, null=True)
@@ -184,6 +188,30 @@ class GutterBumper(BaseModel):
             return BUMPER_STATUS_BORDERLINE
         else:
             return BUMPER_STATUS_BAD
+
+    @property
+    def has_reported_presence_today(self):
+        return self.presence_set
+
+    @property
+    def has_reported_happiness_today(self):
+        return self.happiness_set
+
+    @property
+    def has_reported_creativity_today(self):
+        return self.creativity_set
+
+    @property
+    def has_reported_morning_mood_today(self):
+        return self.morning_mood_set
+
+    @property
+    def all_green(self):
+        return self.has_reported_presence_today and self.has_reported_happiness_today and\
+               self.has_reported_creativity_today and self.has_reported_morning_mood_today and\
+               self.meditated_status is BUMPER_STATUS_GOOD and self.off_status is BUMPER_STATUS_GOOD and\
+               self.worked_out_status is BUMPER_STATUS_GOOD and self.left_the_house_status is BUMPER_STATUS_GOOD and\
+               self.nature_time_status is BUMPER_STATUS_GOOD
 
 
     @property

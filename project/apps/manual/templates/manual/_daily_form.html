@@ -1,4 +1,4 @@
-<form class="daily_form form-horizontal" action="{% url manual:update_bumpers form.instance.pk %}" method="POST"  id="gb_{{form.instance.pk}}" update_url="{% url manual:get_sleep_hrs form.instance.pk %}" next_day_url="{% url manual:daily_form next_day.pk %}" prev_day_url="{% url manual:daily_form prev_day.pk %}">
+<form class="daily_form form-horizontal {% if form.instance.all_green %}all_green{% endif %}" action="{% url manual:update_bumpers form.instance.pk %}" method="POST"  id="gb_{{form.instance.pk}}" update_url="{% url manual:get_sleep_hrs form.instance.pk %}" next_day_url="{% url manual:daily_form next_day.pk %}" prev_day_url="{% url manual:daily_form prev_day.pk %}">
 	{% csrf_token %}
 	<span class="hidden">
 		{{form.id}}
@@ -66,14 +66,22 @@
     	</div>
     </div>
     <div class="section subjective">
-    	<label for="id_{{form.presence.html_name}}">{{form.presence.label}}</label><input type="range" value="{{form.instance.presence}}" min="1" max="10" id="id_{{form.presence.html_name}}" name="{{form.presence.html_name}}"/>
-
-    	<label for="id_{{form.happiness.html_name}}">{{form.happiness.label}}</label><input type="range" value="{{form.instance.happiness}}" min="1" max="10" id="id_{{form.happiness.html_name}}" name="{{form.happiness.html_name}}"/>
-
-    	<label for="id_{{form.creativity.html_name}}">{{form.creativity.label}}</label><input type="range" value="{{form.instance.creativity}}" min="1" max="10" id="id_{{form.creativity.html_name}}" name="{{form.creativity.html_name}}"/>
-
-    	<label for="id_{{form.morning_mood.html_name}}">{{form.morning_mood.label}}</label><input type="range" value="{{form.instance.morning_mood}}" min="1" max="10" id="id_{{form.morning_mood.html_name}}" name="{{form.morning_mood.html_name}}"/>
-
+    	<div class="measurement">
+    		<div class="checkmark presence {% if form.instance.has_reported_presence_today %} checked {% endif %}">&#10004;</div>
+    		<label for="id_{{form.presence.html_name}}">{{form.presence.label}}</label><input type="range" value="{{form.instance.presence}}" min="1" max="10" id="id_{{form.presence.html_name}}" name="{{form.presence.html_name}}"/><span class="hidden">{{form.presence_set}}</span>
+    	</div>
+    	<div class="measurement">
+    		<div class="checkmark happiness {% if form.instance.has_reported_happiness_today %} checked {% endif %}">&#10004;</div>
+    		<label for="id_{{form.happiness.html_name}}">{{form.happiness.label}}</label><input type="range" value="{{form.instance.happiness}}" min="1" max="10" id="id_{{form.happiness.html_name}}" name="{{form.happiness.html_name}}"/><span class="hidden">{{form.happiness_set}}</span>
+    	</div>
+    	<div class="measurement">
+    		<div class="checkmark creativity {% if form.instance.has_reported_creativity_today %} checked {% endif %}">&#10004;</div>
+    		<label for="id_{{form.creativity.html_name}}">{{form.creativity.label}}</label><input type="range" value="{{form.instance.creativity}}" min="1" max="10" id="id_{{form.creativity.html_name}}" name="{{form.creativity.html_name}}"/><span class="hidden">{{form.creativity_set}}</span>
+    	</div>
+    	<div class="measurement">
+    		<div class="checkmark morning_mood {% if form.instance.has_reported_morning_mood_today %} checked {% endif %}">&#10004;</div>
+    		<label for="id_{{form.morning_mood.html_name}}">{{form.morning_mood.label}}</label><input type="range" value="{{form.instance.morning_mood}}" min="1" max="10" id="id_{{form.morning_mood.html_name}}" name="{{form.morning_mood.html_name}}"/><span class="hidden">{{form.morning_mood_set}}</span>
+    	</div>
     	<label for="id_traveling_or_out_of_routine">Travelling: {{form.travelling_or_out_of_routine}}</label>
     		
     </div>

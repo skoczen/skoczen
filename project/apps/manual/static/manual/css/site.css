@@ -89,6 +89,9 @@ form .section.num_beers {
 	border: 1px solid #DDD;
 	background: #FFF;
 }
+.daily_form.all_green {
+	background-color: #e0fde6;
+}
 .hours .total {
 	padding: 7px 0px 4px 0px;
 	font-size: 12px;
@@ -359,4 +362,15 @@ header a {
 	margin: 20px 30px;
 	font-size: 40px;
 	/*text-align: center;*/
+}
+.checkmark {
+	font-size: 16px;
+	color: #00ce24;
+	float: left;
+	margin: 1px 4px 0px 0px;
+	clear: left;
+	display: none;
+}
+.checkmark.checked {
+	display: block;
 }
