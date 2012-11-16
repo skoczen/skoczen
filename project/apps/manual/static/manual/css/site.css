@@ -90,7 +90,9 @@ form .section.num_beers {
 	background: #FFF;
 }
 .daily_form.all_green {
-	background-color: #e0fde6;
+	background-color: #eefeef;
+	border-color: #4bc434;
+	border-width: 2px;
 }
 .hours .total {
 	padding: 7px 0px 4px 0px;
