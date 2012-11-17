@@ -207,12 +207,12 @@ class GutterBumper(BaseModel):
 
     @property
     def all_green(self):
-        return self.has_reported_presence_today and self.has_reported_happiness_today and\
-               self.has_reported_creativity_today and self.has_reported_morning_mood_today and\
-               self.meditated_status is BUMPER_STATUS_GOOD and self.off_status is BUMPER_STATUS_GOOD and\
+        return self.meditated_status is BUMPER_STATUS_GOOD and self.off_status is BUMPER_STATUS_GOOD and\
                self.worked_out_status is BUMPER_STATUS_GOOD and self.left_the_house_status is BUMPER_STATUS_GOOD and\
-               self.nature_time_status is BUMPER_STATUS_GOOD
-
+               self.nature_time_status is BUMPER_STATUS_GOOD  # and\
+               # self.has_reported_presence_today and self.has_reported_happiness_today and\
+               # self.has_reported_creativity_today and self.has_reported_morning_mood_today and\
+               
 
     @property
     def presence_trend(self):
