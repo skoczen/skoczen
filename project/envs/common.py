@@ -96,6 +96,7 @@ INSTALLED_APPS = (
     "analytical",
     "annoying",
     "compressor",
+    'djcelery',
     "django_extensions",
     "lettuce.django",
     "gunicorn",
@@ -115,6 +116,11 @@ TEMPLATE_CONTEXT_PROCESSORS = (
     "django.core.context_processors.static",
     "django.core.context_processors.request",
 )
+
+import djcelery
+djcelery.setup_loader()
+BROKER_URL = 'redis://localhost:6379/0'
+
 ADD_TRAILING_SLASH = True
 STATICFILES_EXCLUDED_APPS = []
 COMPRESS_ROOT = STATIC_ROOT

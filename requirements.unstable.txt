@@ -1,9 +1,9 @@
-
 boto
 BeautifulSoup<4.0
 django
 django-analytical>=0.12.1
 django-annoying
+django-celery-with-redis
 django_compressor
 django-extensions
 django-selector
