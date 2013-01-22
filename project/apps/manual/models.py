@@ -59,8 +59,8 @@ class Value(BaseModel):
 
 class GutterBumper(BaseModel):
     date = models.DateField(default=datetime.date.today())
-    woke_up_at = models.TimeField(default=datetime.time(7,45))
-    fell_asleep_at = models.TimeField(default=datetime.time(23,30))
+    woke_up_at = models.TimeField(default=datetime.time(5,45))
+    fell_asleep_at = models.TimeField(default=datetime.time(22,00))
     sleep_hrs = models.FloatField(default=0, blank=True, null=True, verbose_name="Sleep", help_text="Sleep this morning")
     work_hrs = models.FloatField(default=0, blank=True, null=True, verbose_name="Work")
     alone_hrs = models.FloatField(default=0, blank=True, null=True, verbose_name="Alone")
