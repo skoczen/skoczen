@@ -155,9 +155,9 @@ class GutterBumper(BaseModel):
     
     @property
     def off_status(self):
-        if self.off or (self.yesterday and self.yesterday.off):
+        if self.off or (self.yesterday and self.yesterday.off) or (self.yesterday and self.yesterday.yesterday and self.yesterday.yesterday.off):
             return BUMPER_STATUS_GOOD
-        elif (self.yesterday and self.yesterday.yesterday and self.yesterday.yesterday.off):
+        elif (self.yesterday and self.yesterday.yesterday and self.yesterday.yesterday.off) or (self.yesterday and self.yesterday.yesterday and self.yesterday.yesterday.yesterday and self.yesterday.yesterday.yesterday.off):
             return BUMPER_STATUS_BORDERLINE
         else:
             return BUMPER_STATUS_BAD
