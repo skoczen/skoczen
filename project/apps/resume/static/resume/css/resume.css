@@ -1,0 +1,95 @@
+body {
+	font-family: 'Oxygen', sans-serif;
+	font-weight: 300;
+	font-size: 1.1em;
+}
+
+.resume {
+	width: 90%;
+	margin: 0px auto;
+}
+h1 {
+	font-size: inherit;
+	font-weight: 400;
+}
+h2 {
+	font-size: inherit;
+	font-weight: 700;
+}
+strong {
+	font-weight: 700;	
+}
+a {
+	color: inherit;
+	text-decoration: underline;
+}
+
+
+.skills {
+	overflow: auto;
+	width: 100%;
+	position: relative;
+}
+.skills .axes {
+	position: absolute;
+	top: 0px;
+	left: 0px;
+	width: 100%;
+	overflow: auto;
+}
+.skills .axes .axis {
+	display: block;
+	width: 100%;
+	overflow: auto;
+}
+.skills .axes hr {
+	width: 100%;
+	margin-top: 3px 0 0 0;
+	
+}
+.skills .axes .axis_label {
+	display: block;
+	padding: 8px 0 0px 10px;
+	font-size: 14px;
+	position: absolute;
+	right: 0px;
+	background-color: white;
+}
+.skills .gauges {
+	overflow: auto;
+	width: 100%;
+}
+.skills .graph_canvas {
+	width: 100px;
+}
+.skills .graph_label {
+	font-weight: 400;
+	text-align: center;
+}
+.skills .big_number {
+	font-weight: 700;
+	text-align: center;
+	font-size: 20px;
+}
+.skills .measurement.gauge.big {
+	float: left;
+}
+.skills .overview {
+	margin: 20px 0;
+	clear: both;
+}
+
+
+.experience {
+	width: 100%;
+	overflow: auto;
+}
+.experience .company {
+	display: block;
+	width: 30%;
+	margin: 0 2% 0 0;
+	float: left;
+}
+.experience .more_experience {
+	clear: both;
+}

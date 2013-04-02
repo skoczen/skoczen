@@ -1,0 +1,107 @@
+{% extends "base.html" %}{% load compress %}
+
+{% block title %}Steven Skoczen - my resume{% endblock %}
+{% block description %}My code, my career, and where I'm going next.{% endblock %}
+
+{% block css %}{{block.super}}
+<link href='http://fonts.googleapis.com/css?family=Oxygen:400,700,300' rel='stylesheet' type='text/css'>
+{% compress css %}
+<link rel="stylesheet" href="{{STATIC_URL}}resume/css/resume.css">
+{% endcompress %}
+{% endblock %}
+
+
+{% block js %}{{block.super}}
+{% compress js %}
+<script src="{{STATIC_URL}}resume/js/resume.js"></script>
+{% endcompress %}
+{% endblock %}
+
+
+
+{% block content %}
+<div class="resume">
+	<h1 class="contact_info">
+		I'm <strong class="name">Steven Skoczen</strong>.  My email is <strong class="email"><a href="mailto:skoczen@gmail.com">skoczen@gmail.com</a></strong> and my phone number is <strong>607-262-0880</strong>.
+	</h1>
+
+	<h2>Skills</h2>
+	<div class="skills">
+		<div class="axes">
+			<div class="axis best_ever"><span class="axis_label">Best ever</span><hr/></div>
+			<div class="axis awesome"><span class="axis_label">Awesome</span><hr/></div>
+			<div class="axis solid"><span class="axis_label">Solid</span><hr/></div>
+			<div class="axis novice"><span class="axis_label">Novice</span><hr/></div>
+		</div>
+		<div class="skill_bars">
+			{% for skill, value in skill_values.items %}
+			<div linked_canvas="{{skill|slugify}}_value" class="measurement gauge big" value="{{value|floatformat:1}}">
+				<canvas class="graph_canvas" id="{{skill|slugify}}_value"></canvas>
+				<div class="graph_label">
+					<div class="big_number">{{value|floatformat:0}}</div>
+					<div class="label_text">{{skill}}</div>
+				</div>
+			</div>
+			{% endfor %}
+		</div>
+	
+
+		<div class="overview">
+			<p class="introduction">I write really excellent <strong>Python</strong>, JavaScript, CSS, and HTML.  I've spent the past four years living and breathing <strong>django</strong> on the backend, and <strong>vanilla.js</strong>, <strong>jQuery</strong> and <strong>backbone</strong> on the front. I can knock out <strong>pixel-perfect</strong> CSS, even for IE.  I've also been a web developer for 15+ years, so there are a lot of other languages and skills in the toolbox. UI. UX. Devops. Server admin. Automation. CI builds. Robots. Command-line tools.  I know mysql and postgresql and redis. I know memcached and rabbitmq and celery. I check <strong>my life</strong> into git.</p>
+
+			<p class="experience">I've also written and released a number of <strong>open source</strong> projects, like <strong>salad</strong>, <strong>autoscalebot</strong>, zebra, <strong>django-ajax-uploader</strong>, django-longer-username, and more - and grown the communities around them.  I've built entire large codebases from scratch, and waded into years of <strong>technical debt</strong> that made <em>grown men and women cry</em> and come out with working, <strong>tested</strong> code and better abstractions.</p>
+		</div>
+	</div>
+
+
+	<div class="experience">
+		<h2>Experience</h2>
+
+
+		<div class="work_experience">
+			<p class="introduction">I've also been lucky to found, work at, and work with some amazing companies.Most recently, that's:</p>
+
+			<div class="company">
+				<div class="name">Building Energy</div>
+				<div class="title">Senior Engineer</div>
+				<div class="description">Designed a decoupled pub-sub application architecture, and built it in a few weeks. Built the deploy system, a generalized data importer, Yeti, an amazingly helpful and friendly bot, and flint, a dev-facing command-line tool.  Drove culture from no tests to functional coverage and unit tests on all new code.</div>
+			</div>
+
+			<div class="company">
+				<div class="name">Wieden+Kennedy</div>
+				<div class="title">Creative Technical Lead</div>
+				<div class="description">Pushed creative digital thinking on the Coke, Laika, and Nike Golf accounts. Worked on a P&amp;G global campaign, helped conceptualize and code the ParaNorman campaign, and watched my work in this year's Super Bowl.</div>
+			</div>
+
+			<div class="company">
+				<div class="name">GoodCloud</div>
+				<div class="title">Co-Founder, CEO, Coder.</div>
+				<div class="description">Built a full-featured CRM, donor and volunteer management platform for small nonprofits in four months, with one hand tied behind my back at a day job.  Open-sourced a number of libraries from the codebase.</div>
+			</div>
+
+
+			<p class="more_experience">I've also led teams of programmers at UCSD, founded another two companies, run a sole proprietorship for the better part of a decade, and have a degree in Environmental Engineering from Cornell.  And I wrote the international ethobotany repository, after two summers in Peru interviewing shamans.  It's been an interesting ride.
+			</p>
+		</div>
+	</div>
+
+	<div class="code">
+		<h2>Code</h2>
+
+		My github 		GoodCloud's github			Salad's github
+
+
+		GoodCloud
+		BuildingEnergy
+
+	</div>
+
+	<div class="next">
+		<h2>Next</h2>
+		<p class="description">I'm looking for interesting problems and smart, smart people to work with.  I want to learn things and teach people things, and most of all - make things.  Good things.  Things that make some human somewhere really happy. It might be that my next place is with you.  Let's talk, and find out!</p>
+	</div>
+
+</div>
+
+
+{% endblock %}
