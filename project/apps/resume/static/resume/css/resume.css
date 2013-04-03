@@ -3,6 +3,11 @@ body {
 	font-weight: 300;
 	font-size: 1.1em;
 }
+table, tr, td, th {
+	margin: 0;
+	padding: 0;
+}
+
 
 .resume {
 	width: 90%;
@@ -15,6 +20,10 @@ h1 {
 h2 {
 	font-size: inherit;
 	font-weight: 700;
+	font-size: 20px;
+	padding: 0;
+	margin: 20px 0 0 0;
+
 }
 strong {
 	font-weight: 700;	
@@ -23,11 +32,44 @@ a {
 	color: inherit;
 	text-decoration: underline;
 }
-
+.section_content {
+	margin-left: 10px;
+}
+.contact_info {
+	margin: 0 0 10px 0;
+	width: 100%;
+	overflow: auto;
+}
+.contact_info picture {
+	display: block;
+	background: url("../../main_site/img/my_face_120.jpg");
+	background-repeat: no-repeat;
+	background-position: middle middle;
+	width: 88px;
+	height: 120px;
+	margin: 10px 20px 0 0;
+	float: right;
+}
+.contact_info .name {
+	display: block;
+	margin: 40px 0 0 0;
+}
+.contact_info .info {
+	font-weight: 300;
+}
+.contact_info .info strong {
+	font-weight: 400;
+}
+.contact_info .info a {
+	text-decoration: none;
+}
 
 .skills {
 	overflow: auto;
 	width: 100%;
+}
+.skills .chart {
+	width: 96%;
 	position: relative;
 }
 .skills .axes {
@@ -35,44 +77,62 @@ a {
 	top: 0px;
 	left: 0px;
 	width: 100%;
+	height: 132px;
 	overflow: auto;
 }
 .skills .axes .axis {
 	display: block;
 	width: 100%;
 	overflow: auto;
+	height: 28px;
 }
 .skills .axes hr {
 	width: 100%;
-	margin-top: 3px 0 0 0;
+	margin: 12px 0 14px 0;
+	padding: 0;
 	
 }
 .skills .axes .axis_label {
 	display: block;
-	padding: 8px 0 0px 10px;
+	height: 30px;
+	padding: 3px 0 2px 10px;
 	font-size: 14px;
 	position: absolute;
 	right: 0px;
 	background-color: white;
 }
-.skills .gauges {
-	overflow: auto;
-	width: 100%;
+.skills .skill_bars {
+	width: 94%;
+	height: 116px;
+	position: relative;
 }
-.skills .graph_canvas {
-	width: 100px;
-}
-.skills .graph_label {
-	font-weight: 400;
-	text-align: center;
-}
-.skills .big_number {
-	font-weight: 700;
-	text-align: center;
-	font-size: 20px;
-}
-.skills .measurement.gauge.big {
+.skills .skill_bars .bar_block {
+	display: block;
 	float: left;
+	height:	84px;
+	margin-top: 72px;
+	text-align: center;
+	position: relative;
+}
+.skills .skill_bars .bar {
+	position: absolute;
+	width: 50%;
+	min-width: 20px;
+	background-color: #454545;
+	color: #FFF;
+	bottom: 60px;
+	margin: 0 27%;
+}
+.skills .skill_bars .bar .big_number { 
+	padding-top: 6px;
+	display: none;
+}
+.skills .skill_bars .label_text {
+	font-size: 14px;
+	position: absolute;
+	width: 100%;
+	bottom: 0px;
+	height: 54px;
 }
 .skills .overview {
 	margin: 20px 0;
@@ -87,9 +147,34 @@ a {
 .experience .company {
 	display: block;
 	width: 30%;
-	margin: 0 2% 0 0;
+	margin: 10px 3% 10px 0;
 	float: left;
 }
+.experience .company .name {
+	font-weight: 400;
+}
+.experience .company .description {
+	padding: 5px 0;
+	font-size: 0.9em;
+}
+.experience .title {
+	font-weight: 700;
+}
+
 .experience .more_experience {
 	clear: both;
+}
+
+.code .repos {
+	width: 100%;
+	overflow: auto;
+}
+.code .repo {
+	display: block;
+	width: 33%;
+	float: left;
+	text-decoration: none;
+}
+.code .repo .name {
+	font-weight: 400;
 }
