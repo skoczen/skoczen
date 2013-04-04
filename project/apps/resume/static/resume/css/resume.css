@@ -11,7 +11,7 @@ table, tr, td, th {
 
 .resume {
 	width: 90%;
-	margin: 0px auto;
+	margin: 0px auto 40px auto;
 }
 h1 {
 	font-size: inherit;
@@ -31,6 +31,9 @@ strong {
 a {
 	color: inherit;
 	text-decoration: underline;
+}
+a:visited {
+	color: inherit;
 }
 .section_content {
 	margin-left: 10px;
@@ -146,9 +149,12 @@ a {
 }
 .experience .company {
 	display: block;
-	width: 30%;
+	width: 28%;
 	margin: 10px 3% 10px 0;
 	float: left;
+}
+.experience .company.be, .experience .company.wk {
+	width: 31%;
 }
 .experience .company .name {
 	font-weight: 400;
@@ -171,7 +177,7 @@ a {
 }
 .code .repo {
 	display: block;
-	width: 33%;
+	width: 25%;
 	float: left;
 	text-decoration: none;
 }
