@@ -185,3 +185,32 @@ a:visited {
 .code .repo .name {
 	font-weight: 400;
 }
+
+@media (max-width: 760px) {
+	.skills .skill_bars {
+		margin-bottom: 100px;
+	}
+	.skills .skill_bars .label_text {
+		height: 10px;
+		text-align: right;
+		right: -23px;
+		width: 120px;
+		margin: 0;
+		padding: 0 26px 0 0;
+		transform:rotate(300deg);
+	    -moz-transform:rotate(300deg);
+	    -o-transform:rotate(300deg);
+	    -webkit-transform:rotate(300deg);
+	    -ms-transform:rotate(300deg);
+	}
+	.skills .skill_bars {
+		width: 85%;
+	}
+	.experience .company, .experience .company.be, .experience .company.wk {
+		width: 100%;
+	}
+	.code .repo {
+		width: 50%;
+		margin: 10px 0 0 0;
+	}
+}
