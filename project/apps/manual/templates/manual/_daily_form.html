@@ -33,6 +33,11 @@
     				{{form.off}}
     				<label class="status_label {{form.instance.off_status}}">{% if request.user.is_authenticated %}Off{% else %}Smiled{% endif %}</label>
     			</td>
+    			<td class="art">
+
+    				{{form.interacted_with_art}}
+    				<label class="status_label {{form.instance.art_status}}">Art</label>
+    			</td>
     			<td class="worked_out">
     				
     				{{form.worked_out}}
@@ -56,13 +61,16 @@
     	<label>Daily Notes:</label>
 		{{form.notes}}
 	</div>
-    <div class="section num_beers">
+    <div class="section num_beers and_sex">
     
     	<div class="beer_type">
     		<label for="id_{{form.number_of_fun_beers.html_name}}">Fun beers: {{form.number_of_fun_beers}}</label>
     	</div>
     	<div class="beer_type">
     		<label for="id_{{form.number_of_sleep_beers.html_name}}">Sleep: {{form.number_of_sleep_beers}}</label>
+    	</div>
+    	<div class="beer_type">
+    		<label for="id_{{form.sex.html_name}}">Sex: {{form.sex}}</label>
     	</div>
     </div>
     <div class="section subjective">

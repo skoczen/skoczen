@@ -69,6 +69,8 @@ class GutterBumper(BaseModel):
     relationship_hrs = models.FloatField(default=0, blank=True, null=True, verbose_name="Relationship")
 
     off = models.BooleanField(default=False)
+    sex = models.IntegerField(default=0)
+    interacted_with_art = models.BooleanField(default=False)
     worked_out = models.BooleanField(default=False)
     meditated = models.BooleanField(default=False, verbose_name="meditated")
     left_the_house = models.BooleanField(default=False)
@@ -182,9 +184,18 @@ class GutterBumper(BaseModel):
     
     @property
     def nature_time_status(self):
-        if GutterBumper.objects.filter(date__gte=self.date-datetime.timedelta(days=7)).count() > 1:
+        if GutterBumper.objects.filter(nature_time=True, date__gte=self.date-datetime.timedelta(days=7)).count() > 1:
             return BUMPER_STATUS_GOOD
-        elif GutterBumper.objects.filter(date__gte=self.date-datetime.timedelta(days=14)).count() > 1:
+        elif GutterBumper.objects.filter(nature_time=True, date__gte=self.date-datetime.timedelta(days=14)).count() > 1:
+            return BUMPER_STATUS_BORDERLINE
+        else:
+            return BUMPER_STATUS_BAD
+    
+    @property
+    def art_status(self):
+        if GutterBumper.objects.filter(interacted_with_art=True, date__gte=self.date-datetime.timedelta(days=6)).count() > 1:
+            return BUMPER_STATUS_GOOD
+        elif GutterBumper.objects.filter(interacted_with_art=True, date__gte=self.date-datetime.timedelta(days=8)).count() > 1:
             return BUMPER_STATUS_BORDERLINE
         else:
             return BUMPER_STATUS_BAD

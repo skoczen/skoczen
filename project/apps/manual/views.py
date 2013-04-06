@@ -35,6 +35,7 @@ def success_and_statii_for_bumper(success, bumper_pk):
         "id": bumper_pk,
         "meditated_status": bumper.meditated_status,
         "off_status": bumper.off_status,
+        "art_status": bumper.art_status,
         "worked_out_status": bumper.worked_out_status,
         "left_the_house_status": bumper.left_the_house_status,
         "nature_time_status": bumper.nature_time_status,
