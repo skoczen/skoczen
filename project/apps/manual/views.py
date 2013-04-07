@@ -1,6 +1,7 @@
 import datetime
 import math
-# from util.singly import SinglyHelper
+# from util.singly import SinglyHelper]
+from django.db.models import Sum
 from django.http import HttpResponseRedirect
 from django.template.loader import render_to_string
 from django.views.decorators.csrf import csrf_exempt
@@ -199,3 +200,10 @@ def singly_callback(request, service="fitbit"):
 def fitbit_callback(request):
     print request.POST
     print request
+
+
+@login_required
+@render_to("manual/eighty.html")
+def eighty(request):
+    num_sex = GutterBumper.objects.all().aggregate(Sum('sex'))['sex__sum']
+    return locals()

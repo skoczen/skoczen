@@ -20,6 +20,8 @@ urlpatterns = patterns('',
     url(r'^emotion/{emotion_slug:slug}/', views.emotion, name='emotion'),
     url(r'^values', views.values, name='values'),
     url(r'^value/{value_slug:slug}/', views.value, name='value'),
+
+    url(r'^eighty', views.eighty, name='eighty'),
     
     url(r'^singly_callback', views.singly_callback, name='singly_callback'),
     url(r'^fitbit_callback', views.fitbit_callback, name='fitbit_callback'),

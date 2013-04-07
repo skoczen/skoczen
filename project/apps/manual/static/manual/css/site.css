@@ -379,3 +379,8 @@ header a {
 .checkmark.checked {
 	display: block;
 }
+.eighty .count {
+	text-align: center;
+	margin: 75px auto;
+	font-size: 180px;
+}
