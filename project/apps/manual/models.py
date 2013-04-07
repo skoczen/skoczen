@@ -184,18 +184,18 @@ class GutterBumper(BaseModel):
     
     @property
     def nature_time_status(self):
-        if GutterBumper.objects.filter(nature_time=True, date__gte=self.date-datetime.timedelta(days=7)).count() > 1:
+        if GutterBumper.objects.filter(nature_time=True, date__gte=self.date-datetime.timedelta(days=7)).count() > 0:
             return BUMPER_STATUS_GOOD
-        elif GutterBumper.objects.filter(nature_time=True, date__gte=self.date-datetime.timedelta(days=14)).count() > 1:
+        elif GutterBumper.objects.filter(nature_time=True, date__gte=self.date-datetime.timedelta(days=14)).count() > 0:
             return BUMPER_STATUS_BORDERLINE
         else:
             return BUMPER_STATUS_BAD
     
     @property
     def art_status(self):
-        if GutterBumper.objects.filter(interacted_with_art=True, date__gte=self.date-datetime.timedelta(days=6)).count() > 1:
+        if GutterBumper.objects.filter(interacted_with_art=True, date__gte=self.date-datetime.timedelta(days=6)).count() > 0:
             return BUMPER_STATUS_GOOD
-        elif GutterBumper.objects.filter(interacted_with_art=True, date__gte=self.date-datetime.timedelta(days=8)).count() > 1:
+        elif GutterBumper.objects.filter(interacted_with_art=True, date__gte=self.date-datetime.timedelta(days=8)).count() > 0:
             return BUMPER_STATUS_BORDERLINE
         else:
             return BUMPER_STATUS_BAD

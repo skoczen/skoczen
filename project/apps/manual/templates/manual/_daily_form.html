@@ -61,16 +61,13 @@
     	<label>Daily Notes:</label>
 		{{form.notes}}
 	</div>
-    <div class="section num_beers and_sex">
+    <div class="section num_beers">
     
     	<div class="beer_type">
     		<label for="id_{{form.number_of_fun_beers.html_name}}">Fun beers: {{form.number_of_fun_beers}}</label>
     	</div>
     	<div class="beer_type">
     		<label for="id_{{form.number_of_sleep_beers.html_name}}">Sleep: {{form.number_of_sleep_beers}}</label>
-    	</div>
-    	<div class="beer_type">
-    		<label for="id_{{form.sex.html_name}}">Sex: {{form.sex}}</label>
     	</div>
     </div>
     <div class="section subjective">
@@ -91,6 +88,9 @@
     		<label for="id_{{form.morning_mood.html_name}}">{{form.morning_mood.label}}</label><input type="range" value="{{form.instance.morning_mood}}" min="1" max="10" id="id_{{form.morning_mood.html_name}}" name="{{form.morning_mood.html_name}}"/><span class="hidden">{{form.morning_mood_set}}</span>
     	</div>
     	<label for="id_traveling_or_out_of_routine">Travelling: {{form.travelling_or_out_of_routine}}</label>
+		<div class="sex">
+    		<label for="id_{{form.sex.html_name}}">{% if request.user.is_authenticated %}Sex:{% else %}Moments{% endif %} {{form.sex}}</label>
+    	</div>
     		
     </div>
     

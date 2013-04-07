@@ -51,6 +51,9 @@ form .section.num_beers {
 	text-align: right;
 	padding-top: 10px;
 }
+.sex input {
+	width: 50px;
+}
 .date.header {
 	width: 100%;
 	text-align: center;

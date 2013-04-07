@@ -29,6 +29,7 @@ def turn_friendly_time_into_python_time(time_with_ampm):
 
 def success_and_statii_for_bumper(success, bumper_pk):
     bumper = GutterBumper.objects.get(pk=bumper_pk)
+    print bumper.art_status
     return {
         "success": success, 
         "sleep_hrs": bumper.sleep_hrs, 

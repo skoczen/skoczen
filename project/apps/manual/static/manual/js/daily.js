@@ -100,6 +100,7 @@ function updateSectionWithResponse(json, section) {
 	$(".worked_out label", $form).removeClass().addClass("status_label " + json.worked_out_status);
 	$(".left_the_house label", $form).removeClass().addClass("status_label " + json.left_the_house_status);
 	$(".nature_time label", $form).removeClass().addClass("status_label " + json.nature_time_status);
+	$(".art label", $form).removeClass().addClass("status_label " + json.art_status);
 	$(".checkmark.presence", $form).toggleClass("checked", json.has_reported_presence_today);
 	$(".checkmark.creativity", $form).toggleClass("checked", json.has_reported_creativity_today);
 	$(".checkmark.happiness", $form).toggleClass("checked", json.has_reported_happiness_today);
