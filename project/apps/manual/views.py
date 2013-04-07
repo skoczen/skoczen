@@ -202,7 +202,7 @@ def fitbit_callback(request):
     print request
 
 
-@login_required
+
 @render_to("manual/eighty.html")
 def eighty(request):
     num_sex = GutterBumper.objects.all().aggregate(Sum('sex'))['sex__sum']
