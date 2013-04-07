@@ -9,13 +9,15 @@ class Migration(SchemaMigration):
     def forwards(self, orm):
         
         # Changing field 'GutterBumper.sex'
-        db.alter_column('manual_gutterbumper', 'sex', self.gf('django.db.models.fields.IntegerField')())
+        db.delete_column('manual_gutterbumper', 'sex')
+        db.add_column('manual_gutterbumper', 'sex', self.gf('django.db.models.fields.IntegerField')(default=0))
 
 
     def backwards(self, orm):
         
         # Changing field 'GutterBumper.sex'
-        db.alter_column('manual_gutterbumper', 'sex', self.gf('django.db.models.fields.BooleanField')())
+        db.delete_column('manual_gutterbumper', 'sex')
+        db.add_column('manual_gutterbumper', 'sex', self.gf('django.db.models.fields.BooleanField')(default=False))
 
 
     models = {
@@ -42,7 +44,7 @@ class Migration(SchemaMigration):
             'body_fat_percent': ('django.db.models.fields.FloatField', [], {'null': 'True', 'blank': 'True'}),
             'creativity': ('django.db.models.fields.IntegerField', [], {'null': 'True', 'blank': 'True'}),
             'creativity_set': ('django.db.models.fields.BooleanField', [], {'default': 'False'}),
-            'date': ('django.db.models.fields.DateField', [], {'default': 'datetime.date(2013, 4, 6)'}),
+            'date': ('django.db.models.fields.DateField', [], {'default': 'datetime.date(2013, 4, 7)'}),
             'emotions': ('django.db.models.fields.related.ManyToManyField', [], {'symmetrical': 'False', 'to': "orm['manual.Emotion']", 'null': 'True', 'blank': 'True'}),
             'fell_asleep_at': ('django.db.models.fields.TimeField', [], {'default': 'datetime.time(22, 0)'}),
             'friend_hrs': ('django.db.models.fields.FloatField', [], {'default': '0', 'null': 'True', 'blank': 'True'}),
@@ -106,7 +108,7 @@ class Migration(SchemaMigration):
             'making_the_world_a_bit_better_rating': ('django.db.models.fields.IntegerField', [], {'null': 'True', 'blank': 'True'}),
             'making_things_notes': ('django.db.models.fields.TextField', [], {'null': 'True', 'blank': 'True'}),
             'making_things_rating': ('django.db.models.fields.IntegerField', [], {'null': 'True', 'blank': 'True'}),
-            'month_start_date': ('django.db.models.fields.DateField', [], {'default': 'datetime.date(2013, 4, 6)'}),
+            'month_start_date': ('django.db.models.fields.DateField', [], {'default': 'datetime.date(2013, 4, 7)'}),
             'presence_notes': ('django.db.models.fields.TextField', [], {'null': 'True', 'blank': 'True'}),
             'presence_rating': ('django.db.models.fields.IntegerField', [], {'null': 'True', 'blank': 'True'}),
             'relationship_health_notes': ('django.db.models.fields.TextField', [], {'null': 'True', 'blank': 'True'}),
