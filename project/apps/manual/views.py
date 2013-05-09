@@ -30,7 +30,6 @@ def turn_friendly_time_into_python_time(time_with_ampm):
 
 def success_and_statii_for_bumper(success, bumper_pk):
     bumper = GutterBumper.objects.get(pk=bumper_pk)
-    print bumper.art_status
     return {
         "success": success, 
         "sleep_hrs": bumper.sleep_hrs, 
@@ -45,6 +44,7 @@ def success_and_statii_for_bumper(success, bumper_pk):
         "has_reported_creativity_today": bumper.has_reported_creativity_today,
         "has_reported_happiness_today": bumper.has_reported_happiness_today,
         "has_reported_morning_mood_today": bumper.has_reported_morning_mood_today,
+        "has_reported_unbusy_today": bumper.has_reported_unbusy_today,
         "all_green": bumper.all_green,
     }
 
@@ -95,6 +95,7 @@ def monthly(request):
     total_happiness = 0
     total_creativity = 0
     total_morning_mood = 0
+    total_unbusy = 0
     for g in gutterbumpers:
         total_sleep += g.sleep_hrs or 0
         total_work += g.work_hrs or 0
@@ -106,6 +107,7 @@ def monthly(request):
         total_happiness += g.happiness or 0
         total_creativity += g.creativity or 0
         total_morning_mood += g.morning_mood or 0
+        total_unbusy += g.unbusy or 0
 
     avg_sleep = total_sleep / total_days
     avg_work = total_work / total_days
@@ -118,6 +120,7 @@ def monthly(request):
     avg_happiness = total_happiness / total_days
     avg_creativity = total_creativity / total_days
     avg_morning_mood = total_morning_mood / total_days
+    avg_unbusy = total_unbusy / total_days
     return locals()
 
 

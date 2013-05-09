@@ -83,10 +83,12 @@ class GutterBumper(BaseModel):
     happiness = models.IntegerField(blank=True, null=True, help_text="1-10")
     creativity = models.IntegerField(blank=True, null=True, help_text="1-10")
     morning_mood = models.IntegerField(blank=True, null=True, help_text="1-10")
+    unbusy = models.IntegerField(blank=True, null=True, help_text="1-10")
     presence_set = models.BooleanField(default=False)
     happiness_set = models.BooleanField(default=False)
     creativity_set = models.BooleanField(default=False)
     morning_mood_set = models.BooleanField(default=False)
+    unbusy_set = models.BooleanField(default=False)
     notes = models.TextField(blank=True, null=True)
     weight = models.FloatField(blank=True, null=True)
     body_fat_percent = models.FloatField(blank=True, null=True)
@@ -217,6 +219,10 @@ class GutterBumper(BaseModel):
         return self.morning_mood_set
 
     @property
+    def has_reported_unbusy_today(self):
+        return self.unbusy_set
+
+    @property
     def all_green(self):
         return self.meditated_status is BUMPER_STATUS_GOOD and self.off_status is BUMPER_STATUS_GOOD and\
                self.worked_out_status is BUMPER_STATUS_GOOD and self.left_the_house_status is BUMPER_STATUS_GOOD and\
@@ -241,6 +247,10 @@ class GutterBumper(BaseModel):
     def morning_mood_trend(self):
         return GutterBumper.objects.filter(date__gte=self.date-datetime.timedelta(days=7)).aggregate(Avg('morning_mood'))['morning_mood__avg']
     
+    @property
+    def unbusy_trend(self):
+        return GutterBumper.objects.filter(date__gte=self.date-datetime.timedelta(days=7)).aggregate(Avg('unbusy'))['unbusy__avg']
+
     @property
     def sleep_health(self):
         avg = GutterBumper.objects.filter(date__gte=self.date-datetime.timedelta(days=7)).aggregate(Avg('sleep_hrs'))['sleep_hrs__avg']
