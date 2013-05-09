@@ -84,12 +84,12 @@
     		<label for="id_{{form.creativity.html_name}}">{{form.creativity.label}}</label><input type="range" value="{{form.instance.creativity}}" min="1" max="10" id="id_{{form.creativity.html_name}}" name="{{form.creativity.html_name}}"/><span class="hidden">{{form.creativity_set}}</span>
     	</div>
     	<div class="measurement">
-    		<div class="checkmark morning_mood {% if form.instance.has_reported_morning_mood_today %} checked {% endif %}">&#10004;</div>
-    		<label for="id_{{form.morning_mood.html_name}}">{{form.morning_mood.label}}</label><input type="range" value="{{form.instance.morning_mood}}" min="1" max="10" id="id_{{form.morning_mood.html_name}}" name="{{form.morning_mood.html_name}}"/><span class="hidden">{{form.morning_mood_set}}</span>
-    	</div>
-    	<div class="measurement">
     		<div class="checkmark unbusy {% if form.instance.has_reported_unbusy_today %} checked {% endif %}">&#10004;</div>
     		<label for="id_{{form.unbusy.html_name}}">{{form.unbusy.label}}</label><input type="range" value="{{form.instance.unbusy}}" min="1" max="10" id="id_{{form.unbusy.html_name}}" name="{{form.unbusy.html_name}}"/><span class="hidden">{{form.unbusy_set}}</span>
+    	</div>
+    	<div class="measurement">
+    		<div class="checkmark morning_mood {% if form.instance.has_reported_morning_mood_today %} checked {% endif %}">&#10004;</div>
+    		<label for="id_{{form.morning_mood.html_name}}">{{form.morning_mood.label}}</label><input type="range" value="{{form.instance.morning_mood}}" min="1" max="10" id="id_{{form.morning_mood.html_name}}" name="{{form.morning_mood.html_name}}"/><span class="hidden">{{form.morning_mood_set}}</span>
     	</div>
     	<label for="id_traveling_or_out_of_routine">Travelling: {{form.travelling_or_out_of_routine}}</label>
 		<div class="sex">
