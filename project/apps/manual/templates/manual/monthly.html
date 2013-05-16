@@ -30,6 +30,10 @@
  <script> 
     var chartCursor;
  	AmCharts.ready(function () {
+
+
+
+
         // SERIAL CHART
         chart = new AmCharts.AmSerialChart();
         chart.pathToImages = "{{STATIC_URL}}base/js/libs/amcharts/images/";
@@ -124,8 +128,20 @@
         chartCursor.cursorAlpha = 0;
         chart.addChartCursor(chartCursor);
 
+    	
+	    // SCROLLBAR
+	    var chartScrollbar = new AmCharts.ChartScrollbar();
+	    chartScrollbar.graph = graph;
+	    chartScrollbar.scrollbarHeight = 40;
+	    chartScrollbar.color = "#FFFFFF";
+	    chartScrollbar.autoGridCount = true;
+	    chart.addChartScrollbar(chartScrollbar);
+
+		
+
         // WRITE
         chart.write("hours_chart");
+        chart.zoomToIndexes(chartData.length - 32, chartData.length - 1);
     });
 </script>
 <script type="text/javascript">
@@ -138,7 +154,7 @@
 
                 // SERIAL CHART    
                 subjChart = new AmCharts.AmSerialChart();
-                chart.pathToImages = "{{STATIC_URL}}base/js/libs/amcharts/images/";
+                subjChart.pathToImages = "{{STATIC_URL}}base/js/libs/amcharts/images/";
                 subjChart.panEventsEnabled = true;
                 subjChart.zoomOutButton = {
                     backgroundColor: "#000000",
@@ -218,6 +234,16 @@
 		        subjChart.addLegend(legend);
 
 
+
+    	
+			    // SCROLLBAR
+			    var chartScrollbar = new AmCharts.ChartScrollbar();
+			    chartScrollbar.graph = graph;
+			    chartScrollbar.scrollbarHeight = 40;
+			    chartScrollbar.color = "#FFFFFF";
+			    chartScrollbar.autoGridCount = true;
+			    subjChart.addChartScrollbar(chartScrollbar);
+
                 // // SCROLLBAR
                 // var chartScrollbar = new AmCharts.ChartScrollbar();
                 // chartScrollbar.graph = graph;
@@ -227,6 +253,7 @@
 
                 // WRITE
                 subjChart.write("subjective_chart");
+                subjChart.zoomToIndexes(chartData.length - 32, chartData.length - 1);
             });
 
             // // this method is called when chart is first inited as we listen for "dataUpdated" event
