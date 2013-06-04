@@ -4,5 +4,6 @@ from main_site import views
 
 urlpatterns = patterns('',
     url(r'^$', views.home, name='home'),
+    url(r'uptime/$', views.uptime, name='uptime'),
     url(r'^threaded/$', views.threaded, name='threaded'),
 )

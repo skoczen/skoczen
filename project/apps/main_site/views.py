@@ -7,6 +7,12 @@ def home(request):
     return locals()
 
 
+@render_to("main_site/uptime.html")
+def uptime(request):
+    return locals()
+
+
+
 @render_to("main_site/threaded.html")
 def threaded(request):
     return locals()
