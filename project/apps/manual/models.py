@@ -18,6 +18,7 @@ MEALS = [
     ("snack","Snack"),
 ]
 
+
 class BaseModel(models.Model):
     updated_at = models.DateTimeField(auto_now=True)
 
@@ -27,8 +28,10 @@ class BaseModel(models.Model):
     def __unicode__(self):
         return "%s" % self.name
 
+
 class DataSensitivity(BaseModel):
     name = models.CharField(max_length=200)
+
 
 # Create your models here.
 class Emotion(BaseModel):
@@ -44,9 +47,8 @@ class Emotion(BaseModel):
 
     def save(self, *args, **kwargs):
         self.slug = slugify(self.name)
-        super(Emotion,self).save(*args, **kwargs)
+        super(Emotion, self).save(*args, **kwargs)
 
-    
 class Value(BaseModel):
     name = models.CharField(max_length=200, verbose_name='Story name')
     slug = models.CharField(max_length=210, blank=True, null=True, editable=False)
@@ -54,13 +56,13 @@ class Value(BaseModel):
 
     def save(self, *args, **kwargs):
         self.slug = slugify(self.name)
-        super(Value,self).save(*args, **kwargs)
+        super(Value, self).save(*args, **kwargs)
 
 
 class GutterBumper(BaseModel):
     date = models.DateField(default=datetime.date.today())
-    woke_up_at = models.TimeField(default=datetime.time(5,45))
-    fell_asleep_at = models.TimeField(default=datetime.time(22,00))
+    woke_up_at = models.TimeField(default=datetime.time(8, 30))
+    fell_asleep_at = models.TimeField(default=datetime.time(0, 00))
     sleep_hrs = models.FloatField(default=0, blank=True, null=True, verbose_name="Sleep", help_text="Sleep this morning")
     work_hrs = models.FloatField(default=0, blank=True, null=True, verbose_name="Work")
     alone_hrs = models.FloatField(default=0, blank=True, null=True, verbose_name="Alone")
@@ -107,7 +109,7 @@ class GutterBumper(BaseModel):
 
     def __unicode__(self):
         return "%s" % self.date
-    
+
     @property
     def yesterday(self):
         try:
@@ -121,12 +123,12 @@ class GutterBumper(BaseModel):
             return GutterBumper.objects.get(date=self.date + datetime.timedelta(days=1))
         except:
             return None
+
     @property
     def calculated_sleep_hrs(self):
         if self.woke_up_at and self.yesterday and self.yesterday.fell_asleep_at is not None:
             today_hrs, today_min, _ = ("%s" % self.woke_up_at).split(":")
             yester_hrs, yester_min, _ = ("%s" % self.yesterday.fell_asleep_at).split(":")
-            today_round_length = 1
 
             today = float(today_hrs) + (float(today_min)/60)
             yester = float(yester_hrs) + (float(yester_min)/60)
@@ -147,7 +149,6 @@ class GutterBumper(BaseModel):
             return round(diff, round_len)
         return None
 
-    
     @property
     def meditated_status(self):
         if self.meditated:
@@ -156,7 +157,7 @@ class GutterBumper(BaseModel):
             return BUMPER_STATUS_BORDERLINE
         else:
             return BUMPER_STATUS_BAD
-    
+
     @property
     def off_status(self):
         if self.off or (self.yesterday and self.yesterday.off) or (self.yesterday and self.yesterday.yesterday and self.yesterday.yesterday.off):
@@ -165,7 +166,7 @@ class GutterBumper(BaseModel):
             return BUMPER_STATUS_BORDERLINE
         else:
             return BUMPER_STATUS_BAD
-    
+
     @property
     def worked_out_status(self):
         if self.worked_out or (self.yesterday and self.yesterday.worked_out):
@@ -174,7 +175,7 @@ class GutterBumper(BaseModel):
             return BUMPER_STATUS_BORDERLINE
         else:
             return BUMPER_STATUS_BAD
-        
+
     @property
     def left_the_house_status(self):
         if self.left_the_house:
@@ -183,7 +184,7 @@ class GutterBumper(BaseModel):
             return BUMPER_STATUS_BORDERLINE
         else:
             return BUMPER_STATUS_BAD
-    
+
     @property
     def nature_time_status(self):
         if GutterBumper.objects.filter(nature_time=True, date__gte=self.date-datetime.timedelta(days=7)).count() > 0:
@@ -192,7 +193,7 @@ class GutterBumper(BaseModel):
             return BUMPER_STATUS_BORDERLINE
         else:
             return BUMPER_STATUS_BAD
-    
+
     @property
     def art_status(self):
         if GutterBumper.objects.filter(interacted_with_art=True, date__gte=self.date-datetime.timedelta(days=6)).count() > 0:
@@ -234,19 +235,19 @@ class GutterBumper(BaseModel):
     @property
     def presence_trend(self):
         return GutterBumper.objects.filter(date__gte=self.date-datetime.timedelta(days=7)).aggregate(Avg('presence'))['presence__avg']
-    
+
     @property
     def happiness_trend(self):
         return GutterBumper.objects.filter(date__gte=self.date-datetime.timedelta(days=7)).aggregate(Avg('happiness'))['happiness__avg']
-    
+
     @property
     def creativity_trend(self):
         return GutterBumper.objects.filter(date__gte=self.date-datetime.timedelta(days=7)).aggregate(Avg('creativity'))['creativity__avg']
-    
+
     @property
     def morning_mood_trend(self):
         return GutterBumper.objects.filter(date__gte=self.date-datetime.timedelta(days=7)).aggregate(Avg('morning_mood'))['morning_mood__avg']
-    
+
     @property
     def unbusy_trend(self):
         return GutterBumper.objects.filter(date__gte=self.date-datetime.timedelta(days=7)).aggregate(Avg('unbusy'))['unbusy__avg']
@@ -263,7 +264,7 @@ class GutterBumper(BaseModel):
         if adjusted_avg < 0:
             adjusted_avg = 0
         return 10*(adjusted_avg)
-    
+
     @property
     def work_health(self):
         sum_hrs = GutterBumper.objects.filter(date__gte=self.date-datetime.timedelta(days=7)).filter(work_hrs__gt=0).aggregate(Sum('work_hrs'))['work_hrs__sum']
@@ -277,14 +278,14 @@ class GutterBumper(BaseModel):
             # 2.25 over = 1
             return 10 - (over*4)
         
-    
+
     @property
     def alone_health(self):
         avg = GutterBumper.objects.filter(date__gte=self.date-datetime.timedelta(days=14)).aggregate(Avg('alone_hrs'))['alone_hrs__avg']
         if avg >= 3:
             return 10
         return 10*(avg/3)
-    
+
     @property
     def friend_health(self):
         sum_hrs = GutterBumper.objects.filter(date__gte=self.date-datetime.timedelta(days=14)).aggregate(Sum('friend_hrs'))['friend_hrs__sum']
