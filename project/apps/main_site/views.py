@@ -16,3 +16,8 @@ def uptime(request):
 @render_to("main_site/threaded.html")
 def threaded(request):
     return locals()
+
+
+@render_to("main_site/new_years.html")
+def new_year(request):
+    return locals()

@@ -1,0 +1,205 @@
+<html>
+<head>
+    <link href='http://fonts.googleapis.com/css?family=Rambla' rel='stylesheet' type='text/css'>
+    <style type="text/css">
+        body {
+            font-family: 'Rambla', sans-serif;
+            text-align: center;
+            color: white;
+            background: black;
+            overflow: hidden;
+        }
+        body.newYears {
+            /*color: black;*/
+            /*background: white;*/
+        }
+        #secondsLeft {
+            margin: 0px;
+            line-height: 0px;
+            letter-spacing: 0px;
+            /*text-indent: 25%;*/
+        }
+
+    </style>
+
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+    <script type="text/javascript">
+    (function($) {
+    $.fn.rainbow = function(options) {
+        this.each(function() {
+        
+            options.originalText = $(this).html();
+            options.iterations = 0;
+            if (!options.pauseLength) {
+                options.pauseLength = options.animateInterval;
+            }
+            $(this).data('options',options);
+            
+            if (options.pad) {
+            
+                for (x = 0; x < options.originalText.length; x++) {
+                    options.colors.unshift(options.colors[options.colors.length-1]);
+                }
+            }
+            
+            $.fn.rainbow.render(this);      
+            
+        });
+    }
+
+    $.fn.pauseRainbow = function() {
+        this.each(function() {
+            var options = $(this).data('options');
+            if (options) {
+                options.animate = false;
+                $(this).data('options',options);        
+            }
+        });
+    }
+
+
+    $.fn.resumeRainbow = function() {
+        this.each(function() {
+            var options = $(this).data('options');
+            if (options) {
+                options.animate = true;
+                $(this).data('options',options);        
+                $.fn.rainbow.render(this);
+            }
+        });
+    }
+
+        
+    $.fn.rainbow.render = function(obj) {
+    
+            var options = $(obj).data('options');
+            var chars = options.originalText.split('');
+
+            options.iterations++;
+                
+            var newstr = '';
+            var counter = 0;
+            for (var x in chars) {
+            
+                if (chars[x]!=' ') {
+                    newstr = newstr + '<span style="color: ' + options.colors[counter] + ';">' + chars[x] + '</span>';
+                    counter++;
+                } else {
+                    newstr = newstr + ' ';
+                
+                }
+            
+            
+                if (counter >= options.colors.length) {
+                    counter = 0;
+                }
+            }
+            $(obj).html(newstr);
+    
+            var pause = (options.iterations % options.colors.length == 0);
+            
+
+
+            if (options.animate) {
+            
+                (
+                    function(obj,interval) {
+                        var options = $(obj).data('options');
+                        var i = setTimeout(function() {
+                            $.fn.rainbow.shift(obj);
+                        },interval);
+                        options.interval = i;
+                        $(obj).data('options',options);
+                    }
+                )(obj,pause?options.pauseLength:options.animateInterval);
+            }   
+
+            
+    }
+    
+    
+    $.fn.rainbow.shift = function(obj) {
+    
+        var options = $(obj).data('options');
+        var color = options.colors.pop();
+        options.colors.unshift(color);
+        $.fn.rainbow.render(obj);
+    
+    }
+    
+})(jQuery);
+
+
+
+
+$(function(){
+
+        var intcomma = function(value) {
+            // inspired by django.contrib.humanize.intcomma
+            var origValue = String(value);
+            var newValue = origValue.replace(/^(-?\d+)(\d{3})/, '$1,$2');
+            if (origValue == newValue){
+                return newValue;
+            } else {
+                return intcomma(newValue);
+            }
+        };
+        var updateInterval = null;
+        var contentString;
+        var fontSize;
+        var isNewYears = false;
+        var newYears = new Date(2014,0,1,0,0,0,1);
+        // var newYears = new Date(2013,11,27,13,53,0,1);
+        var newYearsSeconds = newYears.getTime() / 1000;
+        
+        function updateSeconds() {
+            var now = new Date();
+            var nowSeconds = now.getTime() / 1000;
+
+            if (nowSeconds + 1 < newYearsSeconds) {
+                var secondsLeft = intcomma(Math.round(newYearsSeconds - nowSeconds));
+                contentString = secondsLeft;
+                fontSize = 600 / (Math.sqrt(contentString.length));
+            } else {
+                contentString = "Happy New Year!!";
+                fontSize = 130;
+                clearInterval(updateInterval);
+                isNewYears = true;
+                $("body").addClass("newYears");
+                
+            }
+
+            
+            $("#secondsLeft").css("font-size", fontSize).html(contentString);
+            $("#secondsLeft").css("margin-top", ($(window).height() - $("#secondsLeft").height())/2);
+            // $("#secondsLeft").css("margin-left", ($(window).width() - ((contentString.length * fontSize))));
+            if (isNewYears) {
+                // $("#secondsLeft").css("margin-left", 0).css("text-align", "center");
+                $("#secondsLeft").rainbow({ 
+                    colors: [
+                        '#FF0000',
+                        '#f26522',
+                        '#fff200',
+                        '#00a651',
+                        '#28abe2',
+                        '#2e3192',
+                        '#6868ff'
+                    ],
+                    animate: true,
+                    animateInterval: 100,
+                    pad: false,
+                    pauseLength: 5,
+                });
+            }
+            
+        }
+
+
+        updateInterval = setInterval(updateSeconds, 200);
+});
+    </script>
+</head>
+<body>
+    <div id="secondsLeft"></div>
+</body>
+</html>
