@@ -91,7 +91,7 @@ class GutterBumper(BaseModel):
     creativity_set = models.BooleanField(default=False)
     morning_mood_set = models.BooleanField(default=False)
     unbusy_set = models.BooleanField(default=False)
-    notes = models.TextField(blank=True, null=True)
+    notes = models.TextField(blank=True, null=True, default="86400")
     weight = models.FloatField(blank=True, null=True)
     body_fat_percent = models.FloatField(blank=True, null=True)
 
