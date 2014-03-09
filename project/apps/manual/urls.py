@@ -25,6 +25,7 @@ urlpatterns = patterns('',
     
     url(r'^singly_callback', views.singly_callback, name='singly_callback'),
     url(r'^fitbit_callback', views.fitbit_callback, name='fitbit_callback'),
+    url(r'^one-thing', views.todays_one_thing, name='todays_one_thing'),
     
 
 )

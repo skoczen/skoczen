@@ -48,6 +48,7 @@ def success_and_statii_for_bumper(success, bumper_pk):
         "all_green": bumper.all_green,
     }
 
+
 @login_required
 @render_to("manual/home.html")
 def home(request):
@@ -158,6 +159,12 @@ def daily_form(request, day_pk):
     form = GutterBumperForm(instance=today_bumper)
 
     return {'html': render_to_string("manual/_daily_form.html", locals())}
+
+@ajax_request
+def todays_one_thing(request):
+    today = datetime.date.today()
+    today_bumper = GutterBumper.objects.get_or_create(date=today)[0]
+    return {"one_thing": today_bumper.one_thing_to_focus_on}
 
 @csrf_exempt
 @ajax_request
