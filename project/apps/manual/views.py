@@ -160,12 +160,6 @@ def daily_form(request, day_pk):
 
     return {'html': render_to_string("manual/_daily_form.html", locals())}
 
-@ajax_request
-def todays_one_thing(request):
-    today = datetime.date.today()
-    today_bumper = GutterBumper.objects.get_or_create(date=today)[0]
-    return {"one_thing": today_bumper.one_thing_to_focus_on}
-
 @csrf_exempt
 @ajax_request
 @login_required
@@ -211,9 +205,28 @@ def fitbit_callback(request):
     print request.POST
     print request
 
-
-
 @render_to("manual/eighty.html")
 def eighty(request):
     num_sex = GutterBumper.objects.all().aggregate(Sum('sex'))['sex__sum']
     return locals()
+
+
+@ajax_request
+def todays_one_thing(request):
+    today = datetime.date.today()
+    today_bumper = GutterBumper.objects.get_or_create(date=today)[0]
+    return {"one_thing": today_bumper.one_thing_to_focus_on}
+
+
+@ajax_request
+def red_flag_drinking(request):
+    today = datetime.date.today()
+    drank_too_much = True
+
+    for i in range(1, 7):
+        bumper = GutterBumper.objects.get_or_create(date=today-datetime.timedelta(days=i))[0]
+        if (bumper.number_of_fun_beers + bumper.number_of_sleep_beers) < 3:
+            drank_too_much = False
+            break
+
+    return {"too_much": drank_too_much}
