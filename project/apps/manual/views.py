@@ -225,7 +225,9 @@ def red_flag_drinking(request):
 
     for i in range(1, 7):
         bumper = GutterBumper.objects.get_or_create(date=today-datetime.timedelta(days=i))[0]
-        if (bumper.number_of_fun_beers + bumper.number_of_sleep_beers) < 3:
+        fun = bumper.number_of_fun_beers or 0
+        sleep = bumper.number_of_sleep_beers or 0
+        if (fun + sleep) < 3:
             drank_too_much = False
             break
 

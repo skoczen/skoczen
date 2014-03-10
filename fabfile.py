@@ -36,5 +36,5 @@ def deploy():
 
 def deploy_code():
     run_ve("git push heroku live:master")
-    run_ve("heroku run project/manage.py syncdb --migrate --settings=envs.live")
-    run_ve("heroku restart")
+    run_ve("heroku run project/manage.py syncdb --migrate --settings=envs.live --app skoczen")
+    run_ve("heroku restart --app skoczen")
