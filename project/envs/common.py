@@ -99,7 +99,7 @@ INSTALLED_APPS = (
     'djcelery',
     "django_extensions",
     "import_export",
-    "lettuce.django",
+    # "lettuce.django",
     "gunicorn",
     "south",
 
