@@ -1,6 +1,6 @@
 boto
 BeautifulSoup<4.0
-django
+django<1.5
 django-analytical>=0.12.1
 django-annoying
 django-celery-with-redis
