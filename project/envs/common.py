@@ -98,6 +98,7 @@ INSTALLED_APPS = (
     "compressor",
     'djcelery',
     "django_extensions",
+    "import_export",
     "lettuce.django",
     "gunicorn",
     "south",

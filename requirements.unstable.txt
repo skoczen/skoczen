@@ -6,6 +6,7 @@ django-annoying
 django-celery-with-redis
 django_compressor
 django-extensions
+django-import-export
 django-selector
 django-staticfiles
 django-storages

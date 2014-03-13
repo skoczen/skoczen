@@ -5,6 +5,7 @@ django-annoying==0.7.6
 django-celery-with-redis==3.0
 django-compressor==1.1.2
 django-extensions==0.7.1
+django-import-export==0.2.1
 django-selector==0.3
 django-staticfiles==1.2.1
 django-storages==1.1.4
