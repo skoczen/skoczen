@@ -107,7 +107,6 @@ INSTALLED_APPS = (
     "manual",
     "hiking",
     "resume",
-    
 )
 
 TEMPLATE_CONTEXT_PROCESSORS = (
