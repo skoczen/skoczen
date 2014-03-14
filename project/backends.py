@@ -16,11 +16,13 @@ class CachedS3BotoStorage(S3BotoStorage):
         self.local_storage._save(name, content)
         return name
 
-    def url(self, name):
-        u = self.bucket.get_key(name).generate_url(3600, method='GET')
-        if u.find('?') > 0:
-            u = u[:u.find('?')]
-        if u.find('#') > 0:
-            u = u[:u.find('#')]
+    # def url(self, name):
+    #     try:
+    #         u = self.bucket.get_key(name).generate_url(3600, method='GET')
+    #         if u.find('?') > 0:
+    #             u = u[:u.find('?')]
+    #         if u.find('#') > 0:
+    #             u = u[:u.find('#')]
 
-        return u
+    #         return u
+        
