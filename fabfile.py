@@ -29,6 +29,7 @@ def run_ve(cmd):
     local("source ~/.virtualenvs/%(VIRTUALENV_NAME)s/bin/activate;cd project;%(cmd)s" % env)
 
 def deploy():
+    run_ve("./manage.py collectstatic --noinput")
     run_ve("./manage.py collectstatic --noinput --settings=envs.live")
     run_ve("./manage.py compress --force --settings=envs.live")
     run_ve("./manage.py sync_static --gzip --expires --settings=envs.live")

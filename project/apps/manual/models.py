@@ -225,9 +225,9 @@ class GutterBumper(BaseModel):
 
     @property
     def one_thing_to_focus_on(self):
-        if self.left_the_house_status != BUMPER_STATUS_GOOD:
+        if self.left_the_house_status == BUMPER_STATUS_BAD:
             return "leave the house for 15 minutes"
-        if self.worked_out_status != BUMPER_STATUS_GOOD:
+        if self.worked_out_status == BUMPER_STATUS_BAD:
             return "train or work out."
         if self.friend_health <= 7:
             return "see a friend or plan to."
@@ -235,9 +235,9 @@ class GutterBumper(BaseModel):
             return "work fewer hours"
         if self.alone_health <= 7:
             return "get some alone time"
-        if self.meditated_status != BUMPER_STATUS_GOOD:
+        if self.meditated_status == BUMPER_STATUS_BAD:
             return "meditate"
-        if self.off_status != BUMPER_STATUS_GOOD:
+        if self.off_status == BUMPER_STATUS_BAD:
             return "off"
         if self.sleep_health <= 7:
             return "get to bed earlier tonight, you're low on sleep."
