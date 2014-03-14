@@ -247,6 +247,14 @@ class GutterBumper(BaseModel):
             return "have an in-depth experience with art"
         if self.public_health <= 7:
             return "get out into public and see people"
+        if self.left_the_house_status != BUMPER_STATUS_GOOD:
+            return "leave the house for 15 minutes"
+        if self.worked_out_status != BUMPER_STATUS_GOOD:
+            return "train or work out."
+        if self.meditated_status != BUMPER_STATUS_GOOD:
+            return "meditate"
+        if self.off_status != BUMPER_STATUS_GOOD:
+            return "off"
 
         # TODO: relationship_health
         return "you're doing great, keep up the good work!"
