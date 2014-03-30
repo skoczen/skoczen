@@ -7,3 +7,5 @@ collected_static
 keys_and_passwords_private.py
 celerybeat-schedule
 all_data.json
+
+test.py

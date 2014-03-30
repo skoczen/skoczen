@@ -13,8 +13,7 @@ django-storages
 django-ses
 dj_database_url
 fabric
--e git+git://github.com/skoczen/python-fitbit#egg=fitbit
-# fitbit
+fitbit
 gunicorn
 lxml
 newrelic
