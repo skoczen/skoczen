@@ -389,14 +389,15 @@ class Weight(BaseModel):
         except:
             last_update = None
 
-        last_weight = weight["weight"][-1]
-        last_fat = fat["fat"][-1]
-        # 2014-03-29 10:43:09
-        last_time = datetime.datetime.fromtimestamp(
-            time.mktime(time.strptime("%s %s" % (last_weight["date"], last_weight["time"]), "%Y-%m-%d %H:%M:%S"))
-        )
-        if not last_update or last_time != last_update.when:
-            cls.objects.create(when=last_time, weight=last_weight["weight"], body_fat_percent=last_fat["fat"])
+        if len(weight) > 0:
+            last_weight = weight["weight"][-1]
+            last_fat = fat["fat"][-1]
+            # 2014-03-29 10:43:09
+            last_time = datetime.datetime.fromtimestamp(
+                time.mktime(time.strptime("%s %s" % (last_weight["date"], last_weight["time"]), "%Y-%m-%d %H:%M:%S"))
+            )
+            if not last_update or last_time != last_update.when:
+                cls.objects.create(when=last_time, weight=last_weight["weight"], body_fat_percent=last_fat["fat"])
 
     def __unicode__(self):
         return "%s: %s lbs, %s%%" % (self.when, self.weight, self.body_fat_percent)
