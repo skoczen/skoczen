@@ -22,6 +22,8 @@ django-ses==0.6.0
 django-staticfiles==1.2.1
 django-storages==1.1.8
 ecdsa==0.11
+#fitbit==0.0.3
+-e git://github.com/skoczen/python-fitbit@b66169603d06c3bfabff8d109c763c5d3d78c565#egg=fitbit-dev
 gunicorn==18.0
 kombu==3.0.13
 newrelic==2.16.0.12

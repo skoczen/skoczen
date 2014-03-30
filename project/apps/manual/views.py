@@ -8,7 +8,7 @@ from django.views.decorators.csrf import csrf_exempt
 from django.contrib.auth.decorators import login_required
 from annoying.decorators import render_to, ajax_request
 
-from manual.models import GutterBumper, Emotion, Value
+from manual.models import GutterBumper, Emotion, Value, Weight
 from manual.forms import GutterBumperForm
 
 
@@ -232,3 +232,18 @@ def red_flag_drinking(request):
             break
 
     return {"too_much": drank_too_much}
+
+
+@ajax_request
+def last_10_weights(request):
+    w = Weight()
+    w.get_and_save_weight()
+    weights = []
+
+    for w in Weight.objects.all()[:10]:
+        weights.append({
+            "when": w.when,
+            "weight": w.weight,
+            "fat": w.body_fat_percent,
+        })
+    return {"weights": weights}

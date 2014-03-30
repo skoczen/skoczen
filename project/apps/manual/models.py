@@ -1,10 +1,12 @@
+import datetime
+import time
+
 from django.core.urlresolvers import reverse
 from django.conf import settings
 from django.db import models
 from django.db.models import Avg, Sum
 from django.template.defaultfilters import slugify
-import datetime
-# from util.singly import SinglyHelper, Singly
+import fitbit
 
 BUMPER_STATUS_GOOD = "green"
 BUMPER_STATUS_BORDERLINE = "yellow"
@@ -344,25 +346,6 @@ class GutterBumper(BaseModel):
             return 10
         return 10*(avg/2)
 
-    @property
-    def fitbit_data(self):
-        if not hasattr(self,"_fitbit_data"):
-            s = Singly(access_token=settings.SINGLY_ACCESS_TOKEN)
-            # print s.get_authorize_url("fitbit", redirect_uri=reverse("manual:singly_callback"))
-            # print s.get_access_token("poHmFhypvmIEj-7gtYeKCw")
-            raw_weight = s.make_request("/v0/services/fitbit/weight")
-            raw_fat = s.make_request("/v0/services/fitbit/fat")
-            raw_profile = s.make_request("/v0/services/fitbit/self")
-            print raw_weight
-            print raw_profile
-            # print raw_weight["data"]["weight"]
-            for d in raw_weight:
-                print d
-                print d["data"]["weight"][0]["date"]
-                print d["data"]["weight"][0]["weight"]
-            # self._fitbit_data = 
-        return self._fitbit_data
-
     def save(self, *args, **kwargs):
         try:
             old_fell_asleep_time = GutterBumper.objects.get(pk=self.pk).fell_asleep_at
@@ -379,6 +362,44 @@ class GutterBumper(BaseModel):
         super(GutterBumper, self).save(*args, **kwargs)
         if old_fell_asleep_time and old_fell_asleep_time != self.fell_asleep_at and self.tomorrow:
             self.tomorrow.save()
+
+
+class Weight(BaseModel):
+    when = models.DateTimeField(default=datetime.date.today())
+    weight = models.FloatField(blank=True, null=True)
+    body_fat_percent = models.FloatField(blank=True, null=True)
+
+    class Meta:
+        ordering = ("-when",)
+
+    @classmethod
+    def get_and_save_weight(cls):
+        authd_client = fitbit.Fitbit(
+            settings.FITBIT_CONSUMER_KEY,
+            settings.FITBIT_CONSUMER_SECRET,
+            user_key=settings.FITBIT_USER_KEY,
+            user_secret=settings.FITBIT_USER_SECRET
+        )
+        weight = authd_client.get_bodyweight()
+        # {u'weight': [{u'date': u'2014-03-29', u'logId': 1396089789000, u'bmi': 22.38, u'weight': 165, u'time': u'10:43:09'}, {u'date': u'2014-03-29', u'logId': 1396097620000, u'bmi': 22.41, u'weight': 165.3, u'time': u'12:53:40'}]}
+        fat = authd_client.get_bodyfat()
+        # {u'fat': [{u'date': u'2014-03-29', u'logId': 1396089789000, u'fat': 16.9, u'time': u'10:43:09'}, {u'date': u'2014-03-29', u'logId': 1396097620000, u'fat': 16.9, u'time': u'12:53:40'}]}
+        try:
+            last_update = cls.objects.order_by("-when")[0]
+        except:
+            last_update = None
+
+        last_weight = weight["weight"][-1]
+        last_fat = fat["fat"][-1]
+        # 2014-03-29 10:43:09
+        last_time = datetime.datetime.fromtimestamp(
+            time.mktime(time.strptime("%s %s" % (last_weight["date"], last_weight["time"]), "%Y-%m-%d %H:%M:%S"))
+        )
+        if not last_update or last_time != last_update.when:
+            cls.objects.create(when=last_time, weight=last_weight["weight"], body_fat_percent=last_fat["fat"])
+
+    def __unicode__(self):
+        return "%s: %s lbs, %s%%" % (self.when, self.weight, self.body_fat_percent)
 
 
 class WeeklyMeal(BaseModel):
