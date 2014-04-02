@@ -150,12 +150,19 @@ a:visited {
 }
 .experience .company {
 	display: block;
-	width: 28%;
+	width: 25%;
 	margin: 10px 3% 10px 0;
 	float: left;
 }
-.experience .company.be, .experience .company.wk {
-	width: 31%;
+.experience .company.gk {
+    width: 26%;
+}
+.experience .company.be, .experience .company.wk, .experience .company.goodcloud {
+	width: 22%;
+}
+.experience .company.goodcloud {
+    width: 21%;
+    margin-right: 0;
 }
 .experience .company .name {
 	font-weight: 400;
@@ -206,7 +213,7 @@ a:visited {
 	.skills .skill_bars {
 		width: 85%;
 	}
-	.experience .company, .experience .company.be, .experience .company.wk {
+	.experience .company, .experience .company.be, .experience .company.wk, .experience .company.goodcloud {
 		width: 100%;
 	}
 	.code .repo {
