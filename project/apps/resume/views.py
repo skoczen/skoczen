@@ -10,7 +10,7 @@ def home(request):
         ("Design", 4),
         ("Front-end", 9),
         ("Back-end", 8),
-        ("Devops", 6),
+        ("Devops", 7),
         ("DBA", 3),
         ("Server admin", 3),
         ("Project management", 5),
