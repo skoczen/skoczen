@@ -213,7 +213,7 @@ a:visited {
 	.skills .skill_bars {
 		width: 85%;
 	}
-	.experience .company, .experience .company.be, .experience .company.wk, .experience .company.goodcloud {
+	.experience .company, .experience .company.be, .experience .company.wk, .experience .company.goodcloud, .experience .company.gk {
 		width: 100%;
 	}
 	.code .repo {
