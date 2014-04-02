@@ -151,17 +151,20 @@ a:visited {
 .experience .company {
 	display: block;
 	width: 25%;
-	margin: 10px 3% 10px 0;
+	margin: 10px 2.25% 10px 0;
 	float: left;
 }
 .experience .company.gk {
-    width: 26%;
+    width: 25.5%;
 }
-.experience .company.be, .experience .company.wk, .experience .company.goodcloud {
+.experience .company.be {
 	width: 22%;
 }
+.experience .company.wk {
+    width: 23%;
+}
 .experience .company.goodcloud {
-    width: 21%;
+    width: 22%;
     margin-right: 0;
 }
 .experience .company .name {
