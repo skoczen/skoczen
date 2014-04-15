@@ -19,6 +19,7 @@ lxml
 newrelic
 oauth
 requests
+pillow
 psycopg2
 simplejson
 salad

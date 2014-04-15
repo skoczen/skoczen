@@ -1,9 +1,9 @@
 from annoying.decorators import render_to
-from main_site.models import all_pages
+from main_site.models import Project
 
 @render_to("main_site/home.html")
 def home(request):
-    pages = all_pages
+    projects = Project.objects.all().order_by("-date_started")
     return locals()
 
 

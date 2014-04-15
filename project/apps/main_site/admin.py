@@ -1,10 +1,9 @@
-# from django.contrib import admin
-# from main_site.models import Page
+from django.contrib import admin
+from main_site.models import Project
 
-# class PageAdmin(admin.ModelAdmin):
-#     list_display = ("top", "active")
-#     search_fields = ("top", "active")
-#     model = Page
+class ProjectAdmin(admin.ModelAdmin):
+    list_display = ("title", "date_started", "url")
+    model = Project
 
 
-# admin.site.register(Page, PageAdmin)
+admin.site.register(Project, ProjectAdmin)
