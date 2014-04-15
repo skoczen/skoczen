@@ -7,147 +7,100 @@ html, body {
 #main {
 	position: relative;
 }
-pages {
-	display: block;
-	position: absolute;
-	left: 0px;
+.home_page {
+    display: block;
+    margin: 50px auto;
+    width: 80%;
+    min-width: 800px;
+    max-width: 1200px;
 }
-page {
-	display: block;
-	width: 2000px;
-	height: 1200px;
-	float: left;
-	position: relative;
+.hi {
+    font-size: 30px;
 }
-page picture {
+.intro {
+    font-size: 20px;
+    margin: 0 0 20px 0;
+}
+.foreword {
+    font-size: 16px;
+
+}
+picture {
 	display: block;
 	background: url("../img/my_face_500.jpg");
 	background-repeat: no-repeat;
-	background-position: middle middle;
-	width: 368px;
-	height: 501px;
-	margin: 100px 60px 0px 10%;
-	float: left;
+    background-size: 100%;
+	width: 184px;
+	height: 251px;
+	margin: 0 0 64px 64px;
+	float: right;
 }
-page intro {
-	display: block;
-	top: 100px;
-	font-size: 64px;
-	margin: 139px 0px 0px 0px;
+.year .year_number {
+    margin: 48px 0 12px 0;
 }
-page intro .hi {
-	font-size: 120px;
+.year .project {
+    display: block;
+    margin: 0 0 30px 3%;
+    text-decoration: none;
+    color: #454545;
 }
-page intro .i_m {
-	font-size: 55px;
+.project .picture {
+    display: none;
+    float: left;
+    width: 100px;
+    height: 100px;
+    background-color: #AAA;
+    margin: 0 20px 0 0;
 }
-page intro .generally {
-	font-size: 40px;
+.project .title {
+    display: block;
+    font-size: 30px;
+    color: #222;
+    /*padding: 10px 0 0 0;*/
 }
-page intro .that_means {
-	font-size: 24px;
-	display: none;
+.project .summary {
+    color: #777;
+    font-size: 16px;
+    margin: 0 10% 0 0;
+    /*height: 30px;*/
 }
-page intro:hover .that_means {
-	display: block;
+.project .status {
+    display: block;
+    float: right;
+    background-color: #454545;
+    color: #DDD;
+    padding: 4px 8px;
+    border-radius: 4px;
+    /*width: 4px;*/
+    /*height: 50px;*/
+}
+.project .status .status_text {
+    /*display: none;*/
+}
+.project .status.success {
+    background-color: #98eb8a;
+    color: #FFF;
+}
+.project .status.failed {
+    background-color: #e5888a;
+    color: #FFF;
+    
+}
+.project .status.who_knows {
+    background-color: #e7dc8b;
+    color: #FFF;
+    
+}
+.project .status.lived {
+    background-color: #98eb8a;
+    color: #FFF;
+    
 }
 
-pages {
-	display: block;
-	width: 10000px;
-	margin-top: -10000px;
+.year_number {
+    font-size: 40px;
 }
 
-page top, page bottom {
-	display: block;
-	font-size: 50px;
-	text-align: center;
-	vertical-align: middle;
-}
-page bottom {
-	padding: 0px 10%;
-	width: 80%;
-}
-
-page top {
-	font-size: 100px;
-}
-
-center_bar {
-	display: block;
-	width: 100%;
-	height: 100px;
-}
-
-year {
-	display: block;
-	position: absolute;
-	bottom: 10px;
-	right: 49%;
-	color: #AAA;
-}
-page.first right_arrow {
-	display: block;
-	position: absolute;
-	right: 10px;
-	top: 48%;
-	width: 100px;
-	height: 100px;
-	background: url("../img/arrow-right.png");
-	background-repeat: no-repeat;
-	background-position: right center;
-}
-page center_bar left {
-	display: block;
-	position: absolute;
-	left: 1px;
-	width: 100px;
-	height: 100px;
-	background: url("../img/arrow-filled-right.png");
-	background-repeat: no-repeat;
-	background-position: 0px center;
-}	
-page center_bar right {
-	display: block;
-	position: absolute;
-	right: 1px;
-	width: 100px;
-	height: 100px;
-	background: url("../img/arrow-filled-left.png");
-	background-repeat: no-repeat;
-	background-position: right center;
-}
-/*page center_bar right.last { 
-
-}
-*/
-page center_bar middle {
-	display: block;
-	position: absolute;
-	left: 100px;
-	background-color: black;
-	height: 100px;
-}
-a.middle_link {
-	text-decoration: none;
-	text-align: center;
-}
-page .middle_link .middle_hover {
-	display: block;
-	margin-top: 20px;
-	color: #555;
-	font-size: 40px;
-	display: none;
-}
-page .middle_link_segment {
-	display: inline-block;
-	margin-top: 20px;
-	color: #555;
-	font-size: 40px;
-}
-page .middle_link:hover .middle_hover {
-	display: block;
-}
 
 @media (max-width: 600px) { 
 	page intro { top: 100px; font-size: 64px; margin: 100px 0px 0px 0px; }

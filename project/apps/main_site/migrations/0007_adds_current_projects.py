@@ -8,59 +8,59 @@ class Migration(DataMigration):
 
     def forwards(self, orm):
         orm.Project.objects.create(
-            title="is enough",
-            summary="what does love mean to you?",
+            title="Is enough",
+            summary="A digital crowd-poem: what does love mean to you?",
             url="http://isenough.com",
             date_started=datetime.datetime(2011, 11, 21),
             status="who_knows",
         )
         orm.Project.objects.create(
-            title="encore",
-            summary="a digital poem",
+            title="Encore",
+            summary="An experimental piece of digital poetry about time, flowers, death and beauty.  Which really, are all the same thing.",
             url="http://www.encorepoem.com",
             date_started=datetime.datetime(2012, 4, 1),
             status="who_knows",
         )
         orm.Project.objects.create(
             title="Slow Art",
-            summary="the anti-museum. in portland, or",
+            summary="A monthly art series, based in Portland, OR.  An anti-museum.",
             url="http://slowartpdx.com",
             date_started=datetime.datetime(2011, 7, 1),
             status="success",
         )
         orm.Project.objects.create(
             title="togetheralone",
-            summary="an experiment in community, with Anastasia Aizman",
+            summary="An experiment in community, with Anastasia Aizman.",
             url="http://togetheralone.org",
             date_started=datetime.datetime(2012, 3, 1),
             status="failed",
         )
         orm.Project.objects.create(
-            title="the digital executioner",
-            summary="Viral web marketing campaign generator.  Won the internet for a day. Built at Wieden+Kennedy",
+            title="The Digital Executioner",
+            summary="Viral web marketing campaign generator.  Won the internet for a day. Built at Wieden+Kennedy.",
             url="http://www.thedigitalexecutioner.com",
             date_started=datetime.datetime(2012, 2, 1),
             status="success",
         )
         orm.Project.objects.create(
-            title="goodcloud",
-            summary="A contact, volunteer, and donor management software for small non-profits.",
+            title="GoodCloud",
+            summary="Contact, volunteer, and donor management software for small non-profits.  Organizations loved it, but we couldn't grow fast enough to pay the bills.",
             url="https://www.agoodcloud.com",
             date_started=datetime.datetime(2010, 11, 1),
             status="failed",
         )
 
         orm.Project.objects.create(
-            title="sixlinks",
-            summary="Trying to save the world, with Jeff Gunther.  Sixlinks was the big picture of the world's sustainability issues, and step-by-step guides of actions you can personally take.",
+            title="SixLinks",
+            summary="Tried to save the world, with Jeff Gunther.  Sixlinks was the big picture of the world's sustainability issues, and step-by-step guides of actions you can personally take.",
             url="http://www.sixlinks.org",
             date_started=datetime.datetime(2008, 1, 1),
             status="failed",
         )
 
         orm.Project.objects.create(
-            title="Write Around Portland",
-            summary="I'm lucky to be a volunteer, sustaining donor, and workshop facilitator for this amazing organization. Write Around Portland provides free creative writing workshops to people all across our community, who can really use them.",
+            title="Volunteering with Write Around Portland",
+            summary="I'm lucky to be a volunteer, sustaining donor, and workshop facilitator for this amazing organization. Write Around Portland provides free creative writing workshops to people all across our community who can really use them.",
             url="http://www.writearound.org",
             date_started=datetime.datetime(2009, 1, 1),
             status="success",
@@ -75,9 +75,9 @@ class Migration(DataMigration):
 
         orm.Project.objects.create(
             title="Quantum Imagery",
-            summary="The first company I really made my living on, Quantum Imagery was (mostly) a sole proprietorship that built all sorts of cool web stuff.",
+            summary="The first company I really made my living on, Quantum Imagery was (mostly) a sole proprietorship that built all sorts of cool web stuff over the next 10 years.",
             url="http://www.quantumimagery.com",
-            date_started=datetime.datetime(2000, 3, 1),
+            date_started=datetime.datetime(1999, 6, 1),
             status="success",
         )
 
@@ -103,30 +103,38 @@ class Migration(DataMigration):
             status="lived",
         )
         orm.Project.objects.create(
-            title="fluidtask",
-            summary="A flexible to-do list for balancing multiple projects and timelines. Worked for me, not really anyone else.",
+            title="Fluidtask",
+            summary="A flexible to-do list for balancing multiple projects and timelines. Worked great for me, but not really anyone else.",
             url="http://www.fluidtask.net",
             date_started=datetime.datetime(2006, 1, 1),
             status="failed",
         )
+        orm.Project.objects.create(
+            title="My Portland Schools",
+            summary="A facebook app connecting the greater Portland community to their schools.",
+            url="http://www.fluidtask.net",
+            date_started=datetime.datetime(2012, 7, 1),
+            status="failed",
+        )
+
 
         orm.Project.objects.create(
-            title="but i'm hungry!",
+            title="But I'm hungry!",
             summary="My recipe and restaurant review site, in the day before there was a yelp or recipezaar.",
             url="http://skoczen.net/food/",
             date_started=datetime.datetime(2005, 1, 16),
             status="lived",
         )
         orm.Project.objects.create(
-            title="liquid silver zen",
-            summary="My personal site, which morphed through a few iterations. These were my early experiments in design and interaction",
+            title="Liquid Silver Zen",
+            summary="My pre-2006 personal site, which morphed through a few iterations. These were my early experiments in design and digital interaction.",
             url="http://liquidsilverzen.net/",
             date_started=datetime.datetime(2002, 1, 1),
             status="lived",
         )
         orm.Project.objects.create(
             title="Coffeehous.es",
-            summary="A place for conversation and ideas.  Coffeehouses was built to support intellectual discourse among people who know each other.",
+            summary="A place for conversation and ideas.  Made so that intellectual discourse between far-away friends can flourish.",
             url="http://coffeehous.es",
             date_started=datetime.datetime(2014, 3, 16),
             status="who_knows",
@@ -154,7 +162,7 @@ class Migration(DataMigration):
         )
         orm.Project.objects.create(
             title="Autoscalebot, the project.",
-            summary="An open-source robot that automatically scales your heroku apps. Built at Wieden+Kennedy",
+            summary="An open-source robot that automatically scales your heroku apps. Built at Wieden+Kennedy.",
             url="https://github.com/wieden-kennedy/autoscalebot",
             date_started=datetime.datetime(2012, 2, 1),
             status="success",
@@ -163,35 +171,42 @@ class Migration(DataMigration):
             title="Branch Leaf Idea",
             summary="A blog on sustainability, how-tech-works, and musings on a bright green future.",
             url=None,
-            date_started=datetime.datetime(2005, 5, 1),
+            date_started=datetime.datetime(2004, 9, 1),
             status="lived",
         )
         orm.Project.objects.create(
             title="ebDB: The International Ethnobotany Database",
-            summary="A web-accessible database, intended to securely house all the world's ethnobotanical research. v1 succeeded, but v2 became my Duke Nukem albatross, and ultimately failed.  v3 lives on Zoho.  With Drs. Rainer Bussman and Doug Sharon.",
+            summary="A web-accessible database, intended to securely house all the world's ethnobotanical research. v1 succeeded, but v2 became my Second System Syndrome albatross, and 8 years later, ultimately failed.  v3 lives on Zoho.  With Drs. Rainer Bussman and Doug Sharon.",
             url="https://ebdb.org",
             date_started=datetime.datetime(2002, 6, 1),
             status="lived",
         )
         orm.Project.objects.create(
             title="Olorien",
-            summary="An open-source framework for scientific journal creation, with Dr. Rainer Bussmann",
-            url="https://www.quantumimagery.com/software-olorien.",
+            summary="An open-source framework for scientific journal creation, with Dr. Rainer Bussmann.",
+            url="https://www.quantumimagery.com/software-olorien",
             date_started=datetime.datetime(2003, 2, 1),
             status="failed",
         )
         orm.Project.objects.create(
             title="Lyonia",
-            summary="The first installation of olorien, with Dr. Rainer Bussmann",
-            url="https://www.quantumimagery.com",
+            summary="The first installation of olorien, with Dr. Rainer Bussmann.",
+            url="https://www.quantumimagery.com/software-lyonia",
             date_started=datetime.datetime(2003, 1, 1),
             status="who_knows",
         )
         orm.Project.objects.create(
             title="Will",
-            summary="The most friendly, easy-to-program chat bot you've ever used. Pure python, built at GreenKahuna",
+            summary="The most friendly, easy-to-program chat bot you've ever used. Pure python, built at GreenKahuna.",
             url="https://www.github.com/greenkahuna/will",
             date_started=datetime.datetime(2013, 12, 15),
+            status="success",
+        )
+        orm.Project.objects.create(
+            title="My Will",
+            summary="My personal incarnation of will, who keeps an eye on how many beers I drink, my home's temperature, my fluid loss from a run, and reminds me of my big goals.  I love will so much.",
+            url="https://www.github.com/skoczen/my-will",
+            date_started=datetime.datetime(2014, 1, 20),
             status="success",
         )
         orm.Project.objects.create(
@@ -202,6 +217,13 @@ class Migration(DataMigration):
             status="success",
         )
         orm.Project.objects.create(
+            title="College, part deux.",
+            summary="Spent 3 years at Cornell, got a degree. Never used it after I graduated.  However, the diploma, laminated, nicely works as a placeholder for my dog's food.",
+            url="http://www.cornell.edu",
+            date_started=datetime.datetime(2006, 9, 1),
+            status="failed",
+        )
+        orm.Project.objects.create(
             title="Django Ajax Uploader",
             summary="Solving the problem of ajax upload to django, once and for all.",
             url="https://www.github.com/goodcloud/django-ajax-uploader.git",
@@ -210,7 +232,7 @@ class Migration(DataMigration):
         )
         orm.Project.objects.create(
             title="Django Longer Username",
-            summary="Django had an annoying username problem.  This project fixed it, for many many people.  Eventually replaced by a forked project, django-longer-username-and-email.",
+            summary="Django had an annoying username problem.  This project fixed it, for many, many people.  Eventually replaced by another coder's forked project, django-longer-username-and-email.",
             url="https://www.github.com/goodcloud/django-longer-username.git",
             date_started=datetime.datetime(2011, 4, 1),
             status="success",
@@ -224,7 +246,7 @@ class Migration(DataMigration):
         )
         orm.Project.objects.create(
             title="Salad",
-            summary="A python library for writing easy-to-read behavior-driven tests than run in web-browsers. Built at Wieden+Kennedy, and open-sourced.",
+            summary="A python library for writing easy-to-read behavior-driven tests than run in web browsers. Built at Wieden+Kennedy, and open-sourced.",
             url="https://www.github.com/salad/salad.git",
             date_started=datetime.datetime(2012, 2, 1),
             status="success",
@@ -259,14 +281,14 @@ class Migration(DataMigration):
         )
         orm.Project.objects.create(
             title="Honda E-Learning framework",
-            summary="Built an e-learning framework for Honda that beat out competing projects from 10 firms, and was used unchanged for 7 years.  With YPG.",
+            summary="Built an e-learning framework for Honda that beat out competing projects from 10 firms, and was used unchanged for 6 years.  With YPG.",
             url=None,
             date_started=datetime.datetime(2002, 6, 1),
             status="success",
         )
         orm.Project.objects.create(
             title="Home",
-            summary="A photo book about the desert, development, and home.",
+            summary="A photograpy book about the desert, development, and home.",
             url=None,
             date_started=datetime.datetime(2007, 4, 1),
             status="success",
@@ -280,17 +302,66 @@ class Migration(DataMigration):
         )
         orm.Project.objects.create(
             title="WoodFriend",
-            summary="A sculptural piece, about touch",
+            summary="A living sculptural piece, about touch.",
             url=None,
             date_started=datetime.datetime(2013, 5, 1),
             status="success",
         )
         orm.Project.objects.create(
             title="Steven's Computer Solutions",
-            summary="My first real company, mowing lawns aside.",
+            summary="My first real company, mowing lawns aside.  Everything from video card upgrades to web design to MS Word instruction.",
             url=None,
             date_started=datetime.datetime(1996, 6, 1),
             status="lived",
+        )
+        orm.Project.objects.create(
+            title="Co-authored Foundation Javascript Book",
+            summary="I wrote about half of this book for Wrox Press. Unfortunately, they mis-timed the schedule, and scrapped the book a couple months later when Javascript 2 came out.",
+            url=None,
+            date_started=datetime.datetime(2001, 5, 1),
+            status="failed",
+        )
+        orm.Project.objects.create(
+            title="Flash Components",
+            summary="Open-source Macromedia Flash components for CPU detection, bandwidth detection, and console",
+            url="http://quantumimagery.com/software-flash",
+            date_started=datetime.datetime(2001, 8, 1),
+            status="success",
+        )
+        orm.Project.objects.create(
+            title="Django better-500s",
+            summary="Making error pages more friendly for users, and more useful for developers",
+            url=None,
+            date_started=datetime.datetime(2011, 2, 1),
+            status="success",
+        )
+        orm.Project.objects.create(
+            title="College",
+            summary="Went to the Univerity of Arizona.  GPA went: Fall: 4.0, Spring: 0.0, Summer: dropped out.",
+            url=None,
+            date_started=datetime.datetime(1998, 12, 1),
+            status="failed",
+        )
+        orm.Project.objects.create(
+            title="Steven's Lawn Care",
+            summary="You need your lawn mowed?  Don't want to do it yourself?  I'd do a pretty passable job.",
+            url=None,
+            date_started=datetime.datetime(1992, 5, 1),
+            status="lived",
+        )
+        orm.Project.objects.create(
+            title="Born",
+            summary="Really didn't do a lot for this one, other than starting breathing.  To be fair, I'd bet that was pretty hard work.",
+            url=None,
+            date_started=datetime.datetime(1980, 4, 9),
+            status="who_knows",
+        )
+        orm.Project.objects.create(
+            title="Raising the world's best dog.",
+            summary="Got lucky on this one by picking the world's best dog out of the shelter lineup.",
+            url=None,
+            date_started=datetime.datetime(1999, 4, 1),
+            status="success",
         )
 
     def backwards(self, orm):
