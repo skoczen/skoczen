@@ -67,7 +67,7 @@ class Migration(DataMigration):
         )
         orm.Project.objects.create(
             title="30 people, 30 minutes",
-            summary="I turned 30 by spending the day talking to 30 people for 30 minutes each.  This website is this highlights.",
+            summary="I turned 30 by spending the day talking to 30 people for 30 minutes each.  This website has this highlights.",
             url="http://www.30people30minutes.com",
             date_started=datetime.datetime(2010, 4, 9),
             status="success",
@@ -82,8 +82,8 @@ class Migration(DataMigration):
         )
 
         orm.Project.objects.create(
-            title="photoblog",
-            summary="A couple of years of a semi-serious foray into photography",
+            title="Photoblog",
+            summary="A couple of years of a semi-serious foray into digital photography",
             url="http://www.skoczen.net/photos",
             date_started=datetime.datetime(2005, 1, 1),
             status="lived",
@@ -104,7 +104,7 @@ class Migration(DataMigration):
         )
         orm.Project.objects.create(
             title="Fluidtask",
-            summary="A flexible to-do list for balancing multiple projects and timelines. Worked great for me, but not really anyone else.",
+            summary="A flexible to-do list for balancing multiple projects and interleaved timelines. Worked great for me, but not really anyone else.",
             url="http://www.fluidtask.net",
             date_started=datetime.datetime(2006, 1, 1),
             status="failed",
@@ -218,7 +218,7 @@ class Migration(DataMigration):
         )
         orm.Project.objects.create(
             title="College, part deux.",
-            summary="Spent 3 years at Cornell, got a degree. Never used it after I graduated.  However, the diploma, laminated, nicely works as a placeholder for my dog's food.",
+            summary="Spent 3 years at Cornell, got a degree. Never used it after I graduated.  However, the now-laminated diploma works really nicely as a placeholder for the best dog in the world's food.",
             url="http://www.cornell.edu",
             date_started=datetime.datetime(2006, 9, 1),
             status="failed",
@@ -288,7 +288,7 @@ class Migration(DataMigration):
         )
         orm.Project.objects.create(
             title="Home",
-            summary="A photograpy book about the desert, development, and home.",
+            summary="A coffee-table photo book about the desert, development, and home.",
             url=None,
             date_started=datetime.datetime(2007, 4, 1),
             status="success",
@@ -329,7 +329,7 @@ class Migration(DataMigration):
             status="success",
         )
         orm.Project.objects.create(
-            title="Django better-500s",
+            title="Django Better-500s",
             summary="Making error pages more friendly for users, and more useful for developers",
             url=None,
             date_started=datetime.datetime(2011, 2, 1),

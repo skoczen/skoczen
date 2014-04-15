@@ -58,6 +58,9 @@ picture {
     color: #222;
     /*padding: 10px 0 0 0;*/
 }
+.project:hover .title {
+    text-decoration: underline;
+}
 .project .summary {
     color: #777;
     font-size: 16px;
