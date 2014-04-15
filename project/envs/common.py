@@ -106,6 +106,7 @@ INSTALLED_APPS = (
     "main_site",
     "manual",
     "hiking",
+    "ideas",
     "resume",
 )
 

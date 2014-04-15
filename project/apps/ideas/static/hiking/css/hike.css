@@ -1,0 +1,116 @@
+body {
+	text-align: center;
+}
+
+.steven_is {
+	font-size: 50px;
+	color: #777;
+	margin-top: 30px;
+}
+.status {
+	font-size: 100px;
+	color: #444;
+}
+.times {
+	font-size: 24px;
+	color: #888;
+}
+.times em {
+	color: #555;
+	font-style: normal;
+}
+.home_safe {
+	font-size: 30px;
+	color: #888;
+}
+.in-trouble {
+	display: block;
+	font-size: 20px;
+	width: 50%;
+	margin: 20px auto;
+	border: 1px solid orange;
+	padding: 10px;
+	background-color: #FFF;
+	text-align: left;
+}
+.in-trouble a {
+	text-decoration: underline;
+	color: blue;
+}
+
+.where {
+	margin-top: 30px;
+	font-size: 18px;
+	width: 50%;
+	margin: 30px auto 10px auto;
+	
+	text-align: left;
+	color: #555;
+}
+.where .header {
+	display: block;
+	margin: 0px 0px -4px 1px;
+}
+.where .content {
+	display: block;
+	border: 1px solid #CCC;
+	padding: 10px;
+	background-color: #EEE;
+}
+
+.equiptment {
+	display: block;
+	width: 80%;
+	overflow: auto;
+	margin: 0px auto;
+}
+.equiptment ul {
+	display: block;
+	list-style-type: none;
+	text-indent: 0px;
+	margin: 0px;
+	padding: 0px;
+	clear: both;
+}
+.equiptment li {
+	text-indent: 0px;
+	margin: 5px 0px;
+	padding: 0px 4px;
+	border: #DDD 1px solid;
+	border-width: 0px 0px 0px 3px;
+}
+.equiptment .header {
+	display: block;
+	color: #888;
+	border: #AAA 1px solid;
+	border-width: 0px 0px 1px 0px;
+	padding: 0px;
+	margin: 0px 0px 10px 0px;
+	float: left;
+	clear: both;
+}
+
+.equiptment .brought, .equiptment .forgot {
+	font-size: 18px;
+	text-align: left;
+	width: 44%;
+	float: left;
+	margin: 3%;
+	color: #999;
+}
+.equiptment .brought {
+	text-align: right;
+}
+.equiptment .brought .header {
+	float: right;
+	clear: both;
+}
+.equiptment .brought li {
+	border-width: 0px 3px 0px 0px;
+}
+.send-a-text {
+	display: block;
+	color: #888;
+	font-size: 18px;
+	margin: 15px 0px 0px 0px;
+}

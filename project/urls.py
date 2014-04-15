@@ -9,6 +9,7 @@ admin.autodiscover()
 urlpatterns = patterns('',
     url(r'', include('main_site.urls', namespace="main_site"), ),
     url(r'^manual/', include('manual.urls', namespace="manual"), ),
+    url(r'^ideas/', include('ideas.urls', namespace="ideas"), ),
     url(r'^hiking/', include('hiking.urls', namespace="hiking"), ),
     url(r'^resume/', include('resume.urls', namespace="resume"), ),
     url(r'^accounts/login/$', 'django.contrib.auth.views.login'),
