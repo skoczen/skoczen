@@ -8,6 +8,15 @@ def home(request):
     return locals()
 
 
+@render_to("main_site/work.html")
+def work(request):
+    return locals()
+
+@render_to("main_site/links.html")
+def links(request):
+    return locals()
+
+
 @render_to("main_site/uptime.html")
 def uptime(request):
     return locals()

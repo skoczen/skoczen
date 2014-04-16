@@ -1,0 +1,56 @@
+{% extends "base.html" %}{% load compress %}
+
+{% block title %}Steven Skoczen - Social networks and such{% endblock %}
+{% block description %}Links to my facebook, poetr, twitter, github, etc.{% endblock %}
+
+{% block css %}{{block.super}}
+{% compress css %}
+<link rel="stylesheet" href="{{STATIC_URL}}main_site/css/fonts.css">
+<link rel="stylesheet" href="{{STATIC_URL}}main_site/css/site.css">
+{% endcompress %}
+{% endblock %}
+
+{% block js %}{{block.super}}
+{% compress js %}
+<script src="{{STATIC_URL}}main_site/js/site.js"></script>
+{% endcompress %}
+{% endblock %}
+
+
+{% block content %}
+{% include "main_site/_top_nav.html" %}
+<div class="home_page detail_page">
+    
+    <div class="year">
+        <h1>Social networks and such:</h1>
+    
+    <a href="http://facebook.com/skoczen" class="project">
+        <div class="title">Facebook</div>
+        <div class="summary">I promise never to post about cats or what I ate for dinner.</div>
+    </a>
+    <a href="http://twitter.com/skoczen" class="project">
+        <div class="title">Twitter</div>
+        <div class="summary">Pretty much facebook link-spam. I really should get into twitter one of these days.</div>
+    </a>
+    <a href="http://poetr.com/Steven%20Skoczen" class="project">
+        <div class="title">Poetr</div>
+        <div class="summary">Poetr's just getting off the ground, but a decent bit of my writing is there.</div>
+    </a>
+        <a href="http://github.com/skoczen" class="project">
+        <div class="title">Github</div>
+        <div class="summary">My personal github projects. See the "work" link for all my codes.</div>
+    </a>
+    <a href="http://plus.google.com/skoczen" class="project">
+        <div class="title">Google+</div>
+        <div class="summary">For the five of you who still use Google+.</div>
+    </a>
+    <a href="http://flickr.com/aglzen" class="project">
+        <div class="title">Flickr</div>
+        <div class="summary">Hasn't been updated for years, but there are still photos I'm proud of.</div>
+    </a>
+
+    </div>
+</div>
+
+
+{% endblock %}

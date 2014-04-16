@@ -1,0 +1,56 @@
+{% extends "base.html" %}{% load compress %}
+
+{% block title %}Steven Skoczen - the professional{% endblock %}
+{% block description %}My résumé, github, C.V., etc.{% endblock %}
+
+
+{% block css %}{{block.super}}
+{% compress css %}
+<link rel="stylesheet" href="{{STATIC_URL}}main_site/css/fonts.css">
+<link rel="stylesheet" href="{{STATIC_URL}}main_site/css/site.css">
+{% endcompress %}
+{% endblock %}
+
+{% block js %}{{block.super}}
+{% compress js %}
+<script src="{{STATIC_URL}}main_site/js/site.js"></script>
+{% endcompress %}
+{% endblock %}
+
+
+{% block content %}
+{% include "main_site/_top_nav.html" %}
+<div class="home_page detail_page">
+    
+    <div class="year">
+        <h1>Professional:</h1>
+    
+    <a href="{% url resume:home %}" class="project">
+        <div class="title">Résumé</div>
+        <div class="summary">A brief summary of my skills and experience.</div>
+    </a>
+    <a href="http://github.com/skoczen" class="project">
+        <div class="title">My Github</div>
+        <div class="summary">My personal github projects.</div>
+    </a>
+    <a href="http://github.com/goodcloud" class="project">
+        <div class="title">GoodCloud's Github</div>
+        <div class="summary">GoodCloud's github projects - all my code, at least before the communities around each project took off.</div>
+    </a>
+    <a href="http://github.com/salad" class="project">
+        <div class="title">Salad's Github</div>
+        <div class="summary">The salad projects - all my code, until I was able to grow the community that now maintains it.</div>
+    </a>
+    <a href="http://github.com/greenkahuna/will" class="project">
+        <div class="title">Will's Github</div>
+        <div class="summary">Will's codebase - all my code, the community is still in its infancy.</div>
+    </a>
+    <a href="{{STATIC_URL}}resume/pdf/Curriculum%20Vitae.pdf" class="project">
+        <div class="title">Curriculum Vitae</div>
+        <div class="summary">My academic C.V., circa 2005.  Very out of date, but it at least has most of the papers.</div>
+    </a>
+    </div>
+</div>
+
+
+{% endblock %}
