@@ -16,7 +16,7 @@ class Migration(DataMigration):
         )
         orm.Project.objects.create(
             title="Encore",
-            summary="An experimental piece of digital poetry about time, flowers, death and beauty.  Which really, are all the same thing.",
+            summary="An experimental piece of digital poetry about time, flowers, death and beauty.  Which, really, are all the same thing.",
             url="http://www.encorepoem.com",
             date_started=datetime.datetime(2012, 4, 1),
             status="who_knows",
@@ -225,21 +225,21 @@ class Migration(DataMigration):
         )
         orm.Project.objects.create(
             title="Django Ajax Uploader",
-            summary="Solving the problem of ajax upload to django, once and for all.",
+            summary="Solving the problem of ajax upload to django, once and for all. Came out of GoodCloud.",
             url="https://www.github.com/goodcloud/django-ajax-uploader.git",
             date_started=datetime.datetime(2011, 3, 1),
             status="success",
         )
         orm.Project.objects.create(
             title="Django Longer Username",
-            summary="Django had an annoying username problem.  This project fixed it, for many, many people.  Eventually replaced by another coder's forked project, django-longer-username-and-email.",
+            summary="Django had an annoying username problem.  This project fixed it, for many, many people.  Eventually replaced by another coder's forked project, django-longer-username-and-email. Came out of GoodCloud.",
             url="https://www.github.com/goodcloud/django-longer-username.git",
             date_started=datetime.datetime(2011, 4, 1),
             status="success",
         )
         orm.Project.objects.create(
             title="Django Zebra",
-            summary="A library for integrating the stripe billing service into django apps.",
+            summary="A library for integrating the stripe billing service into django apps. Came out of GoodCloud.",
             url="https://www.github.com/goodcloud/django-zebra.git",
             date_started=datetime.datetime(2011, 5, 1),
             status="success",
@@ -274,7 +274,7 @@ class Migration(DataMigration):
         )
         orm.Project.objects.create(
             title="Joint Count Project",
-            summary="Built an accessible joint-pain reporter that worked for patients with advanced arthritis, and generated doctor-friendly output.  With Drs. Ann Sturley and Leslie Lenert, at UCSD.",
+            summary="An accessible joint-pain reporter that worked for patients with advanced arthritis, and generated doctor-friendly output.  With Drs. Ann Sturley and Leslie Lenert, at UCSD.",
             url=None,
             date_started=datetime.datetime(2003, 10, 1),
             status="lived",
@@ -330,7 +330,7 @@ class Migration(DataMigration):
         )
         orm.Project.objects.create(
             title="Django Better-500s",
-            summary="Making error pages more friendly for users, and more useful for developers",
+            summary="Making error pages more friendly for users, and more useful for developers. Came out of GoodCloud.",
             url=None,
             date_started=datetime.datetime(2011, 2, 1),
             status="success",
@@ -350,7 +350,7 @@ class Migration(DataMigration):
             status="lived",
         )
         orm.Project.objects.create(
-            title="Born",
+            title="Life",
             summary="Really didn't do a lot for this one, other than starting breathing.  To be fair, I'd bet that was pretty hard work.",
             url=None,
             date_started=datetime.datetime(1980, 4, 9),
