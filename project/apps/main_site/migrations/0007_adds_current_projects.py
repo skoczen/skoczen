@@ -218,7 +218,7 @@ class Migration(DataMigration):
         )
         orm.Project.objects.create(
             title="College, part deux.",
-            summary="Spent 3 years at Cornell, got a degree. Never used it after I graduated.  However, the now-laminated diploma works really nicely as a placeholder for the best dog in the world's food.",
+            summary="Spent the next 3 years at Cornell, got a degree. Never used it after I graduated.  However, the now-laminated diploma works really nicely as a placeholder for the best dog in the world's food.",
             url="http://www.cornell.edu",
             date_started=datetime.datetime(2006, 9, 1),
             status="failed",
@@ -281,7 +281,7 @@ class Migration(DataMigration):
         )
         orm.Project.objects.create(
             title="Honda E-Learning framework",
-            summary="Built an e-learning framework for Honda that beat out competing projects from 10 firms, and was used unchanged for 6 years.  With YPG.",
+            summary="Built an e-learning framework for Honda that beat out competing projects from 10 firms, and was used unchanged for 6 years - until the language changed, and I built them the a one.  With YPG.",
             url=None,
             date_started=datetime.datetime(2002, 6, 1),
             status="success",
@@ -309,13 +309,13 @@ class Migration(DataMigration):
         )
         orm.Project.objects.create(
             title="Steven's Computer Solutions",
-            summary="My first real company, mowing lawns aside.  Everything from video card upgrades to web design to MS Word instruction.",
+            summary="My first real company, mowing lawns aside.  Everything from video card upgrades to web design to MS Word training.",
             url=None,
             date_started=datetime.datetime(1996, 6, 1),
             status="lived",
         )
         orm.Project.objects.create(
-            title="Co-authored Foundation Javascript Book",
+            title="Foundation Javascript, the Book",
             summary="I wrote about half of this book for Wrox Press. Unfortunately, they mis-timed the schedule, and scrapped the book a couple months later when Javascript 2 came out.",
             url=None,
             date_started=datetime.datetime(2001, 5, 1),
@@ -323,7 +323,7 @@ class Migration(DataMigration):
         )
         orm.Project.objects.create(
             title="Flash Components",
-            summary="Open-source Macromedia Flash components for CPU detection, bandwidth detection, and console",
+            summary="Open-source Macromedia Flash components for CPU detection, bandwidth detection, and console.",
             url="http://quantumimagery.com/software-flash",
             date_started=datetime.datetime(2001, 8, 1),
             status="success",
@@ -354,6 +354,20 @@ class Migration(DataMigration):
             summary="Really didn't do a lot for this one, other than starting breathing.  To be fair, I'd bet that was pretty hard work.",
             url=None,
             date_started=datetime.datetime(1980, 4, 9),
+            status="who_knows",
+        )
+        orm.Project.objects.create(
+            title="Writing poetry",
+            summary="Though all my early drafts were lost in the hands of a high school English teacher, I did a fair bit of writing back here.",
+            url="http://poetr.com",
+            date_started=datetime.datetime(1997, 10, 1),
+            status="lived",
+        )
+        orm.Project.objects.create(
+            title="Writing poetry seriously",
+            summary="Started over, learning how to be a reader.  Eventually wrote a things I was proud to put my name on. They all live on poetr now.",
+            url="http://poetr.com",
+            date_started=datetime.datetime(2009, 6, 1),
             status="who_knows",
         )
         orm.Project.objects.create(
