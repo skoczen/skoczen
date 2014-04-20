@@ -45,13 +45,12 @@ Failed!
     <div class="year">
         <h1 class="year_number">{{ p.date_started.year }}</h1>
     {% endifchanged %}
-    <a href="{{p.url}}" target="_blank" class="project">
+    {% if p.url %}<a href="{{p.url}}" target="_blank"{% else %}<div {% endif %} class="project">
         <div class="picture">{% if p.picture %}<img src="{{p.picture.url}}"/>{% endif %}</div>
         <div class="status {{p.status}}" alt="{{p.get_status_display}}" title="{{p.get_status_display}}"><span class="status_text">{{p.get_status_display}}</span></div>
         <div class="title">{{p.title|safe}}</div>
         <div class="summary">{{p.summary|safe}}</div>
-        
-    </a>
+    {% if p.url %}</a>{% else %}</div>{% endif %}
 	{% endfor %}
     </div>
 </div>

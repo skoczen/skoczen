@@ -90,7 +90,7 @@ picture {
     color: #222;
     /*padding: 10px 0 0 0;*/
 }
-.project:hover .title {
+a.project:hover .title {
     text-decoration: underline;
 }
 .project .summary {
