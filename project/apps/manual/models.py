@@ -389,7 +389,7 @@ class Weight(BaseModel):
         except:
             last_update = None
 
-        if len(weight) > 0:
+        if len(weight) > 0 and len(weight["weight"]) > 0:
             last_weight = weight["weight"][-1]
             last_fat = fat["fat"][-1]
             # 2014-03-29 10:43:09
