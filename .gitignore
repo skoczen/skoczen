@@ -9,3 +9,5 @@ celerybeat-schedule
 all_data.json
 
 test.py
+
+source/correlate/*.json
