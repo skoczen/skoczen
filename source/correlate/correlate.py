@@ -5,7 +5,7 @@ import pickle
 data = pickle.load(open("live.json"))
 
 cols = [
-    "date",
+    "month",
     "woke_up_at",
     "fell_asleep_at",
     "sleep_hrs",
@@ -14,8 +14,8 @@ cols = [
     "friend_hrs",
     "public_hrs",
     "relationship_hrs",
-    "off",
-    "sex",
+    "orgasm",
+    "sex_count",
     "interacted_with_art",
     "worked_out",
     "meditated",
@@ -31,22 +31,27 @@ cols = [
     "morning_mood",
     "unbusy",
     "notes length",
+    "winter",
+    "spring",
+    "summer",
+    "fall",
 ]
 
 headers = {'Content-type': 'application/json', }
 resp = requests.post("http://correlationbot.com", headers=headers, data=json.dumps({
     "data": data
 }))
-print resp
-print resp.content
+# print resp
+# print resp.content
 correlations = resp.json()["correlations"]
 for c in correlations:
-    print c["column_1"]
-    print c["column_2"]
     c["col1"] = cols[c["column_1"]-1]
     c["col2"] = cols[c["column_2"]-1]
+    if str(c["pearson"]) == "nan":
+        c["pearson"] = 0
+        c["correlation"] = 0
+
 correlations.sort(key=lambda x: x["pearson"], reverse=True)
-print correlations
 for c in correlations:
     print "%s<->%s   %s" % (
         c["col1"],

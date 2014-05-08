@@ -34,7 +34,7 @@ class Dump(object):
 
     def handle(self, *args, **options):
         self.data = []
-        for d in range(0, 26):
+        for d in range(0, 30):
             self.data.append([])
         for b in GutterBumper.objects.all().order_by("date"):
             self.first_run = True
@@ -42,9 +42,12 @@ class Dump(object):
             self.add_valid_data = False
             self.b = b
             while self.first_run or self.add_valid_data:
-                self.append_to_data(0, b.date.month) # month
+                self.append_to_data(0, b.date.month)  # month
                 self.append_to_data(1, b.woke_up_at.hour)  # woke up hour
-                self.append_to_data(2, b.fell_asleep_at.hour)  #  = models.TimeField(default=datetime.time(0, 00))
+                fell_asleep_hr = b.fell_asleep_at.hour
+                if fell_asleep_hr < 13:
+                    fell_asleep_hr += 24
+                self.append_to_data(2, fell_asleep_hr )  #  = models.TimeField(default=datetime.time(0, 00))
                 self.append_to_data(3, b.sleep_hrs)  #  = models.FloatField(default=0, blank=True, null=True, verbose_name="Sleep", help_text="Sleep this morning")
                 self.append_to_data(4, b.work_hrs)  #  = models.FloatField(default=0, blank=True, null=True, verbose_name="Work")
                 self.append_to_data(5, b.alone_hrs)  #  = models.FloatField(default=0, blank=True, null=True, verbose_name="Alone")
@@ -73,6 +76,10 @@ class Dump(object):
                 except:
                     pass
                 self.append_to_data(25, notes_len)  #  = models.TextField(blank=True, null=True, default="86400")
+                self.append_to_data(26, 10 if (b.date.month < 3 or b.date.month == 12) else 0)  # winter
+                self.append_to_data(27, 10 if (b.date.month >= 3 or b.date.month < 6) else 0)  # spring
+                self.append_to_data(28, 10 if (b.date.month >= 6 or b.date.month < 9) else 0)  # summer
+                self.append_to_data(29, 10 if (b.date.month >= 9 or b.date.month < 12) else 0)  # fall
                 if self.first_run:
                     self.first_run = False
 
