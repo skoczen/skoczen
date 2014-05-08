@@ -2,7 +2,7 @@ import datetime
 import math
 # from util.singly import SinglyHelper]
 from django.db.models import Sum
-from django.http import HttpResponseRedirect
+from django.http import HttpResponseRedirect, HttpResponse
 from django.template.loader import render_to_string
 from django.views.decorators.csrf import csrf_exempt
 from django.contrib.auth.decorators import login_required
@@ -10,7 +10,7 @@ from annoying.decorators import render_to, ajax_request
 
 from manual.models import GutterBumper, Emotion, Value, Weight
 from manual.forms import GutterBumperForm
-
+from manual.utils import dump_data_pickle
 
 def turn_friendly_time_into_python_time(time_with_ampm):
     time = time_with_ampm[:5]
@@ -247,3 +247,7 @@ def last_10_weights(request):
             "fat": w.body_fat_percent,
         })
     return {"weights": weights}
+
+
+def data_dump(request):
+    return HttpResponse(dump_data_pickle())

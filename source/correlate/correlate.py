@@ -2,7 +2,7 @@ import json
 import requests
 import pickle
 
-data = pickle.load(open("data_sample.json"))
+data = pickle.load(open("live.json"))
 
 cols = [
     "date",

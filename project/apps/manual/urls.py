@@ -27,5 +27,7 @@ urlpatterns = patterns('',
     url(r'^one-thing', views.todays_one_thing, name='todays_one_thing'),
     url(r'^weights', views.last_10_weights, name='last_10_weights'),
     url(r'^red-flags/drinking', views.red_flag_drinking, name='red_flag_drinking'),
+    
+    url(r'^dump', views.data_dump, name='data_dump'),
 
 )
