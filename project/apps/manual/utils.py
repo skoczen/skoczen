@@ -77,9 +77,9 @@ class Dump(object):
                     pass
                 self.append_to_data(25, notes_len)  #  = models.TextField(blank=True, null=True, default="86400")
                 self.append_to_data(26, 10 if (b.date.month < 3 or b.date.month == 12) else 0)  # winter
-                self.append_to_data(27, 10 if (b.date.month >= 3 or b.date.month < 6) else 0)  # spring
-                self.append_to_data(28, 10 if (b.date.month >= 6 or b.date.month < 9) else 0)  # summer
-                self.append_to_data(29, 10 if (b.date.month >= 9 or b.date.month < 12) else 0)  # fall
+                self.append_to_data(27, 10 if (b.date.month >= 3 and b.date.month < 6) else 0)  # spring
+                self.append_to_data(28, 10 if (b.date.month >= 6 and b.date.month < 9) else 0)  # summer
+                self.append_to_data(29, 10 if (b.date.month >= 9 and b.date.month < 12) else 0)  # fall
                 if self.first_run:
                     self.first_run = False
 
