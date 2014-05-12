@@ -138,16 +138,35 @@ a.project:hover .title {
 
 
 @media (max-width: 600px) { 
-	page intro { top: 100px; font-size: 64px; margin: 100px 0px 0px 0px; }
-	page picture { background: url("../img/my_face_240.jpg"); width: 176px; height: 240px; margin: 80px 10px 0px 4%; }
-	page intro .hi { font-size: 64px; }
-	page intro .i_m { font-size: 24px; }
-	page intro .generally { font-size: 16px; }
-	page top { font-size: 40px; }
-	page bottom { font-size: 25px; }
-	page center_bar middle, page center_bar left, page center_bar right  { height: 50px; }
-	page .middle_link .middle_hover { margin-top: 10px; font-size: 25px; }
-	body { min-height: 420px;}
+    .home_page {
+        min-width: inherit;
+        width: 95%;
+    }
+    .year .year_number {
+        border: 1px solid #AAA;
+        border-width: 0 0 1px 0;
+    }
+    .year .project {
+        margin: 0 0 30px 0;
+    }
+    .project .status {
+        margin-top: 6px;
+    }
+    .hi {
+        display: block;
+    }
+    picture {
+        float: none;
+        margin: 0 auto 40px auto;
+    }
+    .intro {
+        margin-bottom: 10px;
+    }
+    .foreword {
+        font-size: 14px;
+        margin: 0;
+    }
+
 }
 
 /*@media (min-width: 331px) and (max-width: 600px) { 
@@ -163,7 +182,20 @@ a.project:hover .title {
 	year { bottom: 10px; }
 }*/
 @media (min-width: 600px) and (max-width: 1024px) { 
-	
+	.home_page {
+        min-width: inherit;
+        width: 95%;
+    }
+    .year .year_number {
+        border: 1px solid #AAA;
+        border-width: 0 0 1px 0;
+    }
+    .year .project {
+        margin: 0 0 30px 0;
+    }
+    .project .status {
+        margin-top: 6px;
+    }
 }
 
 
