@@ -34,7 +34,7 @@ class Dump(object):
 
     def handle(self, *args, **filters):
         self.data = []
-        for d in range(0, 30):
+        for d in range(0, 31):
             self.data.append([])
         for b in GutterBumper.objects.filter(**filters).all().order_by("date"):
             self.first_run = True
@@ -65,21 +65,22 @@ class Dump(object):
                 self.append_to_data(17, 10 if b.travelling_or_out_of_routine else 0)  #  = models.BooleanField(default=False, verbose_name="Travelling/Nonroutine")
                 self.append_to_data(18, b.number_of_sleep_beers or 0)  #  = models.IntegerField(blank=True, null=True, verbose_name="# of sleep beers")
                 self.append_to_data(19, b.number_of_fun_beers or 0)  #  = models.IntegerField(blank=True, null=True, verbose_name="# of fun beers")
-                self.append_to_data(20, b.presence)  #  = models.IntegerField(blank=True, null=True, help_text="1-10")
-                self.append_to_data(21, b.happiness)  #  = models.IntegerField(blank=True, null=True, help_text="1-10")
-                self.append_to_data(22, b.creativity)  #  = models.IntegerField(blank=True, null=True, help_text="1-10")
-                self.append_to_data(23, b.morning_mood)  #  = models.IntegerField(blank=True, null=True, help_text="1-10")
-                self.append_to_data(24, b.unbusy or 9)  #  = models.IntegerField(blank=True, null=True, help_text="1-10")
+                self.append_to_data(20, (b.number_of_sleep_beers or 0) + (b.number_of_fun_beers or 0))  #  = models.IntegerField(blank=True, null=True, verbose_name="# of fun beers")
+                self.append_to_data(21, b.presence)  #  = models.IntegerField(blank=True, null=True, help_text="1-10")
+                self.append_to_data(22, b.happiness)  #  = models.IntegerField(blank=True, null=True, help_text="1-10")
+                self.append_to_data(23, b.creativity)  #  = models.IntegerField(blank=True, null=True, help_text="1-10")
+                self.append_to_data(24, b.morning_mood)  #  = models.IntegerField(blank=True, null=True, help_text="1-10")
+                self.append_to_data(25, b.unbusy or 9)  #  = models.IntegerField(blank=True, null=True, help_text="1-10")
                 notes_len = 0
                 try:
                     notes_len = len(b.notes)
                 except:
                     pass
-                self.append_to_data(25, notes_len)  #  = models.TextField(blank=True, null=True, default="86400")
-                self.append_to_data(26, 10 if (b.date.month < 3 or b.date.month == 12) else 0)  # winter
-                self.append_to_data(27, 10 if (b.date.month >= 3 and b.date.month < 6) else 0)  # spring
-                self.append_to_data(28, 10 if (b.date.month >= 6 and b.date.month < 9) else 0)  # summer
-                self.append_to_data(29, 10 if (b.date.month >= 9 and b.date.month < 12) else 0)  # fall
+                self.append_to_data(26, notes_len)  #  = models.TextField(blank=True, null=True, default="86400")
+                self.append_to_data(27, 10 if (b.date.month < 3 or b.date.month == 12) else 0)  # winter
+                self.append_to_data(28, 10 if (b.date.month >= 3 and b.date.month < 6) else 0)  # spring
+                self.append_to_data(29, 10 if (b.date.month >= 6 and b.date.month < 9) else 0)  # summer
+                self.append_to_data(30, 10 if (b.date.month >= 9 and b.date.month < 12) else 0)  # fall
                 if self.first_run:
                     self.first_run = False
 

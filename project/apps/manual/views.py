@@ -259,24 +259,27 @@ def data_dump(request):
 @login_required
 @render_to("manual/correlations.html")
 def correlations(request):
+
     CORRELATION_CHOICES = OrderedDict()
     CORRELATION_CHOICES["presence"] = "Presence"
     CORRELATION_CHOICES["happiness"] = "Happiness"
     CORRELATION_CHOICES["creativity"] = "Creativity"
     CORRELATION_CHOICES["morning_mood"] = "Morning mood"
     CORRELATION_CHOICES["unbusy"] = "Unbusy-ness"
-    
+
     CORRELATION_CHOICES["sleep_hrs"] = "Hours of sleep"
-    CORRELATION_CHOICES["work_hrs"] = "Hours of work"
+    CORRELATION_CHOICES["work_hrs"] = "Hours spent working"
     CORRELATION_CHOICES["alone_hrs"] = "Hours spent alone"
     CORRELATION_CHOICES["friend_hrs"] = "Hours with friends"
     CORRELATION_CHOICES["public_hrs"] = "Hours in public"
-    CORRELATION_CHOICES["relationship_hrs"] = "Relationship hours"
+    CORRELATION_CHOICES["relationship_hrs"] = "Hours with my significant other"
     CORRELATION_CHOICES["woke_up_at"] = "Woke up later"
     CORRELATION_CHOICES["fell_asleep_at"] = "Fell asleep later"
 
-    # CORRELATION_CHOICES["orgasm"] = "Off/Sex"
-    # CORRELATION_CHOICES["sex_count"] = "Sex Count"
+    if request.user.username == "skoczen" and 'all' in request.GET:
+        CORRELATION_CHOICES["orgasm"] = "Off/Sex"
+        CORRELATION_CHOICES["sex_count"] = "Sex Count"
+
     CORRELATION_CHOICES["interacted_with_art"] = "Interacted with art"
     CORRELATION_CHOICES["worked_out"] = "Worked out"
     CORRELATION_CHOICES["meditated"] = "Meditated"
@@ -284,9 +287,10 @@ def correlations(request):
     CORRELATION_CHOICES["nature_time"] = "Nature time"
     # CORRELATION_CHOICES["inbox_zero"] = "Inbox zero"
     CORRELATION_CHOICES["travelling_or_out_of_routine"] = "Travelling"
-    
+
     CORRELATION_CHOICES["number_of_sleep_beers"] = "Number of sleep beers"
     CORRELATION_CHOICES["number_of_fun_beers"] = "Number of fun beers"
+    CORRELATION_CHOICES["number_of_total_beers"] = "Total number of beers"
     CORRELATION_CHOICES["notes length"] = "# of words in daily notes"
 
     CORRELATION_CHOICES["spring"] = "Spring"
@@ -295,8 +299,6 @@ def correlations(request):
     CORRELATION_CHOICES["winter"] = "Winter"
     CORRELATION_CHOICES["month"] = "Month of the year"
 
-    
-    
     cols = [
         "month",
         "woke_up_at",
@@ -318,6 +320,7 @@ def correlations(request):
         "travelling_or_out_of_routine",
         "number_of_sleep_beers",
         "number_of_fun_beers",
+        "number_of_total_beers",
         "presence",
         "happiness",
         "creativity",
