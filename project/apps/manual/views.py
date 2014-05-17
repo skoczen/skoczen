@@ -288,9 +288,9 @@ def correlations(request):
     # CORRELATION_CHOICES["inbox_zero"] = "Inbox zero"
     CORRELATION_CHOICES["travelling_or_out_of_routine"] = "Travelling"
 
-    CORRELATION_CHOICES["number_of_sleep_beers"] = "Number of sleep beers"
-    CORRELATION_CHOICES["number_of_fun_beers"] = "Number of fun beers"
-    CORRELATION_CHOICES["number_of_total_beers"] = "Total number of beers"
+    CORRELATION_CHOICES["number_of_sleep_beers"] = "Beers to fall asleep"
+    CORRELATION_CHOICES["number_of_fun_beers"] = "Beers for fun"
+    # CORRELATION_CHOICES["number_of_total_beers"] = "Total beers"
     CORRELATION_CHOICES["notes length"] = "# of words in daily notes"
 
     CORRELATION_CHOICES["spring"] = "Spring"
