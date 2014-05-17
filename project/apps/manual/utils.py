@@ -32,11 +32,11 @@ class Dump(object):
         except:
             raise Exception("Error converting %s to float. (Index %s)" % (value, index))
 
-    def handle(self, *args, **options):
+    def handle(self, *args, **filters):
         self.data = []
         for d in range(0, 30):
             self.data.append([])
-        for b in GutterBumper.objects.all().order_by("date"):
+        for b in GutterBumper.objects.filter(**filters).all().order_by("date"):
             self.first_run = True
             self.valid_data = True
             self.add_valid_data = False
@@ -100,6 +100,7 @@ class Dump(object):
 
         return pickle.dumps(self.data)
 
-def dump_data_pickle():
+
+def dump_data_pickle(**filters):
     c = Dump()
-    return c.handle()
+    return c.handle(**filters)

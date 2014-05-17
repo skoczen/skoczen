@@ -1,5 +1,9 @@
+from collections import OrderedDict
 import datetime
 import math
+import pickle
+import json
+import requests
 # from util.singly import SinglyHelper]
 from django.db.models import Sum
 from django.http import HttpResponseRedirect, HttpResponse
@@ -248,6 +252,113 @@ def last_10_weights(request):
         })
     return {"weights": weights}
 
-
+@login_required
 def data_dump(request):
     return HttpResponse(dump_data_pickle())
+
+@login_required
+@render_to("manual/correlations.html")
+def correlations(request):
+    CORRELATION_CHOICES = OrderedDict()
+    CORRELATION_CHOICES["presence"] = "Presence"
+    CORRELATION_CHOICES["happiness"] = "Happiness"
+    CORRELATION_CHOICES["creativity"] = "Creativity"
+    CORRELATION_CHOICES["morning_mood"] = "Morning mood"
+    CORRELATION_CHOICES["unbusy"] = "Unbusy-ness"
+    
+    CORRELATION_CHOICES["sleep_hrs"] = "Hours of sleep"
+    CORRELATION_CHOICES["work_hrs"] = "Hours of work"
+    CORRELATION_CHOICES["alone_hrs"] = "Hours spent alone"
+    CORRELATION_CHOICES["friend_hrs"] = "Hours with friends"
+    CORRELATION_CHOICES["public_hrs"] = "Hours in public"
+    CORRELATION_CHOICES["relationship_hrs"] = "Relationship hours"
+    CORRELATION_CHOICES["woke_up_at"] = "Woke up later"
+    CORRELATION_CHOICES["fell_asleep_at"] = "Fell asleep later"
+
+    # CORRELATION_CHOICES["orgasm"] = "Off/Sex"
+    # CORRELATION_CHOICES["sex_count"] = "Sex Count"
+    CORRELATION_CHOICES["interacted_with_art"] = "Interacted with art"
+    CORRELATION_CHOICES["worked_out"] = "Worked out"
+    CORRELATION_CHOICES["meditated"] = "Meditated"
+    CORRELATION_CHOICES["left_the_house"] = "Left the house"
+    CORRELATION_CHOICES["nature_time"] = "Nature time"
+    # CORRELATION_CHOICES["inbox_zero"] = "Inbox zero"
+    CORRELATION_CHOICES["travelling_or_out_of_routine"] = "Travelling"
+    
+    CORRELATION_CHOICES["number_of_sleep_beers"] = "Number of sleep beers"
+    CORRELATION_CHOICES["number_of_fun_beers"] = "Number of fun beers"
+    CORRELATION_CHOICES["notes length"] = "# of words in daily notes"
+
+    CORRELATION_CHOICES["spring"] = "Spring"
+    CORRELATION_CHOICES["summer"] = "Summer"
+    CORRELATION_CHOICES["fall"] = "Fall"
+    CORRELATION_CHOICES["winter"] = "Winter"
+    CORRELATION_CHOICES["month"] = "Month of the year"
+
+    
+    
+    cols = [
+        "month",
+        "woke_up_at",
+        "fell_asleep_at",
+        "sleep_hrs",
+        "work_hrs",
+        "alone_hrs",
+        "friend_hrs",
+        "public_hrs",
+        "relationship_hrs",
+        "orgasm",
+        "sex_count",
+        "interacted_with_art",
+        "worked_out",
+        "meditated",
+        "left_the_house",
+        "nature_time",
+        "inbox_zero",
+        "travelling_or_out_of_routine",
+        "number_of_sleep_beers",
+        "number_of_fun_beers",
+        "presence",
+        "happiness",
+        "creativity",
+        "morning_mood",
+        "unbusy",
+        "notes length",
+        "winter",
+        "spring",
+        "summer",
+        "fall",
+        "unbusy",
+    ]
+    data = pickle.loads(dump_data_pickle())
+    headers = {'Content-type': 'application/json', }
+    resp = requests.post("http://correlationbot.com", headers=headers, data=json.dumps({
+        "data": data
+    }))
+    correlations = resp.json()["correlations"]
+    # correlations = {}
+    for c in correlations:
+        c["col1"] = cols[c["column_1"]-1]
+        c["col2"] = cols[c["column_2"]-1]
+        try:
+            c["col1_friendly"] = CORRELATION_CHOICES[cols[c["column_1"]-1]]
+        except:
+            c["col1_friendly"] = "Ignored"
+        try:
+            c["col2_friendly"] = CORRELATION_CHOICES[cols[c["column_2"]-1]]
+        except:
+            c["col2_friendly"] = "Ignored"
+
+        if str(c["pearson"]) == "nan":
+            c["pearson"] = 0
+            c["correlation"] = 0
+    return {
+        "correlations": correlations,
+        "CORRELATION_CHOICES": CORRELATION_CHOICES,
+    }
+
+
+@login_required
+@ajax_request
+def correlations_for(request):
+    return locals()

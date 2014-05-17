@@ -1,0 +1,122 @@
+{% extends "manual/base.html" %}{% load compress %}
+
+{% block js %}{{block.super}}
+<script>
+var correlationData = {};
+{% for c in correlations %}
+correlationData["{{c.col1}}"] = correlationData["{{c.col1}}"] || {};
+correlationData["{{c.col1}}"]["{{c.col2}}"] = {{c.pearson}};
+correlationData["{{c.col2}}"] = correlationData["{{c.col2}}"] || {};
+correlationData["{{c.col2}}"]["{{c.col1}}"] = {{c.pearson}};
+{% endfor %}
+var friendlyNames = {};
+{% for c, v in CORRELATION_CHOICES.items %}
+    friendlyNames["{{c}}"] = "{{v}}";
+{% endfor %}
+var sort_by = function(field, reverse, primer){
+
+   var key = primer ? 
+       function(x) {return primer(x[field])} : 
+       function(x) {return x[field]};
+
+   reverse = [-1, 1][+!!reverse];
+
+   return function (a, b) {
+       return a = key(a), b = key(b), reverse * ((a > b) - (b > a));
+     } 
+
+}
+
+
+$(function(){
+    $("#correlation_key").change(function(){
+        val = $(this).val();
+        var source = correlationData[val];
+        var data = [];
+        for (var k in source) {
+            if (k in friendlyNames) {
+                data.push({"name": friendlyNames[k], "val": source[k]});    
+            }
+            
+        }
+
+        data.sort(sort_by("val"))
+        max_val = (data[0] > data[data.length-1])? data[0] : data[length-1];
+        var html = "";
+        var last_point = data[0]["val"]+0.1;
+        for (var j=0; j<data.length; j++) {
+            var point = data[j];
+            correlated = false;
+            breakpoint = 0.2
+            if (point["val"] > breakpoint || point["val"] < -1*breakpoint) {
+                correlated = true;
+            }
+            var opacity = 0.2+Math.sqrt(Math.abs(point["val"]));
+            var font_size = ( 0.5+ Math.sqrt(Math.sqrt(Math.abs(point["val"]))) );
+            var font_weight = 100*Math.round(Math.round(900*opacity)/100);
+            var line_thickness = 6*opacity;
+            var top_margin = 180*Math.abs(last_point-point["val"])
+            var bottom_margin = 5-(line_thickness/3)
+            
+            var red = (-255*(point["val"]/1))
+            red = (red > 0) ? Math.round(red) : 0;
+            var green = (255*(point["val"]/1))
+            green = (green > 0) ? Math.round(green) : 0;
+            rgba = "rgba(" + red + "," + green + ",0,1)"
+
+            html += "<div class='variable' style='margin-top:"+top_margin+"px;opacity:"+opacity+";font-size: "+font_size+"em;'><span class='line' style='border-color:"+rgba+";margin-bottom:"+bottom_margin+"px;border-bottom-width:"+line_thickness+"px;'></span> <span class='name' style='color:"+rgba+";'>" + point["name"] + "</span> <span class='line mid'></span> <span class='val'>" + point["val"].toFixed(3) + "</span></div>";
+            last_point = point["val"]
+        }
+        $("#details").html(html);
+        $("#header").html(friendlyNames[val])
+    });
+})
+</script>
+{% endblock %}
+
+{% block css %}{{block.super}}
+
+<style type="text/css" >
+    body {
+        font-family: 'Lato', sans-serif;
+        font-family: 'Open Sans', sans-serif;
+    }
+    h1 {
+        font-weight: 300;
+    }
+    .line {
+        display: inline-block;
+        width: 600px;
+        border: 0px solid #AAA;
+        border-bottom-width: 1px;
+        margin-bottom: 0.35em;
+    }
+    .line.mid {
+        width: 50px;
+    }
+</style>
+<style type="text/css" media="print">
+    .header {
+        display: none;
+    }
+</style>
+<link href='http://fonts.googleapis.com/css?family=Open+Sans:100,300,400,500,700,800,900|Lato:400,300,100,500,700,900' rel='stylesheet' type='text/css'>
+{% endblock %}
+
+{% block header %}{% endblock %}
+{% block content %}
+<div class="header">
+{# Correlations for:  #}<select id="correlation_key">
+<option value="">Select Correlation</option>
+{% for c, v in CORRELATION_CHOICES.items %}
+    <option value="{{c}}">{{v}}</option>
+{% endfor %}
+</select>
+
+</div>
+
+<h1 id="header"></h1>
+
+<div id="details"></div>
+</div>
+{% endblock %}
