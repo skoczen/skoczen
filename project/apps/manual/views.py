@@ -256,7 +256,7 @@ def last_10_weights(request):
 def data_dump(request):
     return HttpResponse(dump_data_pickle())
 
-@login_required
+# @login_required
 @render_to("manual/correlations.html")
 def correlations(request):
 
@@ -297,7 +297,7 @@ def correlations(request):
     CORRELATION_CHOICES["summer"] = "Summer"
     CORRELATION_CHOICES["fall"] = "Fall"
     CORRELATION_CHOICES["winter"] = "Winter"
-    CORRELATION_CHOICES["month"] = "Month of the year"
+    # CORRELATION_CHOICES["month"] = "Month of the year"
 
     cols = [
         "month",
