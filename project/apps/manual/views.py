@@ -340,6 +340,8 @@ def correlations(request):
     }))
     if not resp.status_code == "200":
         print resp
+        print resp.__dict__
+        print resp.content
     correlations = resp.json()["correlations"]
     # correlations = {}
     for c in correlations:
