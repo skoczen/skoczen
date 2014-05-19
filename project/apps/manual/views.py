@@ -338,6 +338,8 @@ def correlations(request):
     resp = requests.post("http://correlationbot.com", headers=headers, data=json.dumps({
         "data": data
     }))
+    if not resp.status_code == "200":
+        print resp
     correlations = resp.json()["correlations"]
     # correlations = {}
     for c in correlations:
