@@ -335,9 +335,12 @@ def correlations(request):
     ]
     data = pickle.loads(dump_data_pickle())
     headers = {'Content-type': 'application/json', }
-    resp = requests.post("http://correlationbot.com", headers=headers, data=json.dumps({
+    stripped_data = json.dumps({
         "data": data
-    }))
+    }).replace(", ", ",")
+    resp = requests.post("http://correlationbot.com", headers=headers, data=stripped_data)
+    print stripped_data
+    print len(stripped_data)
     if not resp.status_code == "200":
         print resp
         print resp.__dict__
