@@ -126,6 +126,7 @@ TEMPLATE_CONTEXT_PROCESSORS = (
     "django.core.context_processors.static",
     "django.core.context_processors.request",
 )
+
 TEST_RUNNER = 'django_nose.NoseTestSuiteRunner'
 
 import djcelery
