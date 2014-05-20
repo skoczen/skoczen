@@ -6,36 +6,41 @@ env.GITHUB_REPO = env.PROJECT_NAME
 env.VIRTUALENV_NAME = env.PROJECT_NAME
 env.HEROKU_APP_NAME = env.PROJECT_NAME
 # If you're using https://github.com/ddollar/heroku-accounts
-env.HEROKU_ACCOUNT = "skoczen"
+env.HEROKU_ACCOUNT = "personal"
+env.app_string = ""
+env.DEV_DB_URL = "postgres://@localhost:5432/skoczen"
+
+env.SERVERS = {
+    "live": "skoczen",
+    "staging": "skoczen-staging",
+}
 
 
-def initial_setup():
-    local("echo cd `pwd` >> ~/.virtualenvs/%(VIRTUALENV_NAME)s/bin/postactivate" % env)
-    local("git remote rename origin artechetype")
-    local("git remote add origin git@github.com:%(GITHUB_USER)s/%(GITHUB_REPO)s.git" % env)
-    if env.HEROKU_APP_NAME:
-        if env.HEROKU_ACCOUNT:
-            local("git remote add heroku git@heroku.%(HEROKU_ACCOUNT)s:%(HEROKU_APP_NAME)s.git" % env)
-        else:
-            local("git remote add heroku git@heroku.com:%(HEROKU_APP_NAME)s.git" % env)
-        local("heroku create --stack cedar %(HEROKU_APP_NAME)s" % env)
-
-    local("git push -u origin")
-    local("source ~/.virtualenvs/%(VIRTUALENV_NAME)s/bin/activate; pip install -r requirements.unstable.txt" % env)
-    local("source ~/.virtualenvs/%(VIRTUALENV_NAME)s/bin/activate; pip freeze requirements.unstable.txt > requirements.txt" % env)
-
-def run_ve(cmd):
+def local_venv(cmd):
     env.cmd = cmd
-    local("source ~/.virtualenvs/%(VIRTUALENV_NAME)s/bin/activate;cd project;%(cmd)s" % env)
+    local("source ~/.virtualenvs/%(VIRTUALENV_NAME)s/bin/activate; %(cmd)s" % env)
 
-def deploy():
-    run_ve("./manage.py collectstatic --noinput")
-    run_ve("./manage.py collectstatic --noinput --settings=envs.live")
-    run_ve("./manage.py compress --force --settings=envs.live")
-    run_ve("./manage.py sync_static --gzip --expires --settings=envs.live")
-    deploy_code()
 
-def deploy_code():
-    run_ve("git push heroku live:master")
-    run_ve("heroku run project/manage.py syncdb --migrate --settings=envs.live --app skoczen")
-    run_ve("heroku restart --app skoczen")
+def refreeze():
+    local_venv("pip install -r requirements.unstable.txt")
+    local_venv("pip freeze requirements.unstable.txt > requirements.txt")
+
+def unit():
+    local("source ~/.virtualenvs/%(VIRTUALENV_NAME)s/bin/activate; manage.py test --attr=\!e2e" % env)
+
+
+def e2e():
+    local("source ~/.virtualenvs/%(VIRTUALENV_NAME)s/bin/activate; manage.py test --attr=\!e2e" % env)
+
+
+def wip():
+    local("source ~/.virtualenvs/%(VIRTUALENV_NAME)s/bin/activate; manage.py test --attr=wip" % env)
+
+
+def setup_db():
+    local_venv("dropdb skoczen --if-exists -U skoczen")
+    local_venv("createdb skoczen -U skoczen")
+    local_venv("./manage.py syncdb --noinput")
+    local_venv("./manage.py loaddata dev_user.json")
+    local_venv("./manage.py migrate")
+    local_venv("./manage.py fake_db")

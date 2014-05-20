@@ -3,7 +3,7 @@
 {% block content %}
 <div class="values">
 {% for v in values %}
-	<a href="{% url manual:value v.slug %}">{{v.name}}</a><br/>
+	<a href="{% url "manual:value" v.slug %}">{{v.name}}</a><br/>
 {% endfor %}
 </div>
 {% endblock %}

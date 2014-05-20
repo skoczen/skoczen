@@ -1,4 +1,4 @@
-<form class="daily_form form-horizontal {% if form.instance.all_green %}all_green{% endif %}" action="{% url manual:update_bumpers form.instance.pk %}" method="POST"  id="gb_{{form.instance.pk}}" update_url="{% url manual:get_sleep_hrs form.instance.pk %}" next_day_url="{% url manual:daily_form next_day.pk %}" prev_day_url="{% url manual:daily_form prev_day.pk %}">
+<form class="daily_form form-horizontal {% if form.instance.all_green %}all_green{% endif %}" action="{% url "manual:update_bumpers" form.instance.pk %}" method="POST"  id="gb_{{form.instance.pk}}" update_url="{% url "manual:get_sleep_hrs" form.instance.pk %}" next_day_url="{% url "manual:daily_form" next_day.pk %}" prev_day_url="{% url "manual:daily_form" prev_day.pk %}">
 	{% csrf_token %}
 	<span class="hidden">
 		{{form.id}}
