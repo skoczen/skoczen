@@ -1,9 +1,14 @@
+import os
+from memcacheify import memcacheify
+from postgresify import postgresify
 from envs.common import *
+
 
 DEBUG = False
 TEMPLATE_DEBUG = DEBUG
 
 EMAIL_BACKEND = 'django_ses.SESBackend'
+BROKER_URL = os.environ["REDISTOGO_URL"]
 
 AWS_QUERYSTRING_AUTH = False
 MEDIA_URL = 'http://%s.s3.amazonaws.com/' % AWS_STORAGE_BUCKET_NAME
