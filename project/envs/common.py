@@ -35,6 +35,13 @@ CACHES = {
         'LOCATION': '127.0.0.1:11211',
     }
 }
+ALLOWED_HOSTS = [
+    "skoczen-staging.herokuapp.com",
+    "skoczen.herokuapp.com",
+    "stevenskoczen.com",
+    "*.stevenskoczen.com",
+    "www.stevenskoczen.com",
+]
 
 
 TIME_ZONE = 'America/Los_Angeles'
