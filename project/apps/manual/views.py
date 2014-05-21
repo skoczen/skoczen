@@ -281,6 +281,8 @@ def correlations(request):
         CORRELATION_CHOICES["sex_count"] = "Sex Count"
 
     CORRELATION_CHOICES["interacted_with_art"] = "Interacted with art"
+    CORRELATION_CHOICES["depression"] = "Depression emotion reported"
+    CORRELATION_CHOICES["dentist"] = "Went to the dentist"
     CORRELATION_CHOICES["worked_out"] = "Worked out"
     CORRELATION_CHOICES["meditated"] = "Meditated"
     CORRELATION_CHOICES["left_the_house"] = "Left the house"
@@ -297,6 +299,7 @@ def correlations(request):
     CORRELATION_CHOICES["summer"] = "Summer"
     CORRELATION_CHOICES["fall"] = "Fall"
     CORRELATION_CHOICES["winter"] = "Winter"
+
     # CORRELATION_CHOICES["month"] = "Month of the year"
 
     cols = [
@@ -331,7 +334,8 @@ def correlations(request):
         "spring",
         "summer",
         "fall",
-        "unbusy",
+        "dentist",
+        "depression",
     ]
     data = pickle.loads(dump_data_pickle())
     headers = {'Content-type': 'application/json', }

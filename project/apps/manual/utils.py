@@ -34,7 +34,7 @@ class Dump(object):
 
     def handle(self, *args, **filters):
         self.data = []
-        for d in range(0, 31):
+        for d in range(0, 33):
             self.data.append([])
         for b in GutterBumper.objects.filter(**filters).all().order_by("date"):
             self.first_run = True
@@ -81,6 +81,8 @@ class Dump(object):
                 self.append_to_data(28, 10 if (b.date.month >= 3 and b.date.month < 6) else 0)  # spring
                 self.append_to_data(29, 10 if (b.date.month >= 6 and b.date.month < 9) else 0)  # summer
                 self.append_to_data(30, 10 if (b.date.month >= 9 and b.date.month < 12) else 0)  # fall
+                self.append_to_data(31, 10 if (b.emotions.filter(name="Dentist Visit").count() > 0) else 0)  # dentist
+                self.append_to_data(32, 10 if (b.emotions.filter(name__icontains="Depresssion").count() > 0) else 0)
                 if self.first_run:
                     self.first_run = False
 
