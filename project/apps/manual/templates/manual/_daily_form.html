@@ -61,15 +61,6 @@
     	<label>Daily Notes:</label>
 		{{form.notes}}
 	</div>
-    <div class="section num_beers">
-    
-    	<div class="beer_type">
-    		<label for="id_{{form.number_of_fun_beers.html_name}}">Fun beers: {{form.number_of_fun_beers}}</label>
-    	</div>
-    	<div class="beer_type">
-    		<label for="id_{{form.number_of_sleep_beers.html_name}}">Sleep: {{form.number_of_sleep_beers}}</label>
-    	</div>
-    </div>
     <div class="section subjective">
     	<div class="measurement">
     		<div class="checkmark presence {% if form.instance.has_reported_presence_today %} checked {% endif %}">&#10004;</div>
@@ -91,15 +82,30 @@
     		<div class="checkmark morning_mood {% if form.instance.has_reported_morning_mood_today %} checked {% endif %}">&#10004;</div>
     		<label for="id_{{form.morning_mood.html_name}}">{{form.morning_mood.label}}</label><input type="range" value="{{form.instance.morning_mood}}" min="1" max="10" id="id_{{form.morning_mood.html_name}}" name="{{form.morning_mood.html_name}}"/><span class="hidden">{{form.morning_mood_set}}</span>
     	</div>
-    	<label for="id_traveling_or_out_of_routine">Travelling: {{form.travelling_or_out_of_routine}}</label>
-		<div class="sex">
-    		<label for="id_{{form.sex.html_name}}">{% if request.user.is_authenticated %}Sex:{% else %}Moments{% endif %} {{form.sex}}</label>
-    	</div>
-    		
+        <div class="measurement">
+            <div class="checkmark burnt_out {% if form.instance.has_reported_burnt_out_today %} checked {% endif %}">&#10004;</div>
+            <label for="id_{{form.burnt_out.html_name}}">{{form.burnt_out.label}}</label><input type="range" value="{{form.instance.burnt_out}}" min="1" max="10" id="id_{{form.burnt_out.html_name}}" name="{{form.burnt_out.html_name}}"/><span class="hidden">{{form.burnt_out_set}}</span>
+        </div>
+    	{# <label for="id_traveling_or_out_of_routine">Travelling: {{form.travelling_or_out_of_routine}}</label> #}
+        <div class="section num_beers">
+            <div class="beer_type">
+                <label for="id_{{form.number_of_fun_beers.html_name}}">Fun drinks: {{form.number_of_fun_beers}}</label>
+            </div>
+            <div class="beer_type">
+                <label for="id_{{form.number_of_sleep_beers.html_name}}">Sleep drinks: {{form.number_of_sleep_beers}}</label>
+            </div>
+            <div class="sex">
+                <label for="id_{{form.sex.html_name}}">{% if request.user.is_authenticated %}Sex count:{% else %}Moments{% endif %} {{form.sex}}</label>
+            </div>
+        </div>
     </div>
     
-	<div class="section emotions">
-		<label>Top three emotions:</label>
-		{{form.emotions}}
-	</div>
+	{# <div class="section emotions"> #}
+		{# <label>Top three emotions:</label> #}
+		{# {{form.emotions}} #}
+	{# </div> #}
+    <div class="section actions emotions">
+        <label>Things that happened/I did/I experienced today:</label>
+        {{form.actions}}
+    </div>
 </form>

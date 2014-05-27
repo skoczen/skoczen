@@ -35,7 +35,21 @@ class DataSensitivity(BaseModel):
     name = models.CharField(max_length=200)
 
 
+
 # Create your models here.
+class Action(BaseModel):
+    name = models.CharField(max_length=200)
+    slug = models.CharField(max_length=210, blank=True, null=True, editable=False)
+    one_liner = models.TextField(blank=True, null=True)
+    notes = models.TextField(blank=True, null=True, verbose_name="Notes")
+
+    class Meta:
+        ordering = ("name",)
+
+    def save(self, *args, **kwargs):
+        self.slug = slugify(self.name)
+        super(Action, self).save(*args, **kwargs)
+
 class Emotion(BaseModel):
     name = models.CharField(max_length=200)
     slug = models.CharField(max_length=210, blank=True, null=True, editable=False)
@@ -98,16 +112,19 @@ class GutterBumper(BaseModel):
     creativity = models.IntegerField(blank=True, null=True, help_text="1-10")
     morning_mood = models.IntegerField(blank=True, null=True, help_text="1-10")
     unbusy = models.IntegerField(blank=True, null=True, help_text="1-10")
+    burnt_out = models.IntegerField(blank=True, null=True, verbose_name="Burnt out", help_text="1-10")
     presence_set = models.BooleanField(default=False)
     happiness_set = models.BooleanField(default=False)
     creativity_set = models.BooleanField(default=False)
     morning_mood_set = models.BooleanField(default=False)
     unbusy_set = models.BooleanField(default=False)
+    burnt_out_set = models.BooleanField(default=False)
     notes = models.TextField(blank=True, null=True, default="86400")
     weight = models.FloatField(blank=True, null=True)
     body_fat_percent = models.FloatField(blank=True, null=True)
 
     emotions = models.ManyToManyField(Emotion, blank=True, null=True, verbose_name="Top three emotions")
+    actions = models.ManyToManyField(Action, blank=True, null=True, verbose_name="Things I did/experienced/happened:")
 
     # ouchmotions?
     # yaymotions?
@@ -234,6 +251,10 @@ class GutterBumper(BaseModel):
     @property
     def has_reported_unbusy_today(self):
         return self.unbusy_set
+
+    @property
+    def has_reported_burnt_out_today(self):
+        return self.burnt_out_set
 
     @property
     def one_thing_to_focus_on(self):

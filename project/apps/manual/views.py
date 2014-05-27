@@ -49,6 +49,7 @@ def success_and_statii_for_bumper(success, bumper_pk):
         "has_reported_happiness_today": bumper.has_reported_happiness_today,
         "has_reported_morning_mood_today": bumper.has_reported_morning_mood_today,
         "has_reported_unbusy_today": bumper.has_reported_unbusy_today,
+        "has_reported_burnt_out_today": bumper.has_reported_burnt_out_today,
         "all_green": bumper.all_green,
     }
 
@@ -101,6 +102,7 @@ def monthly(request):
     total_creativity = 0
     total_morning_mood = 0
     total_unbusy = 0
+    total_burnout = 0
     for g in gutterbumpers.filter(date__gte=datetime.date.today()-datetime.timedelta(days=31)):
         total_sleep += g.sleep_hrs or 0
         total_work += g.work_hrs or 0
@@ -113,6 +115,7 @@ def monthly(request):
         total_creativity += g.creativity or 0
         total_morning_mood += g.morning_mood or 0
         total_unbusy += g.unbusy or 0
+        total_burnout += g.burnt_out or 0
 
     avg_sleep = total_sleep / total_days
     avg_work = total_work / total_days
@@ -126,6 +129,7 @@ def monthly(request):
     avg_creativity = total_creativity / total_days
     avg_morning_mood = total_morning_mood / total_days
     avg_unbusy = total_unbusy / total_days
+    avg_unbusy = total_burnout / total_days
     return locals()
 
 

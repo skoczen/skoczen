@@ -19,7 +19,8 @@
 			presence: {{g.presence|default:"false"}},
 			happiness: {{g.happiness|default:"false"}},
 			creativity: {{g.creativity|default:"false"}},
-			morning_mood: {{g.morning_mood|default:"false"}},
+            morning_mood: {{g.morning_mood|default:"false"}},
+			burnt_out: {{g.burnt_out|default:"false"}},
 			unbusy: {{g.unbusy|default:"false"}},
 		},
 		{% endfor %}
@@ -222,6 +223,14 @@
                 subjChart.addGraph(graph);
 
 
+                var graph = new AmCharts.AmGraph();
+                graph.title = "Burnout";
+                graph.valueField = "burnt_out";
+                graph.hideBulletsCount = 50;
+                graph.fillAlphas = 0.6;
+                subjChart.addGraph(graph);
+
+
                 // CURSOR
                 chartCursor = new AmCharts.ChartCursor();
                 chartCursor.cursorPosition = "mouse";
@@ -301,7 +310,8 @@
 	<div class="average">Happiness: {{avg_happiness|floatformat:0}}/10</div>
 	<div class="average">Creativity: {{avg_creativity|floatformat:0}}/10</div>
 	<div class="average">Morning mood: {{avg_morning_mood|floatformat:0}}/10</div>
-	<div class="average">Unbusy: {{avg_unbusy|floatformat:0}}/10</div>
+    <div class="average">Unbusy: {{avg_unbusy|floatformat:0}}/10</div>
+	<div class="average">Burnout: {{avg_burnout|floatformat:0}}/10</div>
 </div>
 
 <div id="subjective_chart" style="width:80%; height:300px;"></div>

@@ -14,12 +14,13 @@ class ValueForm(ModelForm):
 
 class GutterBumperForm(ModelForm):
     emotions = ModelMultipleChoiceField(queryset=Emotion.objects.all(), widget=CheckboxSelectMultiple(), required=False)
+    actions = ModelMultipleChoiceField(queryset=Action.objects.all(), widget=CheckboxSelectMultiple(), required=False)
 
     class Meta:
         model = GutterBumper
         fields = ("date", "woke_up_at", "fell_asleep_at", "sleep_hrs", "work_hrs", "alone_hrs", "friend_hrs", "public_hrs", "relationship_hrs"
 , "off", "worked_out", "meditated", "left_the_house", "travelling_or_out_of_routine", "nature_time", "number_of_sleep_beers","number_of_fun_beers", "presence", "happiness", "creativity", "morning_mood", "notes"
-    , "emotions")
+    , "emotions", "actions", )
 
 
 class WeeklyMealForm(ModelForm):

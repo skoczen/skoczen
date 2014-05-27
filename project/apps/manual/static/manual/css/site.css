@@ -39,10 +39,12 @@ form .section.num_beers {
 .num_beers input {
 	width: 50px;
 }
+.beer_type {
+    margin-right: 10px;
+}
 .beer_type, .beer_type_label {
 	float: left;
 	text-align: center;
-	padding: 5px;
 }
 .beer_type input {
 	text-align: center;
@@ -142,7 +144,6 @@ header a {
 }
 .emotion, .emotions {
 	width: 94%;
-	margin: 20px auto;
 	color: #444;
 	font-size: 14px;
 }

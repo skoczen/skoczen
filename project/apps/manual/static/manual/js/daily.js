@@ -105,7 +105,8 @@ function updateSectionWithResponse(json, section) {
 	$(".checkmark.creativity", $form).toggleClass("checked", json.has_reported_creativity_today);
 	$(".checkmark.happiness", $form).toggleClass("checked", json.has_reported_happiness_today);
 	$(".checkmark.morning_mood", $form).toggleClass("checked", json.has_reported_morning_mood_today);
-	$(".checkmark.unbusy", $form).toggleClass("checked", json.has_reported_unbusy_today);
+    $(".checkmark.unbusy", $form).toggleClass("checked", json.has_reported_unbusy_today);
+	$(".checkmark.burnt_out", $form).toggleClass("checked", json.has_reported_burnt_out_today);
 	$form.toggleClass("all_green", json.all_green);
 }
 
