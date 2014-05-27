@@ -60,6 +60,16 @@ class Value(BaseModel):
         self.slug = slugify(self.name)
         super(Value, self).save(*args, **kwargs)
 
+class Workout(BaseModel):
+    name = models.CharField(max_length=200, verbose_name='Workout name')
+    slug = models.CharField(max_length=210, blank=True, null=True, editable=False)
+    explanation = models.TextField(blank=True, null=True)
+
+    def save(self, *args, **kwargs):
+        self.slug = slugify(self.name)
+        super(Workout, self).save(*args, **kwargs)
+
+
 
 class GutterBumper(BaseModel):
     date = models.DateField(default=datetime.date.today())
