@@ -290,6 +290,7 @@ def correlations(request):
     CORRELATION_CHOICES["meditated"] = "Meditated"
     CORRELATION_CHOICES["left_the_house"] = "Left the house"
     CORRELATION_CHOICES["nature_time"] = "Nature time"
+    CORRELATION_CHOICES["in_a_relationship"] = "In a relationship"
     # CORRELATION_CHOICES["inbox_zero"] = "Inbox zero"
     CORRELATION_CHOICES["travelling_or_out_of_routine"] = "Travelling"
 
@@ -340,6 +341,7 @@ def correlations(request):
         "fall",
         "dentist",
         "moon_phase",
+        "in_a_relationship",
     ]
     data = pickle.loads(dump_data_pickle())
     headers = {'Content-type': 'application/json', }

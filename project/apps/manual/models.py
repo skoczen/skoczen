@@ -302,7 +302,10 @@ class GutterBumper(BaseModel):
                self.nature_time_status is BUMPER_STATUS_GOOD  # and\
                # self.has_reported_presence_today and self.has_reported_happiness_today and\
                # self.has_reported_creativity_today and self.has_reported_morning_mood_today and\
-               
+
+    @property
+    def in_a_relationship(self):
+        return GutterBumper.objects.filter(date__gte=self.date-datetime.timedelta(days=14)).aggregate(Sum('relationship_hrs'))['relationship_hrs__sum'] > 5
 
     @property
     def presence_trend(self):
