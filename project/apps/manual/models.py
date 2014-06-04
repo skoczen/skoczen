@@ -388,7 +388,7 @@ class GutterBumper(BaseModel):
             self.sleep_hrs = self.calculated_sleep_hrs
 
         if not self.id:
-            self.moon_phase = moon_position(datetime.combine(self.date, datetime.min.time()))
+            self.moon_phase = moon_position(datetime.datetime.combine(self.date, datetime.min.time()))
 
         # if not self.weight:
         #     self.weight = self.fitbit_data.weight
