@@ -26,7 +26,7 @@
     			<td class="meditated">
     				
     				{{form.meditated}}
-    				<label class="status_label {{form.instance.meditated_status}}">Meditated</label>
+    				<label class="status_label {{form.instance.meditated_status}}">Vows</label>
     			</td>
     			<td class="off">
     				
@@ -41,7 +41,7 @@
     			<td class="worked_out">
     				
     				{{form.worked_out}}
-    				<label class="status_label {{form.instance.worked_out_status}}">Worked out</label>
+    				<label class="status_label {{form.instance.worked_out_status}}">Trained</label>
     			</td>
     			<td class="left_the_house">
     				
@@ -56,13 +56,29 @@
     		</tr>
     	</table>
     </div>
-    
-    <div class="section notes">
-    	<label>Daily Notes:</label>
-		{{form.notes}}
-	</div>
+
+    {# <div class="section emotions"> #}
+        {# <label>Top three emotions:</label> #}
+        {# {{form.emotions}} #}
+    {# </div> #}
+    <div class="section actions emotions">
+        <label>Things that happened/I did/I experienced today:</label>
+        {{form.actions}}
+    </div>
+<div class="section notes">
+        <label>Daily Notes:</label>
+        {{form.notes}}
+    </div>
     <div class="section subjective">
-    	<div class="measurement">
+        <div class="measurement">
+            <div class="checkmark morning_mood {% if form.instance.has_reported_morning_mood_today %} checked {% endif %}">&#10004;</div>
+            <label for="id_{{form.morning_mood.html_name}}">{{form.morning_mood.label}}</label><input type="range" value="{{form.instance.morning_mood}}" min="1" max="10" id="id_{{form.morning_mood.html_name}}" name="{{form.morning_mood.html_name}}"/><span class="hidden">{{form.morning_mood_set}}</span>
+        </div>
+        <div class="measurement">
+            <div class="checkmark burnt_out {% if form.instance.has_reported_burnt_out_today %} checked {% endif %}">&#10004;</div>
+            <label for="id_{{form.burnt_out.html_name}}">{{form.burnt_out.label}}</label><input type="range" value="{{form.instance.burnt_out}}" min="1" max="10" id="id_{{form.burnt_out.html_name}}" name="{{form.burnt_out.html_name}}"/><span class="hidden">{{form.burnt_out_set}}</span>
+        </div>
+        <div class="measurement">
     		<div class="checkmark presence {% if form.instance.has_reported_presence_today %} checked {% endif %}">&#10004;</div>
     		<label for="id_{{form.presence.html_name}}">{{form.presence.label}}</label><input type="range" value="{{form.instance.presence}}" min="1" max="10" id="id_{{form.presence.html_name}}" name="{{form.presence.html_name}}"/><span class="hidden">{{form.presence_set}}</span>
     	</div>
@@ -78,14 +94,7 @@
     		<div class="checkmark unbusy {% if form.instance.has_reported_unbusy_today %} checked {% endif %}">&#10004;</div>
     		<label for="id_{{form.unbusy.html_name}}">{{form.unbusy.label}}</label><input type="range" value="{{form.instance.unbusy}}" min="1" max="10" id="id_{{form.unbusy.html_name}}" name="{{form.unbusy.html_name}}"/><span class="hidden">{{form.unbusy_set}}</span>
     	</div>
-    	<div class="measurement">
-    		<div class="checkmark morning_mood {% if form.instance.has_reported_morning_mood_today %} checked {% endif %}">&#10004;</div>
-    		<label for="id_{{form.morning_mood.html_name}}">{{form.morning_mood.label}}</label><input type="range" value="{{form.instance.morning_mood}}" min="1" max="10" id="id_{{form.morning_mood.html_name}}" name="{{form.morning_mood.html_name}}"/><span class="hidden">{{form.morning_mood_set}}</span>
-    	</div>
-        <div class="measurement">
-            <div class="checkmark burnt_out {% if form.instance.has_reported_burnt_out_today %} checked {% endif %}">&#10004;</div>
-            <label for="id_{{form.burnt_out.html_name}}">{{form.burnt_out.label}}</label><input type="range" value="{{form.instance.burnt_out}}" min="1" max="10" id="id_{{form.burnt_out.html_name}}" name="{{form.burnt_out.html_name}}"/><span class="hidden">{{form.burnt_out_set}}</span>
-        </div>
+
     	{# <label for="id_traveling_or_out_of_routine">Travelling: {{form.travelling_or_out_of_routine}}</label> #}
         <div class="section num_beers">
             <div class="beer_type">
@@ -99,13 +108,5 @@
             </div>
         </div>
     </div>
-    
-	{# <div class="section emotions"> #}
-		{# <label>Top three emotions:</label> #}
-		{# {{form.emotions}} #}
-	{# </div> #}
-    <div class="section actions emotions">
-        <label>Things that happened/I did/I experienced today:</label>
-        {{form.actions}}
-    </div>
+
 </form>

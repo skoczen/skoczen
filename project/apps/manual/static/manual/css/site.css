@@ -385,3 +385,9 @@ header a {
 	margin: 75px auto;
 	font-size: 180px;
 }
+.actions {
+    width: 100%;
+    display: block;
+    clear: both;
+    overflow: auto;
+}
