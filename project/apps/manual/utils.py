@@ -1,8 +1,10 @@
+import decimal, datetime
 import pickle
 import logging
 logger = logging.getLogger("foo")
 ch = logging.StreamHandler()
 ch.setLevel(logging.DEBUG)
+dec = decimal.Decimal
 
 # create formatter
 formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')
@@ -13,8 +15,6 @@ ch.setFormatter(formatter)
 # add ch to logger
 logger.addHandler(ch)
 
-
-from manual.models import GutterBumper
 
 class Dump(object):
 
@@ -33,8 +33,9 @@ class Dump(object):
             raise Exception("Error converting %s to float. (Index %s)" % (value, index))
 
     def handle(self, *args, **filters):
+        from manual.models import GutterBumper
         self.data = []
-        for d in range(0, 32):
+        for d in range(0, 33):
             self.data.append([])
         for b in GutterBumper.objects.filter(**filters).all().order_by("date"):
             self.first_run = True
@@ -82,6 +83,7 @@ class Dump(object):
                 self.append_to_data(29, 10 if (b.date.month >= 6 and b.date.month < 9) else 0)  # summer
                 self.append_to_data(30, 10 if (b.date.month >= 9 and b.date.month < 12) else 0)  # fall
                 self.append_to_data(31, 10 if (b.emotions.filter(name="Dentist Visit").count() > 0) else 0)  # dentist
+                self.append_to_data(32, b.moon_phase)
                 if self.first_run:
                     self.first_run = False
 
@@ -106,3 +108,13 @@ class Dump(object):
 def dump_data_pickle(**filters):
     c = Dump()
     return c.handle(**filters)
+
+
+# Via http://inamidst.com/code/moonphase.py
+def moon_position(now=None):
+    if now is None:
+        now = datetime.datetime.now()
+    diff = now - datetime.datetime(2001, 1, 1)
+    days = dec(diff.days) + (dec(diff.seconds) / dec(86400))
+    lunations = dec("0.20439731") + (days * dec("0.03386319269"))
+    return 28 * (dec(0.5) - abs(dec(0.5) - (lunations % dec(1))))

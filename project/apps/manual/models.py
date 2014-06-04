@@ -6,6 +6,7 @@ from django.conf import settings
 from django.db import models
 from django.db.models import Avg, Sum
 from django.template.defaultfilters import slugify
+from manual.utils import moon_position
 import fitbit
 
 BUMPER_STATUS_GOOD = "green"
@@ -122,6 +123,7 @@ class GutterBumper(BaseModel):
     notes = models.TextField(blank=True, null=True, default="86400")
     weight = models.FloatField(blank=True, null=True)
     body_fat_percent = models.FloatField(blank=True, null=True)
+    moon_phase = models.FloatField(blank=True, null=True)
 
     emotions = models.ManyToManyField(Emotion, blank=True, null=True, verbose_name="Top three emotions")
     actions = models.ManyToManyField(Action, blank=True, null=True, verbose_name="Things I did/experienced/happened:")
@@ -347,7 +349,6 @@ class GutterBumper(BaseModel):
             # 0.5 over = 8
             # 2.25 over = 1
             return 10 - (over*4)
-        
 
     @property
     def alone_health(self):
@@ -382,9 +383,12 @@ class GutterBumper(BaseModel):
             old_fell_asleep_time = GutterBumper.objects.get(pk=self.pk).fell_asleep_at
         except:
             old_fell_asleep_time = None
-        
+
         if self.calculated_sleep_hrs:
             self.sleep_hrs = self.calculated_sleep_hrs
+
+        if not self.id:
+            self.moon_phase = moon_position(datetime.combine(self.date, datetime.min.time()))
 
         # if not self.weight:
         #     self.weight = self.fitbit_data.weight

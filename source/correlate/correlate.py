@@ -35,6 +35,7 @@ cols = [
     "spring",
     "summer",
     "fall",
+    "moon_phase",
 ]
 
 headers = {'Content-type': 'application/json', }

@@ -302,6 +302,7 @@ def correlations(request):
     CORRELATION_CHOICES["summer"] = "Summer"
     CORRELATION_CHOICES["fall"] = "Fall"
     CORRELATION_CHOICES["winter"] = "Winter"
+    CORRELATION_CHOICES["moon_phase"] = "Moon Fullness"
 
     # CORRELATION_CHOICES["month"] = "Month of the year"
 
@@ -338,6 +339,7 @@ def correlations(request):
         "summer",
         "fall",
         "dentist",
+        "moon_phase",
     ]
     data = pickle.loads(dump_data_pickle())
     headers = {'Content-type': 'application/json', }
