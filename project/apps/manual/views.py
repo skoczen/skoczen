@@ -349,8 +349,6 @@ def correlations(request):
         "data": data
     }).replace(", ", ",")
     resp = requests.post("http://correlationbot.com", headers=headers, data=stripped_data)
-    print stripped_data
-    print len(stripped_data)
     if not resp.status_code == "200":
         print resp
         print resp.__dict__
