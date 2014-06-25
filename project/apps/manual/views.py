@@ -1,10 +1,8 @@
 from collections import OrderedDict
 import datetime
 import math
-import pickle
-import json
-import requests
 # from util.singly import SinglyHelper]
+from django.core.cache import cache
 from django.db.models import Sum
 from django.http import HttpResponseRedirect, HttpResponse
 from django.template.loader import render_to_string
@@ -14,7 +12,7 @@ from annoying.decorators import render_to, ajax_request
 
 from manual.models import GutterBumper, Emotion, Value, Weight
 from manual.forms import GutterBumperForm
-from manual.utils import dump_data_pickle
+from manual.utils import dump_data_pickle, CORRELATION_CHOICES, save_correlations
 
 def turn_friendly_time_into_python_time(time_with_ampm):
     time = time_with_ampm[:5]
@@ -263,113 +261,20 @@ def data_dump(request):
 # @login_required
 @render_to("manual/correlations.html")
 def correlations(request):
+    private_data = ["orgasm", "sex_count",]
+    choices = OrderedDict()
+    if request.user.username != "skoczen" or 'all' not in request.GET:
+        for k, v in CORRELATION_CHOICES.items():
+            if k not in private_data:
+                choices[k] = v
+    else:
+        choices = CORRELATION_CHOICES
+    
+    correlations = cache.get("current_correlations", None)
+    if not correlations:
+        save_correlations()
+        correlations = cache.get("current_correlations")
 
-    CORRELATION_CHOICES = OrderedDict()
-    CORRELATION_CHOICES["presence"] = "Presence"
-    CORRELATION_CHOICES["happiness"] = "Happiness"
-    CORRELATION_CHOICES["creativity"] = "Creativity"
-    CORRELATION_CHOICES["morning_mood"] = "Morning mood"
-    CORRELATION_CHOICES["unbusy"] = "Unbusy-ness"
-
-    CORRELATION_CHOICES["sleep_hrs"] = "Hours of sleep"
-    CORRELATION_CHOICES["work_hrs"] = "Hours spent working"
-    CORRELATION_CHOICES["alone_hrs"] = "Hours spent alone"
-    CORRELATION_CHOICES["friend_hrs"] = "Hours with friends"
-    CORRELATION_CHOICES["public_hrs"] = "Hours in public"
-    CORRELATION_CHOICES["relationship_hrs"] = "Hours with my significant other"
-    CORRELATION_CHOICES["woke_up_at"] = "Woke up later"
-    CORRELATION_CHOICES["fell_asleep_at"] = "Fell asleep later"
-
-    if request.user.username == "skoczen" and 'all' in request.GET:
-        CORRELATION_CHOICES["orgasm"] = "Off/Sex"
-        CORRELATION_CHOICES["sex_count"] = "Sex Count"
-
-    CORRELATION_CHOICES["interacted_with_art"] = "Interacted with art"
-    CORRELATION_CHOICES["dentist"] = "Went to the dentist"
-    CORRELATION_CHOICES["worked_out"] = "Worked out"
-    CORRELATION_CHOICES["meditated"] = "Meditated"
-    CORRELATION_CHOICES["left_the_house"] = "Left the house"
-    CORRELATION_CHOICES["nature_time"] = "Nature time"
-    CORRELATION_CHOICES["in_a_relationship"] = "In a relationship"
-    # CORRELATION_CHOICES["inbox_zero"] = "Inbox zero"
-    CORRELATION_CHOICES["travelling_or_out_of_routine"] = "Travelling"
-
-    CORRELATION_CHOICES["number_of_sleep_beers"] = "Beers to fall asleep"
-    CORRELATION_CHOICES["number_of_fun_beers"] = "Beers for fun"
-    # CORRELATION_CHOICES["number_of_total_beers"] = "Total beers"
-    CORRELATION_CHOICES["notes length"] = "# of words in daily notes"
-
-    CORRELATION_CHOICES["spring"] = "Spring"
-    CORRELATION_CHOICES["summer"] = "Summer"
-    CORRELATION_CHOICES["fall"] = "Fall"
-    CORRELATION_CHOICES["winter"] = "Winter"
-    CORRELATION_CHOICES["moon_phase"] = "Moon Fullness"
-
-    # CORRELATION_CHOICES["month"] = "Month of the year"
-
-    cols = [
-        "month",
-        "woke_up_at",
-        "fell_asleep_at",
-        "sleep_hrs",
-        "work_hrs",
-        "alone_hrs",
-        "friend_hrs",
-        "public_hrs",
-        "relationship_hrs",
-        "orgasm",
-        "sex_count",
-        "interacted_with_art",
-        "worked_out",
-        "meditated",
-        "left_the_house",
-        "nature_time",
-        "inbox_zero",
-        "travelling_or_out_of_routine",
-        "number_of_sleep_beers",
-        "number_of_fun_beers",
-        "number_of_total_beers",
-        "presence",
-        "happiness",
-        "creativity",
-        "morning_mood",
-        "unbusy",
-        "notes length",
-        "winter",
-        "spring",
-        "summer",
-        "fall",
-        "dentist",
-        "moon_phase",
-        "in_a_relationship",
-    ]
-    data = pickle.loads(dump_data_pickle())
-    headers = {'Content-type': 'application/json', }
-    stripped_data = json.dumps({
-        "data": data
-    }).replace(", ", ",")
-    resp = requests.post("http://correlationbot.com", headers=headers, data=stripped_data)
-    if not resp.status_code == "200":
-        print resp
-        print resp.__dict__
-        print resp.content
-    correlations = resp.json()["correlations"]
-    # correlations = {}
-    for c in correlations:
-        c["col1"] = cols[c["column_1"]-1]
-        c["col2"] = cols[c["column_2"]-1]
-        try:
-            c["col1_friendly"] = CORRELATION_CHOICES[cols[c["column_1"]-1]]
-        except:
-            c["col1_friendly"] = "Ignored"
-        try:
-            c["col2_friendly"] = CORRELATION_CHOICES[cols[c["column_2"]-1]]
-        except:
-            c["col2_friendly"] = "Ignored"
-
-        if str(c["pearson"]) == "nan":
-            c["pearson"] = 0
-            c["correlation"] = 0
     return {
         "correlations": correlations,
         "CORRELATION_CHOICES": CORRELATION_CHOICES,

@@ -1,6 +1,10 @@
+from collections import OrderedDict
 import decimal, datetime
 import pickle
 import logging
+import json
+import requests
+from django.core.cache import cache
 logger = logging.getLogger("foo")
 ch = logging.StreamHandler()
 ch.setLevel(logging.DEBUG)
@@ -119,3 +123,113 @@ def moon_position(now=None):
     days = dec(diff.days) + (dec(diff.seconds) / dec(86400))
     lunations = dec("0.20439731") + (days * dec("0.03386319269"))
     return 28 * (dec(0.5) - abs(dec(0.5) - (lunations % dec(1))))
+
+
+CORRELATION_CHOICES = OrderedDict()
+CORRELATION_CHOICES["presence"] = "Presence"
+CORRELATION_CHOICES["happiness"] = "Happiness"
+CORRELATION_CHOICES["creativity"] = "Creativity"
+CORRELATION_CHOICES["morning_mood"] = "Morning mood"
+CORRELATION_CHOICES["unbusy"] = "Unbusy-ness"
+
+CORRELATION_CHOICES["sleep_hrs"] = "Hours of sleep"
+CORRELATION_CHOICES["work_hrs"] = "Hours spent working"
+CORRELATION_CHOICES["alone_hrs"] = "Hours spent alone"
+CORRELATION_CHOICES["friend_hrs"] = "Hours with friends"
+CORRELATION_CHOICES["public_hrs"] = "Hours in public"
+CORRELATION_CHOICES["relationship_hrs"] = "Hours with my significant other"
+CORRELATION_CHOICES["woke_up_at"] = "Woke up later"
+CORRELATION_CHOICES["fell_asleep_at"] = "Fell asleep later"
+
+CORRELATION_CHOICES["orgasm"] = "Off/Sex"
+CORRELATION_CHOICES["sex_count"] = "Sex Count"
+
+CORRELATION_CHOICES["interacted_with_art"] = "Interacted with art"
+CORRELATION_CHOICES["dentist"] = "Went to the dentist"
+CORRELATION_CHOICES["worked_out"] = "Worked out"
+CORRELATION_CHOICES["meditated"] = "Meditated"
+CORRELATION_CHOICES["left_the_house"] = "Left the house"
+CORRELATION_CHOICES["nature_time"] = "Nature time"
+CORRELATION_CHOICES["in_a_relationship"] = "In a relationship"
+# CORRELATION_CHOICES["inbox_zero"] = "Inbox zero"
+CORRELATION_CHOICES["travelling_or_out_of_routine"] = "Travelling"
+
+CORRELATION_CHOICES["number_of_sleep_beers"] = "Beers to fall asleep"
+CORRELATION_CHOICES["number_of_fun_beers"] = "Beers for fun"
+# CORRELATION_CHOICES["number_of_total_beers"] = "Total beers"
+CORRELATION_CHOICES["notes length"] = "# of words in daily notes"
+
+CORRELATION_CHOICES["spring"] = "Spring"
+CORRELATION_CHOICES["summer"] = "Summer"
+CORRELATION_CHOICES["fall"] = "Fall"
+CORRELATION_CHOICES["winter"] = "Winter"
+CORRELATION_CHOICES["moon_phase"] = "Moon Fullness"
+# CORRELATION_CHOICES["month"] = "Month of the year"
+
+def save_correlations():
+    cols = [
+        "month",
+        "woke_up_at",
+        "fell_asleep_at",
+        "sleep_hrs",
+        "work_hrs",
+        "alone_hrs",
+        "friend_hrs",
+        "public_hrs",
+        "relationship_hrs",
+        "orgasm",
+        "sex_count",
+        "interacted_with_art",
+        "worked_out",
+        "meditated",
+        "left_the_house",
+        "nature_time",
+        "inbox_zero",
+        "travelling_or_out_of_routine",
+        "number_of_sleep_beers",
+        "number_of_fun_beers",
+        "number_of_total_beers",
+        "presence",
+        "happiness",
+        "creativity",
+        "morning_mood",
+        "unbusy",
+        "notes length",
+        "winter",
+        "spring",
+        "summer",
+        "fall",
+        "dentist",
+        "moon_phase",
+        "in_a_relationship",
+    ]
+    data = pickle.loads(dump_data_pickle())
+    headers = {'Content-type': 'application/json', }
+    stripped_data = json.dumps({
+        "data": data
+    }).replace(", ", ",")
+    resp = requests.post("http://correlationbot.com", headers=headers, data=stripped_data)
+    if resp.status_code != 200:
+        print resp
+        print resp.__dict__
+        print resp.content
+    correlations = resp.json()["correlations"]
+    # correlations = {}
+    for c in correlations:
+        c["col1"] = cols[c["column_1"]-1]
+        c["col2"] = cols[c["column_2"]-1]
+        try:
+            c["col1_friendly"] = CORRELATION_CHOICES[cols[c["column_1"]-1]]
+        except:
+            c["col1_friendly"] = "Ignored"
+        try:
+            c["col2_friendly"] = CORRELATION_CHOICES[cols[c["column_2"]-1]]
+        except:
+            c["col2_friendly"] = "Ignored"
+
+        if str(c["pearson"]) == "nan":
+            c["pearson"] = 0
+            c["correlation"] = 0
+
+    cache.set("current_correlations", correlations)
+    cache.set("current_correlation_choices", correlations)
