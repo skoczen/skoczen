@@ -234,4 +234,4 @@ def save_correlations():
             c["correlation"] = 0
 
     cache.set("current_correlations", correlations)
-    cache.set("current_correlation_choices", correlations)
+    cache.set("current_correlation_choices", CORRELATION_CHOICES)

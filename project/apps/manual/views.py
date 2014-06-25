@@ -277,7 +277,7 @@ def correlations(request):
 
     return {
         "correlations": correlations,
-        "CORRELATION_CHOICES": CORRELATION_CHOICES,
+        "CORRELATION_CHOICES": choices,
     }
 
 
