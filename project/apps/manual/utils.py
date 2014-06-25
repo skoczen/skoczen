@@ -112,7 +112,8 @@ class Dump(object):
 
 def dump_data_pickle(**filters):
     c = Dump()
-    return c.handle(**filters)
+    today = datetime.date.today() - datetime.timedelta(days=730)
+    return c.handle(date__gt=today)
 
 
 # Via http://inamidst.com/code/moonphase.py
@@ -210,6 +211,7 @@ def save_correlations():
     }).replace(", ", ",")
     resp = requests.post("http://correlationbot.com", headers=headers, data=stripped_data)
     if resp.status_code != 200:
+        print stripped_data
         print resp
         print resp.__dict__
         print resp.content
