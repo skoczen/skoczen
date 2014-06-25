@@ -111,7 +111,7 @@ class GutterBumper(BaseModel):
     presence = models.IntegerField(blank=True, null=True, help_text="1-10")
     happiness = models.IntegerField(blank=True, null=True, help_text="1-10")
     creativity = models.IntegerField(blank=True, null=True, help_text="1-10")
-    morning_mood = models.IntegerField(blank=True, null=True, help_text="1-10")
+    morning_mood = models.IntegerField(blank=True, null=True, help_text="1-10", verbose_name="Morning positivity")
     unbusy = models.IntegerField(blank=True, null=True, help_text="1-10")
     burnt_out = models.IntegerField(blank=True, null=True, verbose_name="Burnt out", help_text="1-10")
     presence_set = models.BooleanField(default=False)
