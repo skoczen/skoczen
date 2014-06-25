@@ -112,7 +112,7 @@ class Dump(object):
 
 def dump_data_pickle(**filters):
     c = Dump()
-    today = datetime.date.today() - datetime.timedelta(days=730)
+    today = datetime.date.today() - datetime.timedelta(days=640)
     return c.handle(date__gt=today)
 
 
