@@ -85,6 +85,14 @@ class Workout(BaseModel):
         super(Workout, self).save(*args, **kwargs)
 
 
+class WeeklyGoal(BaseModel):
+    start_date = models.DateField()
+    primary = models.CharField(max_length=210)
+    secondary = models.CharField(max_length=210)
+    tertiary = models.CharField(max_length=210)
+
+    def __unicode__(self):
+        return "%s" % self.start_date
 
 class GutterBumper(BaseModel):
     date = models.DateField(default=datetime.date.today())

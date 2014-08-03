@@ -10,8 +10,8 @@ from django.views.decorators.csrf import csrf_exempt
 from django.contrib.auth.decorators import login_required
 from annoying.decorators import render_to, ajax_request
 
-from manual.models import GutterBumper, Emotion, Value, Weight
-from manual.forms import GutterBumperForm
+from manual.models import GutterBumper, Emotion, Value, Weight, WeeklyGoal
+from manual.forms import GutterBumperForm, WeeklyGoalForm
 from manual.utils import dump_data_pickle, CORRELATION_CHOICES, save_correlations
 
 def turn_friendly_time_into_python_time(time_with_ampm):
@@ -214,6 +214,30 @@ def fitbit_callback(request):
 @render_to("manual/eighty.html")
 def eighty(request):
     num_sex = GutterBumper.objects.all().aggregate(Sum('sex'))['sex__sum']
+    return locals()
+
+@render_to("manual/weekly.html")
+def weekly(request):
+    weekly_goals = WeeklyGoal.objects.all()
+    most_recent = WeeklyGoal.objects.all().order_by("-start_date")[0]
+    if (datetime.date.today() - most_recent.start_date > datetime.timedelta(days=7)):
+        WeeklyGoal.objects.create(
+            start_date=most_recent.start_date + datetime.timedelta(days=7),
+            primary=most_recent.primary,
+        )
+        weekly_goals = WeeklyGoal.objects.all()
+        most_recent = WeeklyGoal.objects.all().order_by("-start_date")[0]
+
+
+    if request.method == "POST":
+        form = WeeklyGoalForm(request.POST, instance=most_recent)
+        if form.is_valid():
+            print "saving"
+            form.save()
+
+    form = WeeklyGoalForm(instance=most_recent)
+
+    # .order_by("-start_date")
     return locals()
 
 

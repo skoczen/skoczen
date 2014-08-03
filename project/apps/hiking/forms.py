@@ -27,7 +27,3 @@ class WeeklyMealForm(ModelForm):
     class Meta:
         model = WeeklyMeal
         fields = ("ingredients", "preparation", "how_it_went", "week_start_date",)
-
-class MonthlyCheckinForm(ModelForm):
-    class Meta:
-        model = MonthlyCheckin

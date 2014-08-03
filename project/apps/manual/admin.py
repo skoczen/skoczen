@@ -1,5 +1,5 @@
 from django.contrib import admin
-from manual.models import Action, Emotion, Value, Workout, GutterBumper, WeeklyMeal, MonthlyCheckin, DataSensitivity, Restaurant
+from manual.models import Action, Emotion, Value, Workout, GutterBumper, WeeklyMeal, MonthlyCheckin, DataSensitivity, Restaurant, WeeklyGoal
 from import_export.admin import ImportExportModelAdmin
 from manual.export import GutterBumperResource, MonthlyCheckinResource
 
@@ -27,5 +27,6 @@ admin.site.register(Workout)
 admin.site.register(WeeklyMeal)
 admin.site.register(MonthlyCheckin, MonthlyCheckinAdmin)
 admin.site.register(DataSensitivity)
+admin.site.register(WeeklyGoal)
 admin.site.register(Restaurant, RestaurantOptions)
 admin.site.register(GutterBumper, GutterBumperAdmin)

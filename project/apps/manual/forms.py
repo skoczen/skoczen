@@ -1,5 +1,5 @@
 from django.forms import ModelForm, CheckboxSelectMultiple, ModelMultipleChoiceField
-from manual.models import Action, Emotion, Value, GutterBumper, WeeklyMeal, MonthlyCheckin
+from manual.models import Action, Emotion, Value, GutterBumper, WeeklyMeal, MonthlyCheckin, WeeklyGoal
 
 class EmotionForm(ModelForm):
     class Meta:
@@ -31,3 +31,8 @@ class WeeklyMealForm(ModelForm):
 class MonthlyCheckinForm(ModelForm):
     class Meta:
         model = MonthlyCheckin
+
+class WeeklyGoalForm(ModelForm):
+    class Meta:
+        fields = ("primary", "secondary", "tertiary")
+        model = WeeklyGoal

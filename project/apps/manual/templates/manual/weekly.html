@@ -1,0 +1,49 @@
+{% extends "manual/base.html" %}{% load compress %}
+
+{% block js %}{{block.super}}
+{% compress js %}
+<script src="{{STATIC_URL}}manual/js/site.js"></script>
+<script>
+$('form').ajaxForm({
+    success: saveSuccess,
+});
+</script>
+{% endcompress %}
+
+{% endblock %}
+
+
+{% block content %}
+<div class="weekly">
+    <form class="weekly_form" action="{% url "manual:weekly" %}" method="POST">
+        {% csrf_token %}
+    <table>
+        <tr>
+            <th>Date</th>
+            <th>Primary</th>
+            <th>Secondary</th>
+            <th>Tertiary</th>
+        </tr>
+    {% for week in weekly_goals %}
+        {% if not forloop.last %}
+        <tr>
+            <td>{{week.start_date|date}}</td>
+            <td>{{week.primary}}</td>
+            <td>{{week.secondary}}</td>
+            <td>{{week.tertiary}}</td>
+            <td></td>
+        </tr>
+        {% else %}
+        <tr>
+            <td>{{ form.instance.start_date|date }}</td>
+            <td>{{ form.primary }}</td>
+            <td>{{ form.secondary }}</td>
+            <td>{{ form.tertiary }}</td>
+            <td><input type="submit" value="Save" class="btn " /></td>
+        </tr>
+        {% endif %}
+    {% endfor %}
+    </table>
+    </form>
+</div>
+{% endblock %}
