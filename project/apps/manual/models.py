@@ -94,6 +94,9 @@ class WeeklyGoal(BaseModel):
     def __unicode__(self):
         return "%s" % self.start_date
 
+    class Meta(object):
+        ordering = ("start_date",)
+
 class GutterBumper(BaseModel):
     date = models.DateField(default=datetime.date.today())
     woke_up_at = models.TimeField(default=datetime.time(8, 30))
