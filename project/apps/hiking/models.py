@@ -43,6 +43,7 @@ class Hike(BaseModel):
     brought_matches = models.BooleanField(default=False, verbose_name='Matches')
     brought_epipen = models.BooleanField(default=False, verbose_name='Epipen')
     brought_cash = models.BooleanField(default=False, verbose_name='Cash')
+    brought_soap = models.BooleanField(default=False, verbose_name='Hand sanitizer/soap')
     
     
 

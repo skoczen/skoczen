@@ -114,7 +114,7 @@ class GutterBumper(BaseModel):
     worked_out = models.BooleanField(default=False)
     meditated = models.BooleanField(default=False, verbose_name="meditated")
     left_the_house = models.BooleanField(default=False)
-    nature_time = models.BooleanField(default=False)
+    nature_time = models.BooleanField(default=False, verbose_name="4+ hour hike")
     inbox_zero = models.BooleanField(default=False)
     travelling_or_out_of_routine = models.BooleanField(default=False, verbose_name="Travelling/Nonroutine")
     number_of_sleep_beers = models.IntegerField(blank=True, null=True, verbose_name="# of sleep beers")
