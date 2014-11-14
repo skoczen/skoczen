@@ -44,7 +44,7 @@ ALLOWED_HOSTS = [
 ]
 
 
-TIME_ZONE = 'America/Los_Angeles'
+TIME_ZONE = 'Asia/Bangkok'
 
 LANGUAGE_CODE = 'en-us'
 
