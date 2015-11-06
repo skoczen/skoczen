@@ -41,6 +41,7 @@ ALLOWED_HOSTS = [
     "stevenskoczen.com",
     "*.stevenskoczen.com",
     "www.stevenskoczen.com",
+    "me.stevenskoczen.com",
 ]
 
 
