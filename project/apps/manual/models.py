@@ -495,6 +495,8 @@ class MonthlyCheckin(BaseModel):
     healthy_activity_notes = models.TextField(blank=True, null=True)
     closer_to_two_year_plan_rating = models.IntegerField(blank=True, null=True)
     closer_to_two_year_plan_notes = models.TextField(blank=True, null=True)
+    how_i_feel_in_my_body_rating = models.IntegerField(blank=True, null=True)
+    how_i_feel_in_my_body_notes = models.TextField(blank=True, null=True)
 
     habits_from_last_month = models.TextField(blank=True, null=True)
     habit_success_rating = models.IntegerField(blank=True, null=True)
@@ -505,9 +507,9 @@ class MonthlyCheckin(BaseModel):
     what_is_the_relationship_story_i_am_telling = models.TextField(blank=True, null=True)
     what_is_the_identity_story_i_am_telling = models.TextField(blank=True, null=True)
 
-
     def __unicode__(self):
         return "%s" % self.month_start_date.strftime('%B %Y')
+
 
 class Restaurant(BaseModel):
     name = models.CharField(max_length=200)
