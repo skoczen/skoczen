@@ -81,6 +81,7 @@ class Dump(object):
                     notes_len = len(b.notes)
                 except:
                     pass
+
                 self.append_to_data(26, notes_len)  #  = models.TextField(blank=True, null=True, default="86400")
                 self.append_to_data(27, 10 if (b.date.month < 3 or b.date.month == 12) else 0)  # winter
                 self.append_to_data(28, 10 if (b.date.month >= 3 and b.date.month < 6) else 0)  # spring
@@ -112,7 +113,7 @@ class Dump(object):
 
 def dump_data_pickle(**filters):
     c = Dump()
-    today = datetime.date.today() - datetime.timedelta(days=640)
+    today = datetime.date.today() - datetime.timedelta(days=1640)
     return c.handle(date__gt=today)
 
 
