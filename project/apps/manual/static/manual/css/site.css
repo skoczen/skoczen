@@ -99,6 +99,9 @@ form .section.num_beers {
 	border-color: #4bc434;
 	border-width: 1px 1px 1px 8px;
 }
+.daily_form .measurement label {
+	margin-bottom: 10px;
+}
 .hours .total {
 	padding: 7px 0px 4px 0px;
 	font-size: 12px;
@@ -242,6 +245,7 @@ header a {
 .dashboard .measurement.status_label {
 	padding-top: 20px;
 }
+
 /*.dashboard .status_light.red {
 	color: #FFF;
 	background-color: #f31400;
