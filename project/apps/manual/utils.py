@@ -196,6 +196,7 @@ def save_correlations():
         "creativity",
         "morning_mood",
         "unbusy",
+        "spoons",
         "notes length",
         "winter",
         "spring",

@@ -30,6 +30,7 @@ cols = [
     "creativity",
     "morning_mood",
     "unbusy",
+    "spoons",
     "notes length",
     "winter",
     "spring",

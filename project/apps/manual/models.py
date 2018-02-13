@@ -117,6 +117,7 @@ class GutterBumper(BaseModel):
     nature_time = models.BooleanField(default=False, verbose_name="4+ hour hike")
     inbox_zero = models.BooleanField(default=False)
     travelling_or_out_of_routine = models.BooleanField(default=False, verbose_name="Travelling/Nonroutine")
+    experienced_depression = models.BooleanField(default=False, verbose_name="Experienced Depression")
     number_of_sleep_beers = models.IntegerField(blank=True, null=True, verbose_name="# of sleep beers")
     number_of_fun_beers = models.IntegerField(blank=True, null=True, verbose_name="# of fun beers")
     presence = models.IntegerField(blank=True, null=True, help_text="1-10")
@@ -124,7 +125,9 @@ class GutterBumper(BaseModel):
     creativity = models.IntegerField(blank=True, null=True, help_text="1-10")
     morning_mood = models.IntegerField(blank=True, null=True, help_text="1-10", verbose_name="Morning positivity")
     unbusy = models.IntegerField(blank=True, null=True, help_text="1-10")
+    spoons = models.IntegerField(blank=True, null=True, help_text="1-10", verbose_name="Morning spoons")
     burnt_out = models.IntegerField(blank=True, null=True, verbose_name="Burnt out", help_text="1-10")
+    spoons_set = models.BooleanField(default=False)
     presence_set = models.BooleanField(default=False)
     happiness_set = models.BooleanField(default=False)
     creativity_set = models.BooleanField(default=False)
@@ -266,6 +269,10 @@ class GutterBumper(BaseModel):
         return self.unbusy_set
 
     @property
+    def has_reported_spoons_today(self):
+        return self.spoons_set
+
+    @property
     def has_reported_burnt_out_today(self):
         return self.burnt_out_set
 
@@ -337,6 +344,10 @@ class GutterBumper(BaseModel):
     @property
     def unbusy_trend(self):
         return GutterBumper.objects.filter(date__gte=self.date-datetime.timedelta(days=7)).aggregate(Avg('unbusy'))['unbusy__avg']
+
+    @property
+    def spoons_trend(self):
+        return GutterBumper.objects.filter(date__gte=self.date-datetime.timedelta(days=7)).aggregate(Avg('spoons'))['spoons__avg']
 
     @property
     def sleep_health(self):
