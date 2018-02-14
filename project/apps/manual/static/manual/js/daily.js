@@ -54,6 +54,7 @@ function setDailyForm(url, target) {
 function sliderChanged(e) {
 	$ele = $(e.target);
 	$("input[name=" + $ele.attr("name") + "_set]").attr("checked", "checked");
+	$("." + $ele.attr("name") + "_number").html($ele.val());
 }
 
 function queueFormSave(e) {
@@ -100,6 +101,7 @@ function updateSectionWithResponse(json, section) {
 	$(".worked_out label", $form).removeClass().addClass("status_label " + json.worked_out_status);
 	$(".left_the_house label", $form).removeClass().addClass("status_label " + json.left_the_house_status);
 	$(".nature_time label", $form).removeClass().addClass("status_label " + json.nature_time_status);
+	$(".ate_green label", $form).removeClass().addClass("status_label " + json.ate_green_status);
 	$(".art label", $form).removeClass().addClass("status_label " + json.art_status);
 	$(".checkmark.presence", $form).toggleClass("checked", json.has_reported_presence_today);
 	$(".checkmark.creativity", $form).toggleClass("checked", json.has_reported_creativity_today);

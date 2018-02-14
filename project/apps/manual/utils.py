@@ -137,6 +137,7 @@ CORRELATION_CHOICES["unbusy"] = "Unbusy-ness"
 CORRELATION_CHOICES["sleep_hrs"] = "Hours of sleep"
 CORRELATION_CHOICES["work_hrs"] = "Hours spent working"
 CORRELATION_CHOICES["alone_hrs"] = "Hours spent alone"
+CORRELATION_CHOICES["neap_hrs"] = "Hours spent neither alone or in quality time"
 CORRELATION_CHOICES["friend_hrs"] = "Hours with friends"
 CORRELATION_CHOICES["public_hrs"] = "Hours in public"
 CORRELATION_CHOICES["relationship_hrs"] = "Hours with my significant other"
@@ -152,6 +153,7 @@ CORRELATION_CHOICES["worked_out"] = "Worked out"
 CORRELATION_CHOICES["meditated"] = "Meditated"
 CORRELATION_CHOICES["left_the_house"] = "Left the house"
 CORRELATION_CHOICES["nature_time"] = "Nature time"
+CORRELATION_CHOICES["ate_green"] = "Ate Something Green"
 CORRELATION_CHOICES["in_a_relationship"] = "In a relationship"
 # CORRELATION_CHOICES["inbox_zero"] = "Inbox zero"
 CORRELATION_CHOICES["travelling_or_out_of_routine"] = "Travelling"
@@ -176,6 +178,7 @@ def save_correlations():
         "sleep_hrs",
         "work_hrs",
         "alone_hrs",
+        "neap_hrs",
         "friend_hrs",
         "public_hrs",
         "relationship_hrs",

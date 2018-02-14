@@ -104,6 +104,7 @@ class GutterBumper(BaseModel):
     sleep_hrs = models.FloatField(default=0, blank=True, null=True, verbose_name="Sleep", help_text="Sleep this morning")
     work_hrs = models.FloatField(default=0, blank=True, null=True, verbose_name="Work")
     alone_hrs = models.FloatField(default=0, blank=True, null=True, verbose_name="Alone")
+    neap_hrs = models.FloatField(default=0, blank=True, null=True, verbose_name="At home, not alone. None of the above.")
     friend_hrs = models.FloatField(default=0, blank=True, null=True, verbose_name="Friend")
     public_hrs = models.FloatField(default=0, blank=True, null=True, help_text="Not specifically hanging with people, but in a larger crowd", verbose_name="Public")
     relationship_hrs = models.FloatField(default=0, blank=True, null=True, verbose_name="Relationship")
@@ -115,6 +116,7 @@ class GutterBumper(BaseModel):
     meditated = models.BooleanField(default=False, verbose_name="meditated")
     left_the_house = models.BooleanField(default=False)
     nature_time = models.BooleanField(default=False, verbose_name="4+ hour hike")
+    ate_green = models.BooleanField(default=False, verbose_name="Ate something green")
     inbox_zero = models.BooleanField(default=False)
     travelling_or_out_of_routine = models.BooleanField(default=False, verbose_name="Travelling/Nonroutine")
     experienced_depression = models.BooleanField(default=False, verbose_name="Experienced Depression")
@@ -243,6 +245,15 @@ class GutterBumper(BaseModel):
             return BUMPER_STATUS_BAD
 
     @property
+    def ate_green_status(self):
+        if GutterBumper.objects.filter(ate_green=True, date__gte=self.date-datetime.timedelta(days=1)).count() > 0:
+            return BUMPER_STATUS_GOOD
+        elif GutterBumper.objects.filter(ate_green=True, date__gte=self.date-datetime.timedelta(days=3)).count() > 0:
+            return BUMPER_STATUS_BORDERLINE
+        else:
+            return BUMPER_STATUS_BAD
+
+    @property
     def art_status(self):
         if GutterBumper.objects.filter(interacted_with_art=True, date__gte=self.date-datetime.timedelta(days=6)).count() > 0:
             return BUMPER_STATUS_GOOD
@@ -297,6 +308,8 @@ class GutterBumper(BaseModel):
             return "off"
         if self.sleep_health <= 7:
             return "get to bed earlier tonight, you're low on sleep."
+        if self.ate_green_status != BUMPER_STATUS_GOOD:
+            return "eat something green"
         if self.nature_time_status != BUMPER_STATUS_GOOD:
             return "get out into nature"
         if self.art_status != BUMPER_STATUS_GOOD:
@@ -320,7 +333,7 @@ class GutterBumper(BaseModel):
     def all_green(self):
         return self.meditated_status is BUMPER_STATUS_GOOD and self.off_status is BUMPER_STATUS_GOOD and\
                self.worked_out_status is BUMPER_STATUS_GOOD and self.left_the_house_status is BUMPER_STATUS_GOOD and\
-               self.nature_time_status is BUMPER_STATUS_GOOD  # and\
+               self.nature_time_status is BUMPER_STATUS_GOOD and self.ate_green_status is BUMPER_STATUS_GOOD  # and\
                # self.has_reported_presence_today and self.has_reported_happiness_today and\
                # self.has_reported_creativity_today and self.has_reported_morning_mood_today and\
 
@@ -405,6 +418,14 @@ class GutterBumper(BaseModel):
         if avg > 2:
             return 10
         return 10*(avg/2)
+
+    @property
+    def neap_health(self):
+        avg = GutterBumper.objects.filter(date__gte=self.date-datetime.timedelta(days=14)).aggregate(Avg('neap_hrs'))['neap_hrs__avg']
+        if avg >= 3:
+            return 10
+        return 10*(avg/3)
+
 
     def save(self, *args, **kwargs):
         try:

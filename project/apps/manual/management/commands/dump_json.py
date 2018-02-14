@@ -60,6 +60,8 @@ class Command(BaseCommand):
                 self.append_to_data(13, 10 if b.meditated else 0)  #  = models.BooleanField(default=False, verbose_name="meditated")
                 self.append_to_data(14, 10 if b.left_the_house else 0)  #  = models.BooleanField(default=False)
                 self.append_to_data(15, 10 if b.nature_time else 0)  #  = models.BooleanField(default=False)
+                # Add ate green
+                # Add neap hours
                 self.append_to_data(16, 10 if b.inbox_zero else 0)  #  = models.BooleanField(default=False)
                 self.append_to_data(17, 10 if b.travelling_or_out_of_routine else 0)  #  = models.BooleanField(default=False, verbose_name="Travelling/Nonroutine")
                 self.append_to_data(18, b.number_of_sleep_beers or 0)  #  = models.IntegerField(blank=True, null=True, verbose_name="# of sleep beers")

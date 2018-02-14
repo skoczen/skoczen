@@ -69,6 +69,11 @@ form .section.find_morning textarea, form .section.one_thing textarea {
 .sex input {
 	width: 50px;
 }
+.slider_number {
+	padding: 0 10px 0 10px;
+    color: #999;
+    vertical-align: top;
+}
 .date.header {
 	width: 100%;
 	text-align: center;

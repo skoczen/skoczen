@@ -42,6 +42,7 @@ def success_and_statii_for_bumper(success, bumper_pk):
         "worked_out_status": bumper.worked_out_status,
         "left_the_house_status": bumper.left_the_house_status,
         "nature_time_status": bumper.nature_time_status,
+        "ate_green_status": bumper.ate_green_status,
         "has_reported_presence_today": bumper.has_reported_presence_today,
         "has_reported_creativity_today": bumper.has_reported_creativity_today,
         "has_reported_happiness_today": bumper.has_reported_happiness_today,
@@ -93,6 +94,7 @@ def monthly(request):
     total_sleep = 0
     total_work = 0
     total_alone = 0
+    total_neap = 0
     total_friend = 0
     total_public = 0
     total_relationship = 0
@@ -107,6 +109,7 @@ def monthly(request):
         total_sleep += g.sleep_hrs or 0
         total_work += g.work_hrs or 0
         total_alone += g.alone_hrs or 0
+        total_neap += g.neap_hrs or 0
         total_friend += g.friend_hrs or 0
         total_public += g.public_hrs or 0
         total_relationship += g.relationship_hrs or 0
@@ -121,6 +124,7 @@ def monthly(request):
     avg_sleep = total_sleep / total_days
     avg_work = total_work / total_days
     avg_alone = total_alone / total_days
+    avg_neap = total_neap / total_days
     avg_friend = total_friend / total_days
     avg_public = total_public / total_days
     avg_relationship = total_relationship / total_days

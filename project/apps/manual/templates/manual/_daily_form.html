@@ -14,7 +14,8 @@
     			<td class="day_hours alone">{{form.alone_hrs}}<br>Alone</td>
     			<td class="day_hours friend">{{form.friend_hrs}}<br>Friend</td>
     			<td class="day_hours public">{{form.public_hrs}}<br>Public</td>
-    			<td class="day_hours relationship">{{form.relationship_hrs}}<br>Relationship</td>
+    			<td class="day_hours neap">{{form.neap_hrs}}<br>Neap</td>
+                <td class="day_hours relationship">{{form.relationship_hrs}}<br>Relationship</td>
 				<td class="sleep_field fell_asleep">{{form.fell_asleep_at}}<br>Fell asleep</td>
 				<td class="total"></td>
     		</tr>
@@ -46,13 +47,18 @@
     			<td class="left_the_house">
     				
     				{{form.left_the_house}}
-    				<label class="status_label {{form.instance.left_the_house_status}}">Left the house</label>
+    				<label class="status_label {{form.instance.left_the_house_status}}">Left house</label>
     			</td>
-    			<td class="nature_time">
+                <td class="ate_green">
     				
-    				{{form.nature_time}}
-    				<label class="status_label {{form.instance.nature_time_status}}">4+ hour hike</label>
+    				{{form.ate_green}}
+    				<label class="status_label {{form.instance.ate_green_status}}">Ate green</label>
     			</td>
+                <td class="nature_time">
+                    
+                    {{form.nature_time}}
+                    <label class="status_label {{form.instance.nature_time_status}}">4+ hour hike</label>
+                </td>
     		</tr>
     	</table>
     </div>
@@ -81,7 +87,7 @@
     <div class="section subjective">
         <div class="measurement">
             <div class="checkmark spoons {% if form.instance.has_reported_spoons_today %} checked {% endif %}">&#10004;</div>
-            <label for="id_{{form.spoons.html_name}}">{{form.spoons.label}}</label><input type="range" value="{{form.instance.spoons}}" min="1" max="100" id="id_{{form.spoons.html_name}}" name="{{form.spoons.html_name}}"/><span class="hidden">{{form.spoons_set}}</span>
+            <label for="id_{{form.spoons.html_name}}">{{form.spoons.label}}</label><input type="range" value="{{form.instance.spoons}}" min="1" max="100" id="id_{{form.spoons.html_name}}" name="{{form.spoons.html_name}}"/><span class="hidden">{{form.spoons_set}}</span><span class="slider_number spoons_number"></span>
         </div>
         {# <div class="measurement"> #}
             {# <div class="checkmark burnt_out {% if form.instance.has_reported_burnt_out_today %} checked {% endif %}">&#10004;</div> #}
