@@ -217,12 +217,19 @@ header a {
 .dashboard .measurement {
 	float: left;
 }
+.dashboard .measurement.big {
+	width: 25%;
+
+}
+.dashboard .measurement.health {
+	width: 15%;
+}
 .dashboard .graph_label {
 	text-align: center;
 }
 .dashboard .measurement.status_label {
 	display: block;
-	width: 14%;
+	width: 12%;
 	font-size: 1.6rem;
 	padding-top: 30px;
 	height: 60px;
