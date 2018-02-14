@@ -20,7 +20,7 @@ class GutterBumperForm(ModelForm):
         model = GutterBumper
         fields = ("date", "woke_up_at", "fell_asleep_at", "sleep_hrs", "work_hrs", "alone_hrs", "friend_hrs", "public_hrs", "relationship_hrs"
 , "off", "worked_out", "meditated", "left_the_house", "travelling_or_out_of_routine", "nature_time", "number_of_sleep_beers","number_of_fun_beers", "spoons", "presence", "happiness", "creativity", "morning_mood", "unbusy", "burnt_out", "spoons_set", "presence_set", "happiness_set", "creativity_set", "morning_mood_set", "unbusy_set", "burnt_out_set", "notes"
-    , "emotions", "actions", "interacted_with_art", "sex",)
+    , "emotions", "actions", "interacted_with_art", "sex", "one_thing_done", "find_myself_morning", "one_thing_done_finished")
 
 
 class WeeklyMealForm(ModelForm):

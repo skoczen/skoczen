@@ -36,6 +36,19 @@ form .section.num_beers {
 	overflow: auto;
 	padding: 10px 0px 0px 0px;
 }
+form .section.find_morning {
+	width: 100%;
+}
+form .section.one_thing {
+	width: 85%;
+}
+form .section.find_morning, form .section.one_thing_done {
+	float: right;
+}
+form .section.find_morning textarea, form .section.one_thing textarea {
+	width: 100%;
+	height: 30px;
+}
 .num_beers input {
 	width: 50px;
 }

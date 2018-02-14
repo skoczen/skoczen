@@ -44,3 +44,8 @@ def setup_db():
     local_venv("./manage.py loaddata dev_user.json")
     local_venv("./manage.py migrate")
     local_venv("./manage.py fake_db")
+
+
+def deploy():
+    local_venv("git push heroku")
+    local_venv('heroku run "python manage.py migrate --settings=envs.live && heroku run "python manage.py collectstatic --noinput --settings=envs.live_local && python manage.py collectstatic --noinput --settings=envs.live && python manage.py compress --settings=envs.live && python manage.py sync_static --gzip --expires --settings=envs.live" --app skoczen')

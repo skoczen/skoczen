@@ -56,16 +56,25 @@
     		</tr>
     	</table>
     </div>
+    <div class="section find_morning">
+        <label>How do I find myself this morning?</label>
+        {{form.find_myself_morning}}
+    </div>
+
+    <div class="section one_thing_done">
+        <label>Done?</label>
+        {{form.one_thing_done_finished}}
+    </div>
+    <div class="section one_thing">
+        <label>If I could have one thing done at the end of the day, what would it be?</label>
+        {{form.one_thing_done}}
+    </div>
 
     {# <div class="section emotions"> #}
         {# <label>Top three emotions:</label> #}
         {# {{form.emotions}} #}
     {# </div> #}
-    <div class="section actions emotions">
-        <label>Things that happened/I did/I experienced today:</label>
-        {{form.actions}}
-    </div>
-<div class="section notes">
+    <div class="section notes">
         <label>Today, I:</label>
         {{form.notes}}
     </div>
@@ -108,5 +117,8 @@
             </div>
         </div>
     </div>
-
+    <div class="section actions emotions">
+        <label>Things that happened/I did/I experienced today:</label>
+        {{form.actions}}
+    </div>
 </form>
