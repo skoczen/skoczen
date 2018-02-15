@@ -270,6 +270,9 @@ header a {
 .dashboard .measurement.status_label {
 	padding-top: 20px;
 }
+.one_thing_to_do {
+	color: #777;
+}
 
 /*.dashboard .status_light.red {
 	color: #FFF;
