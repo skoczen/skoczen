@@ -45,6 +45,18 @@ form .section.one_thing {
 form .section.find_morning, form .section.one_thing_done {
 	float: right;
 }
+form .section.one_thing_done {
+	text-align: center;
+}
+form .section.one_thing_done.complete {
+	background: url("../img/goldstar.png");
+	background-repeat: no-repeat;
+    background-size: contain;
+    background-position: bottom;
+}
+form .section.one_thing_done.complete input {
+	opacity: 0.1;
+}
 form .section.find_morning textarea, form .section.one_thing textarea {
 	width: 100%;
 	height: 30px;

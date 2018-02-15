@@ -14,6 +14,7 @@ $(function(){
 	
 	$("input, textarea").live("change",queueFormSave)
 	$(".hours input").live("change",hoursChanged)
+	$(".one_thing_done input").live("change",oneThingDoneChanged)
 	$('form').ajaxForm({
 		success: saveSuccess,
 	});
@@ -23,6 +24,7 @@ $(function(){
 	$(".shift_left_link").live("click", shiftLeft);
 	$(".shift_right_link").live("click", shiftRight);
 	$("input[type=range]").live("change", sliderChanged);
+
 });
 
 function shiftLeft() {
@@ -116,6 +118,10 @@ function hoursChanged(e) {
 	$ele = $(e.target);
 	$hours = $ele.parents(".hours");
 	calculateHours($hours);
+}
+function oneThingDoneChanged(e) {
+	day = $(e.target).parents("form")
+	$(".one_thing_done", day).toggleClass("complete", $(".one_thing_done input", day)[0].checked);
 }
 function roundNumberWithDec(num, dec) {
 	return Math.round( Math.round( num * Math.pow( 10, dec + 1 ) ) / Math.pow( 10, 1 ) ) / Math.pow(10,dec);

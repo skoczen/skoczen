@@ -67,7 +67,7 @@
         {{form.find_myself_morning}}
     </div>
 
-    <div class="section one_thing_done">
+    <div class="section one_thing_done {% if form.instance.one_thing_done_finished %} complete {% endif %}">
         <label>Done?</label>
         {{form.one_thing_done_finished}}
     </div>
