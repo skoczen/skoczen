@@ -246,9 +246,9 @@ class GutterBumper(BaseModel):
 
     @property
     def ate_green_status(self):
-        if GutterBumper.objects.filter(ate_green=True, date__gte=self.date-datetime.timedelta(days=1)).count() > 0:
+        if self.ate_green or (self.yesterday and self.yesterday.ate_green):
             return BUMPER_STATUS_GOOD
-        elif GutterBumper.objects.filter(ate_green=True, date__gte=self.date-datetime.timedelta(days=3)).count() > 0:
+        elif (self.yesterday and self.yesterday.yesterday.ate_green):
             return BUMPER_STATUS_BORDERLINE
         else:
             return BUMPER_STATUS_BAD
