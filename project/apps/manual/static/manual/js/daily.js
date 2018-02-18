@@ -56,7 +56,8 @@ function setDailyForm(url, target) {
 function sliderChanged(e) {
 	$ele = $(e.target);
 	$("input[name=" + $ele.attr("name") + "_set]").attr("checked", "checked");
-	$("." + $ele.attr("name") + "_number").html($ele.val());
+	var $form = $ele.parents("form");
+	$("." + $ele.attr("name") + "_number", $form).html($ele.val());
 }
 
 function queueFormSave(e) {
