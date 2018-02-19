@@ -11,8 +11,8 @@ EMAIL_BACKEND = 'django_ses.SESBackend'
 BROKER_URL = os.environ["REDISTOGO_URL"]
 
 AWS_QUERYSTRING_AUTH = False
-MEDIA_URL = 'http://%s.s3.amazonaws.com/' % AWS_STORAGE_BUCKET_NAME
-STATIC_URL = 'http://%s.s3.amazonaws.com/' % AWS_STORAGE_BUCKET_NAME
+MEDIA_URL = 'https://%s.s3.amazonaws.com/' % AWS_STORAGE_BUCKET_NAME
+STATIC_URL = 'https://%s.s3.amazonaws.com/' % AWS_STORAGE_BUCKET_NAME
 ADMIN_MEDIA_PREFIX = '%sadmin/' % STATIC_URL
 COMPRESS_URL = STATIC_URL
 FAVICON_URL = "%sfavicon.ico" % STATIC_URL
